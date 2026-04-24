@@ -184,8 +184,11 @@
   <script>
     // Load individual blog post
     (async function() {
-      const params = new URLSearchParams(window.location.search);
-      const slug = params.get('slug');
+      let slug = new URLSearchParams(window.location.search).get('slug');
+      if (!slug) {
+        const match = window.location.pathname.match(/\/blog\/([^\/]+)/);
+        if (match) slug = match[1];
+      }
       const wrapper = document.getElementById('blogPostWrapper');
 
       if (!slug) {
