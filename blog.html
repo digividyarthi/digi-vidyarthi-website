@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Marketing Blog | Digi Vidyarthi - Best Institute in Varanasi</title>
+  <meta name="description" content="Read the latest digital marketing tips, SEO strategies, social media insights, and industry updates from Digi Vidyarthi - Best Digital Marketing Institute in Varanasi.">
+  <meta name="keywords" content="digital marketing blog, SEO tips, social media marketing, digital marketing varanasi, Digi Vidyarthi blog, digital marketing tips india">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Digi Vidyarthi">
+  <link rel="canonical" href="https://digividyarthi.com/blog">
+  <meta property="og:title" content="Digital Marketing Blog | Digi Vidyarthi">
+  <meta property="og:description" content="Latest digital marketing tips, trends, and insights from the best digital marketing institute in Varanasi.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digividyarthi.com/blog">
+  <meta property="og:image" content="https://digividyarthi.com/images/logo.png">
+  <meta property="og:site_name" content="Digi Vidyarthi">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Digital Marketing Blog | Digi Vidyarthi">
+  <meta name="twitter:description" content="Latest digital marketing tips and insights from Varanasi's best institute.">
+  <link rel="icon" href="images/logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="images/logo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== TOP ANNOUNCEMENT BAR ===== -->
+  <div class="top-bar" id="topBar">
+    <div class="top-bar-inner">
+      <div class="top-bar-left">
+        <span><i class="fa-solid fa-envelope"></i> Info@digividyarthi.com</span>
+        <span><i class="fa-solid fa-phone"></i> +91-9278039576</span>
+      </div>
+      <div class="top-bar-marquee">
+        <div class="marquee-track">
+          <span><i class="fa-solid fa-graduation-cap"></i> Admission Open!! For More Details, Please Contact Helpline No: +91-9278027950 &nbsp;&nbsp;&bull;&nbsp;&nbsp; <i class="fa-solid fa-gift"></i> Grand Opening Special - Exclusive Discounts for First 10 Students! &nbsp;&nbsp;&bull;&nbsp;&nbsp; <i class="fa-solid fa-rocket"></i> New Batch Starting Soon - Enroll Now! &nbsp;&nbsp;&bull;&nbsp;&nbsp;</span>
+          <span><i class="fa-solid fa-graduation-cap"></i> Admission Open!! For More Details, Please Contact Helpline No: +91-9278027950 &nbsp;&nbsp;&bull;&nbsp;&nbsp; <i class="fa-solid fa-gift"></i> Grand Opening Special - Exclusive Discounts for First 10 Students! &nbsp;&nbsp;&bull;&nbsp;&nbsp; <i class="fa-solid fa-rocket"></i> New Batch Starting Soon - Enroll Now! &nbsp;&nbsp;&bull;&nbsp;&nbsp;</span>
+        </div>
+      </div>
+      <div class="top-bar-right">
+        <a href="https://www.instagram.com/digi.vidyarthi?igsh=MWhudXNobXhqM3U5OA==" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.youtube.com/" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://www.facebook.com/share/1FfP94gxrq/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <img src="images/logo.png" alt="Digi Vidyarthi Logo">
+        <span class="nav-logo-text"><span class="digi">Digi</span> <span class="vidyarthi">Vidyarthi</span></span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="/">Home</a>
+        <a href="/about">About Us</a>
+        <a href="/courses">Courses</a>
+        <a href="/tools">Tools</a>
+        <a href="/blog" class="active">Blog</a>
+        <a href="/contact">Contact</a>
+        <a href="/contact" class="btn btn-primary btn-sm nav-cta">Book Free Demo</a>
+      </div>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>The <span class="highlight-orange">Blog</span> of Varanasi's Best Digital Marketing Institute</h1>
+      <p>Digital marketing tips, strategies, insights aur latest industry updates from the best digital marketing institute in Varanasi. Har din kuch naya seekhein!</p>
+    </div>
+  </section>
+
+  <!-- ===== BLOG SECTION ===== -->
+  <section class="section blog-section">
+    <div class="container">
+
+      <div class="blog-layout">
+        <!-- Main Blog Area -->
+        <div class="blog-main-content">
+          <!-- Blog Filter Tags -->
+          <div class="blog-filters">
+            <button class="blog-filter-btn active" data-filter="all">All</button>
+            <button class="blog-filter-btn" data-filter="seo">SEO</button>
+            <button class="blog-filter-btn" data-filter="social-media">Social Media</button>
+            <button class="blog-filter-btn" data-filter="google-ads">Google Ads</button>
+            <button class="blog-filter-btn" data-filter="ai-tools">AI Tools</button>
+            <button class="blog-filter-btn" data-filter="tips">Tips & Tricks</button>
+          </div>
+
+          <!-- Blog Grid (dynamically loaded) -->
+          <div class="blog-grid" id="blogGrid">
+            <div class="blog-loading" style="grid-column:1/-1; text-align:center; padding:3rem; color:#6C757D;">
+              <i class="fa-solid fa-spinner fa-spin" style="font-size:2rem; margin-bottom:1rem; display:block;"></i>
+              Loading blog posts...
+            </div>
+          </div>
+
+          <!-- Load More Button -->
+          <div class="blog-load-more" id="blogLoadMore" style="display:none">
+            <button class="btn btn-primary btn-lg" id="loadMoreBtn">Load More Posts <i class="fa-solid fa-arrow-down"></i></button>
+          </div>
+        </div>
+
+        <!-- Right Sidebar Area -->
+        <aside class="blog-sidebar">
+          
+          <!-- Search Widget -->
+          <div class="sidebar-widget widget-search">
+            <h3><i class="fa-solid fa-magnifying-glass"></i> Search Posts</h3>
+            <div class="search-box">
+              <input type="text" id="blogSearchInput" placeholder="Search blogs..." autocomplete="off">
+              <button id="blogSearchBtn"><i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <!-- Categories Widget -->
+          <div class="sidebar-widget widget-categories">
+            <h3><i class="fa-solid fa-folder-open"></i> Categories</h3>
+            <ul class="widget-list" id="sidebarCategories">
+              <li><a href="#" data-cat="all" class="cat-link active">All Posts <span class="cat-count" id="count-all">0</span></a></li>
+              <li><a href="#" data-cat="seo" class="cat-link">SEO <span class="cat-count" id="count-seo">0</span></a></li>
+              <li><a href="#" data-cat="social-media" class="cat-link">Social Media <span class="cat-count" id="count-smm">0</span></a></li>
+              <li><a href="#" data-cat="google-ads" class="cat-link">Google Ads <span class="cat-count" id="count-ads">0</span></a></li>
+              <li><a href="#" data-cat="ai-tools" class="cat-link">AI Tools <span class="cat-count" id="count-ai">0</span></a></li>
+              <li><a href="#" data-cat="tips" class="cat-link">Tips & Tricks <span class="cat-count" id="count-tips">0</span></a></li>
+            </ul>
+          </div>
+
+          <!-- Recent Posts Widget -->
+          <div class="sidebar-widget widget-recent-posts">
+            <h3><i class="fa-regular fa-clock"></i> Recent Posts</h3>
+            <div class="recent-posts-list" id="sidebarRecentPosts">
+              <!-- Dynamically populated via JS -->
+              <div class="text-center" style="padding:1rem; color:var(--gray-400);"><i class="fa-solid fa-spinner fa-spin"></i></div>
+            </div>
+          </div>
+
+          <!-- Archive Widget -->
+          <div class="sidebar-widget widget-archives">
+            <h3><i class="fa-regular fa-calendar-days"></i> Archives</h3>
+            <ul class="widget-list" id="sidebarArchives">
+              <!-- Dynamically populated via JS -->
+              <li><span style="color:var(--gray-400);font-size:0.9rem;">Loading archives...</span></li>
+            </ul>
+          </div>
+
+        </aside>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== CTA SECTION ===== -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Want to Learn Digital Marketing?</h2>
+      <p>Join Digi Vidyarthi aur apne digital marketing career ko ek nayi direction dein.</p>
+      <div class="cta-buttons">
+        <a href="/courses" class="btn btn-primary btn-lg">Explore Courses <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="/contact" class="btn btn-secondary btn-lg">Book Free Demo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="nav-logo">
+            <img src="images/logo.png" alt="Digi Vidyarthi Logo">
+            <span class="nav-logo-text"><span class="digi">Digi</span> <span class="vidyarthi">Vidyarthi</span></span>
+          </a>
+          <p>Varanasi's leading digital marketing institute providing practical, industry-ready training with live projects and expert mentorship.</p>
+          <div class="footer-social">
+            <a href="https://www.facebook.com/share/1FfP94gxrq/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/digi.vidyarthi?igsh=MWhudXNobXhqM3U5OA==" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.youtube.com/" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Courses</h4>
+          <ul>
+            <li><a href="/courses">Foundation in Digital Marketing</a></li>
+            <li><a href="/courses">Advanced Digital Marketing</a></li>
+            <li><a href="/courses">Digital Marketing Mastery</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/tools">AI Tools</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul class="footer-contact">
+            <li><span class="icon"><i class="fa-solid fa-envelope"></i></span> Info@digividyarthi.com</li>
+            <li><span class="icon"><i class="fa-solid fa-phone"></i></span> <a href="tel:9278027950">+91-9278027950</a></li>
+            <li><span class="icon"><i class="fa-solid fa-phone"></i></span> <a href="tel:9278039576">+91-9278039576</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Digi Vidyarthi. All rights reserved.</p>
+        <p>Best Digital Marketing Institute in Varanasi</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== FLOATING SOCIAL SIDEBAR ===== -->
+  <div class="social-sidebar" id="socialSidebar">
+    <a href="/contact" class="sidebar-cta" aria-label="Contact Us">
+      <span class="sidebar-cta-icon"><i class="fa-solid fa-arrow-right"></i></span>
+      <span class="sidebar-cta-text">Contact Us</span>
+    </a>
+    <a href="https://www.youtube.com/" target="_blank" class="sidebar-social yt" aria-label="YouTube">
+      <i class="fa-brands fa-youtube"></i>
+    </a>
+    <a href="https://www.facebook.com/share/1FfP94gxrq/?mibextid=wwXIfr" target="_blank" class="sidebar-social fb" aria-label="Facebook">
+      <i class="fa-brands fa-facebook-f"></i>
+    </a>
+    <a href="https://www.instagram.com/digi.vidyarthi?igsh=MWhudXNobXhqM3U5OA==" target="_blank" class="sidebar-social ig" aria-label="Instagram">
+      <i class="fa-brands fa-instagram"></i>
+    </a>
+  </div>
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/919278039576" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+
+  <script src="script.js"></script>
+</body>
+</html>

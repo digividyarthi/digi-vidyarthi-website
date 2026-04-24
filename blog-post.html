@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Post - Digi Vidyarthi</title>
+  <meta name="description" content="Read the full blog post on Digi Vidyarthi Blog.">
+  <link rel="icon" href="images/logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="images/logo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== TOP ANNOUNCEMENT BAR ===== -->
+  <div class="top-bar" id="topBar">
+    <div class="top-bar-inner">
+      <div class="top-bar-left">
+        <span><i class="fa-solid fa-envelope"></i> Info@digividyarthi.com</span>
+        <span><i class="fa-solid fa-phone"></i> +91-9278039576</span>
+      </div>
+      <div class="top-bar-marquee">
+        <div class="marquee-track">
+          <span><i class="fa-solid fa-graduation-cap"></i> Admission Open!! For More Details, Please Contact Helpline No: +91-9278027950 &nbsp;&nbsp;&bull;&nbsp;&nbsp; <i class="fa-solid fa-gift"></i> Grand Opening Special - Exclusive Discounts for First 10 Students! &nbsp;&nbsp;&bull;&nbsp;&nbsp; <i class="fa-solid fa-rocket"></i> New Batch Starting Soon - Enroll Now! &nbsp;&nbsp;&bull;&nbsp;&nbsp;</span>
+          <span><i class="fa-solid fa-graduation-cap"></i> Admission Open!! For More Details, Please Contact Helpline No: +91-9278027950 &nbsp;&nbsp;&bull;&nbsp;&nbsp; <i class="fa-solid fa-gift"></i> Grand Opening Special - Exclusive Discounts for First 10 Students! &nbsp;&nbsp;&bull;&nbsp;&nbsp; <i class="fa-solid fa-rocket"></i> New Batch Starting Soon - Enroll Now! &nbsp;&nbsp;&bull;&nbsp;&nbsp;</span>
+        </div>
+      </div>
+      <div class="top-bar-right">
+        <a href="https://www.instagram.com/digi.vidyarthi?igsh=MWhudXNobXhqM3U5OA==" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.youtube.com/" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://www.facebook.com/share/1FfP94gxrq/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <img src="images/logo.png" alt="Digi Vidyarthi Logo">
+        <span class="nav-logo-text"><span class="digi">Digi</span> <span class="vidyarthi">Vidyarthi</span></span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="/">Home</a>
+        <a href="/about">About Us</a>
+        <a href="/courses">Courses</a>
+        <a href="/tools">Tools</a>
+        <a href="/blog" class="active">Blog</a>
+        <a href="/contact">Contact</a>
+        <a href="/contact" class="btn btn-primary btn-sm nav-cta">Book Free Demo</a>
+      </div>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== BLOG POST CONTENT ===== -->
+  <section class="section blog-post-section">
+    <div class="container">
+      <div class="blog-post-wrapper" id="blogPostWrapper">
+        <div style="text-align:center; padding:3rem; color:#6C757D;">
+          <i class="fa-solid fa-spinner fa-spin" style="font-size:2rem;"></i>
+          <p>Loading post...</p>
+        </div>
+      </div>
+
+      <!-- ===== RELATED POSTS ===== -->
+      <div class="related-posts-section" id="relatedPostsSection" style="display: none;">
+        <h3><i class="fa-solid fa-link"></i> Related Posts</h3>
+        <div class="related-posts-grid" id="relatedPostsGrid">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+
+      <!-- ===== COMMENTS SECTION ===== -->
+      <div class="comments-section">
+        <h3><i class="fa-solid fa-comments"></i> Leave a Comment</h3>
+        <p class="comments-subtitle">Your email address will not be published. Required fields are marked *</p>
+        <form class="comment-form" id="commentForm" onsubmit="event.preventDefault(); alert('Comment submitted successfully! (This is a demo frontend action)'); this.reset();">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="commentName">Name *</label>
+              <input type="text" id="commentName" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+              <label for="commentEmail">Email *</label>
+              <input type="email" id="commentEmail" placeholder="Your Email" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="commentBody">Comment *</label>
+            <textarea id="commentBody" rows="5" placeholder="Write your comment here..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Post Comment <i class="fa-solid fa-paper-plane"></i></button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA SECTION ===== -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Want to Learn Digital Marketing?</h2>
+      <p>Join Digi Vidyarthi aur apne digital marketing career ko ek nayi direction dein.</p>
+      <div class="cta-buttons">
+        <a href="/courses" class="btn btn-primary btn-lg">Explore Courses <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="/contact" class="btn btn-secondary btn-lg">Book Free Demo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="nav-logo">
+            <img src="images/logo.png" alt="Digi Vidyarthi Logo">
+            <span class="nav-logo-text"><span class="digi">Digi</span> <span class="vidyarthi">Vidyarthi</span></span>
+          </a>
+          <p>Varanasi's leading digital marketing institute providing practical, industry-ready training with live projects and expert mentorship.</p>
+          <div class="footer-social">
+            <a href="https://www.facebook.com/share/1FfP94gxrq/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/digi.vidyarthi?igsh=MWhudXNobXhqM3U5OA==" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.youtube.com/" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Courses</h4>
+          <ul>
+            <li><a href="/courses">Foundation in Digital Marketing</a></li>
+            <li><a href="/courses">Advanced Digital Marketing</a></li>
+            <li><a href="/courses">Digital Marketing Mastery</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/tools">AI Tools</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul class="footer-contact">
+            <li><span class="icon"><i class="fa-solid fa-envelope"></i></span> Info@digividyarthi.com</li>
+            <li><span class="icon"><i class="fa-solid fa-phone"></i></span> <a href="tel:9278027950">+91-9278027950</a></li>
+            <li><span class="icon"><i class="fa-solid fa-phone"></i></span> <a href="tel:9278039576">+91-9278039576</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Digi Vidyarthi. All rights reserved.</p>
+        <p>Best Digital Marketing Institute in Varanasi</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== FLOATING SOCIAL SIDEBAR ===== -->
+  <div class="social-sidebar" id="socialSidebar">
+    <a href="/contact" class="sidebar-cta" aria-label="Contact Us">
+      <span class="sidebar-cta-icon"><i class="fa-solid fa-arrow-right"></i></span>
+      <span class="sidebar-cta-text">Contact Us</span>
+    </a>
+    <a href="https://www.youtube.com/" target="_blank" class="sidebar-social yt" aria-label="YouTube">
+      <i class="fa-brands fa-youtube"></i>
+    </a>
+    <a href="https://www.facebook.com/share/1FfP94gxrq/?mibextid=wwXIfr" target="_blank" class="sidebar-social fb" aria-label="Facebook">
+      <i class="fa-brands fa-facebook-f"></i>
+    </a>
+    <a href="https://www.instagram.com/digi.vidyarthi?igsh=MWhudXNobXhqM3U5OA==" target="_blank" class="sidebar-social ig" aria-label="Instagram">
+      <i class="fa-brands fa-instagram"></i>
+    </a>
+  </div>
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/919278039576" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+
+  <script src="script.js"></script>
+  <script>
+    // Load individual blog post
+    (async function() {
+      const params = new URLSearchParams(window.location.search);
+      const slug = params.get('slug');
+      const wrapper = document.getElementById('blogPostWrapper');
+
+      if (!slug) {
+        wrapper.innerHTML = '<p style="text-align:center; padding:2rem;">Post not found. <a href="/blog">Back to Blog</a></p>';
+        return;
+      }
+
+      let posts = [];
+      try {
+        const res = await fetch('admin.php?action=get_posts');
+        const data = await res.json();
+        if (data.success) posts = data.data;
+      } catch(e) {
+        try {
+          const res = await fetch('blogs.json');
+          posts = await res.json();
+        } catch(e2) {}
+      }
+
+      const post = posts.find(p => p.slug === slug || p.id === slug);
+
+      if (!post) {
+        wrapper.innerHTML = '<p style="text-align:center; padding:2rem;">Post not found. <a href="/blog">Back to Blog</a></p>';
+        return;
+      }
+
+      // Update page title and SEO meta tags
+      document.title = post.title + ' - Digi Vidyarthi Blog';
+      
+      const setMeta = (attr, value, content) => {
+        let el = document.querySelector(`meta[${attr}="${value}"]`);
+        if (!el) {
+          el = document.createElement('meta');
+          el.setAttribute(attr, value);
+          document.head.appendChild(el);
+        }
+        el.setAttribute('content', content);
+      };
+
+      setMeta('name', 'description', post.excerpt || post.title);
+      setMeta('property', 'og:title', post.title);
+      setMeta('property', 'og:description', post.excerpt || post.title);
+      if (post.image) setMeta('property', 'og:image', 'https://digividyarthi.com/' + post.image);
+      setMeta('property', 'og:type', 'article');
+      setMeta('property', 'og:url', 'https://digividyarthi.com/blog/' + (post.slug || post.id));
+
+      let canonical = document.querySelector('link[rel="canonical"]');
+      if (!canonical) {
+        canonical = document.createElement('link');
+        canonical.setAttribute('rel', 'canonical');
+        document.head.appendChild(canonical);
+      }
+      canonical.setAttribute('href', 'https://digividyarthi.com/blog/' + (post.slug || post.id));
+
+      function esc(str) {
+        const d = document.createElement('div');
+        d.textContent = str;
+        return d.innerHTML;
+      }
+
+      // Render content as HTML (not escaped)
+      wrapper.innerHTML = `
+        <a href="/blog" class="blog-back-link"><i class="fa-solid fa-arrow-left"></i> Back to Blog</a>
+        <article class="blog-post-full">
+          ${post.image ? `<div class="blog-post-hero-img"><img src="${esc(post.image)}" alt="${esc(post.title)}"></div>` : ''}
+          <div class="blog-post-header">
+            <span class="blog-card-tag" style="position:relative; top:0; left:0; margin-bottom:1rem; display:inline-block;">${esc(post.categoryLabel || post.category)}</span>
+            <h1>${esc(post.title)}</h1>
+            <div class="blog-card-meta" style="margin-top:0.5rem; justify-content:flex-start;">
+              <span><i class="fa-regular fa-calendar"></i> Last Updated: ${esc(post.dateFormatted || post.date)}</span>
+              <span><i class="fa-regular fa-user"></i> ${esc(post.author || 'Digi Vidyarthi')}</span>
+            </div>
+          </div>
+          <div class="blog-post-body">${post.content || ''}</div>
+          <div class="blog-post-tags">
+            <span class="tags-label"><i class="fa-solid fa-tags"></i> Tags:</span>
+            ${post.tags && post.tags.length > 0 ? 
+              post.tags.map(tag => `<span class="blog-tag-pill"><i class="fa-solid fa-hashtag"></i> ${esc(tag)}</span>`).join('') 
+              : '<span class="blog-tag-pill" style="opacity:0.6;">(No tags)</span>'}
+          </div>
+        </article>
+      `;
+
+      // Render Related Posts
+      const relatedPostsContainer = document.getElementById('relatedPostsSection');
+      const relatedPostsGrid = document.getElementById('relatedPostsGrid');
+      
+      if (relatedPostsContainer && relatedPostsGrid) {
+        // Find posts in the same category, excluding the current one
+        let related = posts.filter(p => p.category === post.category && p.slug !== post.slug && p.id !== post.id);
+        
+        // If we don't have 2 related posts, fill with other recent posts
+        if (related.length < 2) {
+          const otherPosts = posts.filter(p => p.category !== post.category && p.slug !== post.slug && p.id !== post.id);
+          related = related.concat(otherPosts);
+        }
+        
+        if (related.length > 0) {
+          // Take top 2 related posts
+          const topRelated = related.slice(0, 2);
+          
+          relatedPostsGrid.innerHTML = topRelated.map(rp => `
+            <article class="blog-card" data-category="${esc(rp.category)}">
+              <div class="blog-card-image ${!rp.image ? 'no-img' : ''}">
+                ${rp.image ? `<img src="${esc(rp.image)}" alt="${esc(rp.title)}" onerror="this.style.display='none'; this.parentElement.classList.add('no-img');">` : ''}
+                <span class="blog-card-tag">${esc(rp.categoryLabel || rp.category)}</span>
+              </div>
+              <div class="blog-card-content">
+                <div class="blog-card-meta">
+                  <span><i class="fa-regular fa-calendar"></i> ${esc(rp.dateFormatted || rp.date)}</span>
+                </div>
+                <h3><a href="/blog/${encodeURIComponent(rp.slug || rp.id)}">${esc(rp.title)}</a></h3>
+                <a href="/blog/${encodeURIComponent(rp.slug || rp.id)}" class="blog-read-more">Read More <i class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </article>
+          `).join('');
+          
+          relatedPostsContainer.style.display = 'block';
+        }
+      }
+    })();
+  </script>
+</body>
+</html>

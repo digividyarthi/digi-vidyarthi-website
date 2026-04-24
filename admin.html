@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - Digi Vidyarthi Blog</title>
+  <link rel="icon" href="images/logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <!-- Mammoth.js for docx to HTML conversion -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.0.0/mammoth.browser.min.js"></script>
+  <style>
+    /* ===== ADMIN PANEL STYLES ===== */
+    .admin-body { background: var(--gray-50); min-height: 100vh; }
+
+    /* Login Screen */
+    .admin-login {
+      display: flex; align-items: center; justify-content: center;
+      min-height: 100vh; padding: var(--space-xl);
+    }
+    .login-card {
+      background: var(--white); border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg); padding: var(--space-2xl);
+      max-width: 420px; width: 100%; text-align: center;
+    }
+    .login-card img { height: 50px; margin-bottom: var(--space-md); }
+    .login-card h2 {
+      font-family: var(--font-heading); font-size: 1.5rem;
+      color: var(--gray-800); margin-bottom: var(--space-xs);
+    }
+    .login-card p { color: var(--gray-500); font-size: 0.9rem; margin-bottom: var(--space-xl); }
+    .login-input {
+      width: 100%; padding: 14px 16px; border: 2px solid var(--gray-200);
+      border-radius: var(--radius-sm); font-size: 1rem;
+      font-family: var(--font-body); margin-bottom: var(--space-md);
+      transition: var(--transition-fast); outline: none;
+    }
+    .login-input:focus { border-color: var(--blue); }
+    .login-error {
+      color: #dc3545; font-size: 0.85rem; margin-bottom: var(--space-sm);
+      display: none;
+    }
+
+    /* Admin Dashboard */
+    .admin-wrapper { display: none; }
+    .admin-header {
+      background: var(--white); border-bottom: 1px solid var(--gray-200);
+      padding: var(--space-md) var(--space-xl); display: flex;
+      align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .admin-header-left { display: flex; align-items: center; gap: var(--space-md); }
+    .admin-header-left img { height: 36px; }
+    .admin-header-left h3 {
+      font-family: var(--font-heading); font-size: 1.1rem; color: var(--gray-800);
+    }
+    .admin-header-left h3 span { color: var(--orange); }
+    .admin-header-right { display: flex; align-items: center; gap: var(--space-md); }
+
+    .admin-content { max-width: 1100px; margin: 0 auto; padding: var(--space-xl); }
+
+    /* Stats Row */
+    .admin-stats {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-md); margin-bottom: var(--space-xl);
+    }
+    .admin-stat-card {
+      background: var(--white); border-radius: var(--radius-md);
+      padding: var(--space-lg); box-shadow: var(--shadow-sm);
+      display: flex; align-items: center; gap: var(--space-md);
+    }
+    .admin-stat-icon {
+      width: 50px; height: 50px; border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; color: var(--white);
+    }
+    .admin-stat-icon.blue { background: var(--gradient-blue); }
+    .admin-stat-icon.orange { background: var(--gradient-orange); }
+    .admin-stat-icon.green { background: linear-gradient(135deg, #28a745, #34ce57); }
+    .admin-stat-info h4 { font-family: var(--font-heading); font-size: 1.5rem; color: var(--gray-800); }
+    .admin-stat-info p { font-size: 0.82rem; color: var(--gray-500); }
+
+    /* Tabs */
+    .admin-tabs {
+      display: flex; gap: var(--space-sm); margin-bottom: var(--space-xl);
+      border-bottom: 2px solid var(--gray-200); padding-bottom: 0;
+    }
+    .admin-tab {
+      padding: 12px 24px; background: none; border: none;
+      font-family: var(--font-body); font-size: 0.95rem; font-weight: 500;
+      color: var(--gray-500); cursor: pointer; border-bottom: 3px solid transparent;
+      margin-bottom: -2px; transition: var(--transition-fast);
+    }
+    .admin-tab:hover { color: var(--blue); }
+    .admin-tab.active { color: var(--blue); border-bottom-color: var(--blue); font-weight: 600; }
+
+    .admin-panel { display: none; }
+    .admin-panel.active { display: block; }
+
+    /* Form Panel */
+    .editor-card {
+      background: var(--white); border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm); padding: var(--space-xl);
+    }
+    .editor-card h3 {
+      font-family: var(--font-heading); font-size: 1.2rem;
+      color: var(--gray-800); margin-bottom: var(--space-lg);
+    }
+
+    .form-field { margin-bottom: var(--space-lg); }
+    .form-field label {
+      display: block; font-weight: 600; font-size: 0.9rem;
+      color: var(--gray-700); margin-bottom: 6px;
+    }
+    .form-field input, .form-field select, .form-field textarea {
+      width: 100%; padding: 12px 14px; border: 2px solid var(--gray-200);
+      border-radius: var(--radius-sm); font-family: var(--font-body);
+      font-size: 0.95rem; outline: none; transition: var(--transition-fast);
+    }
+    .form-field input:focus, .form-field select:focus, .form-field textarea:focus {
+      border-color: var(--blue);
+    }
+    .form-field textarea { min-height: 200px; resize: vertical; line-height: 1.6; }
+    .form-field .hint { font-size: 0.8rem; color: var(--gray-400); margin-top: 4px; }
+
+    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); }
+
+    /* Image Upload */
+    .image-upload-area {
+      border: 2px dashed var(--gray-300); border-radius: var(--radius-md);
+      padding: var(--space-xl); text-align: center; cursor: pointer;
+      transition: var(--transition-fast); position: relative;
+    }
+    .image-upload-area:hover { border-color: var(--blue); background: var(--blue-pale); }
+    .image-upload-area i { font-size: 2rem; color: var(--gray-400); margin-bottom: var(--space-sm); }
+    .image-upload-area p { color: var(--gray-500); font-size: 0.9rem; }
+    .image-upload-area input[type="file"] {
+      position: absolute; inset: 0; opacity: 0; cursor: pointer;
+    }
+    .image-preview {
+      margin-top: var(--space-md); display: none;
+    }
+    .image-preview img {
+      width: 250px; aspect-ratio: 5 / 4; border-radius: var(--radius-sm);
+      object-fit: cover; background: var(--gray-100);
+    }
+    .image-preview .remove-img {
+      display: inline-block; margin-left: var(--space-sm);
+      color: #dc3545; cursor: pointer; font-size: 0.85rem; font-weight: 600;
+    }
+
+    /* Toolbar */
+    .editor-toolbar {
+      display: flex; flex-wrap: wrap; gap: 4px;
+      background: var(--gray-50); padding: 8px; border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+      border: 2px solid var(--gray-200); border-bottom: 1px solid var(--gray-200);
+    }
+    .toolbar-btn {
+      padding: 8px 12px; background: var(--white); border: 1px solid var(--gray-200);
+      border-radius: 4px; cursor: pointer; font-size: 0.85rem; color: var(--gray-600);
+      transition: var(--transition-fast);
+    }
+    .toolbar-btn:hover { background: var(--blue); color: var(--white); border-color: var(--blue); }
+    .toolbar-separator { width: 1px; background: var(--gray-300); margin: 0 4px; }
+    #blogContent {
+      border: 2px solid var(--gray-200); border-top: none;
+      border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+      min-height: 350px; padding: 16px 18px;
+      font-family: var(--font-body) !important; font-size: 0.92rem !important;
+      line-height: 1.6 !important; color: var(--gray-500) !important;
+      font-weight: 400 !important;
+      outline: none; overflow-y: auto; background: var(--white);
+    }
+    #blogContent * {
+      font-family: inherit !important;
+      font-size: inherit !important;
+      line-height: inherit !important;
+      color: inherit !important;
+      font-weight: inherit !important;
+      background: none !important;
+    }
+    #blogContent:focus { border-color: var(--blue); }
+    #blogContent:empty::before {
+      content: 'Apna blog content yahan likhein... Sidha type karein — jo likhenge wahi blog pe dikhega!';
+      color: var(--gray-400) !important; pointer-events: none; font-size: 0.92rem !important;
+    }
+    #blogContent h2, #blogContent h2 * { font-family: var(--font-heading) !important; font-size: 1.6rem !important; font-weight: 700 !important; color: var(--gray-800) !important; margin: 1.8rem 0 0.9rem; line-height: 1.35; padding-bottom: 0.4rem; border-bottom: 2px solid var(--gray-100); }
+    #blogContent h3, #blogContent h3 * { font-family: var(--font-heading) !important; font-size: 1.15rem !important; font-weight: 600 !important; color: var(--gray-800) !important; margin: 1.5rem 0 0.5rem; line-height: 1.4; }
+    #blogContent h4, #blogContent h4 * { font-family: var(--font-heading) !important; font-size: 1rem !important; font-weight: 600 !important; color: var(--gray-700) !important; margin: 1.2rem 0 0.5rem; }
+    #blogContent p { margin: 0 0 1rem; line-height: 1.6 !important; font-weight: 400 !important; color: var(--gray-500) !important; font-size: 0.92rem !important; }
+    #blogContent b, #blogContent strong, #blogContent p b, #blogContent p strong { font-weight: 700 !important; color: var(--gray-800) !important; }
+    #blogContent ul, #blogContent ol { margin: 0.8rem 0 1.4rem 1.5rem; padding: 0; }
+    #blogContent li { margin-bottom: 0.5rem; padding-left: 0.3rem; line-height: 1.6 !important; color: var(--gray-500) !important; font-size: 0.92rem !important; }
+    #blogContent li::marker { color: var(--orange); font-weight: 700; }
+    #blogContent blockquote { border-left: 3px solid var(--orange); padding: 8px 14px; margin: 0.5rem 0; background: var(--orange-pale); font-style: italic; color: var(--gray-700); font-size: 1.05rem; line-height: 1.7; }
+    #blogContent a { color: var(--blue) !important; text-decoration: underline; font-weight: 500 !important; }
+
+    /* Action Buttons */
+    .form-actions {
+      display: flex; gap: var(--space-md); margin-top: var(--space-lg);
+      flex-wrap: wrap;
+    }
+
+    /* Post List */
+    .posts-list { display: flex; flex-direction: column; gap: var(--space-md); }
+    .post-item {
+      background: var(--white); border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm); padding: var(--space-lg);
+      display: flex; align-items: center; gap: var(--space-lg);
+      transition: var(--transition-fast);
+    }
+    .post-item:hover { box-shadow: var(--shadow-md); }
+    .post-item-img {
+      width: 100px; aspect-ratio: 5 / 4; height: auto; border-radius: var(--radius-sm);
+      object-fit: cover; background: var(--gray-100); flex-shrink: 0;
+    }
+    .post-item-img.no-img {
+      display: flex; align-items: center; justify-content: center;
+      background: var(--gradient-hero); color: rgba(255,255,255,0.3);
+      font-size: 1.5rem;
+    }
+    .post-item-info { flex: 1; }
+    .post-item-info h4 {
+      font-family: var(--font-heading); font-size: 1rem;
+      color: var(--gray-800); margin-bottom: 4px;
+    }
+    .post-item-meta {
+      font-size: 0.82rem; color: var(--gray-500);
+      display: flex; gap: var(--space-md); flex-wrap: wrap;
+    }
+    .post-item-meta span i { margin-right: 4px; }
+    .post-item-tag {
+      display: inline-block; background: var(--orange-pale);
+      color: var(--orange); padding: 2px 10px; border-radius: var(--radius-full);
+      font-size: 0.75rem; font-weight: 600;
+    }
+    .post-item-actions { display: flex; gap: var(--space-sm); flex-shrink: 0; }
+    .post-item-actions button {
+      padding: 8px 14px; border: none; border-radius: var(--radius-sm);
+      cursor: pointer; font-size: 0.82rem; font-weight: 500;
+      transition: var(--transition-fast);
+    }
+    .btn-edit { background: var(--blue-pale); color: var(--blue); }
+    .btn-edit:hover { background: var(--blue); color: var(--white); }
+    .btn-delete { background: #fde8e8; color: #dc3545; }
+    .btn-delete:hover { background: #dc3545; color: var(--white); }
+
+    .empty-state {
+      text-align: center; padding: var(--space-3xl);
+      color: var(--gray-400);
+    }
+    .empty-state i { font-size: 3rem; margin-bottom: var(--space-md); }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed; bottom: 30px; right: 30px;
+      padding: 16px 24px; border-radius: var(--radius-md);
+      color: var(--white); font-weight: 500; font-size: 0.9rem;
+      z-index: 9999; transform: translateY(100px); opacity: 0;
+      transition: var(--transition-base);
+      box-shadow: var(--shadow-lg);
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast.success { background: #28a745; }
+    .toast.error { background: #dc3545; }
+
+    /* Confirm Modal */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+      display: none; align-items: center; justify-content: center;
+      z-index: 9998;
+    }
+    .modal-overlay.show { display: flex; }
+    .modal-box {
+      background: var(--white); border-radius: var(--radius-lg);
+      padding: var(--space-xl); max-width: 400px; width: 90%;
+      text-align: center; box-shadow: var(--shadow-xl);
+    }
+    .modal-box h3 { font-family: var(--font-heading); margin-bottom: var(--space-sm); }
+    .modal-box p { color: var(--gray-500); font-size: 0.9rem; margin-bottom: var(--space-lg); }
+    .modal-actions { display: flex; gap: var(--space-md); justify-content: center; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .admin-content { padding: var(--space-md); }
+      .form-row-2 { grid-template-columns: 1fr; }
+      .post-item { flex-direction: column; align-items: flex-start; }
+      .post-item-img { width: 100%; height: 120px; }
+      .post-item-actions { width: 100%; }
+      .post-item-actions button { flex: 1; }
+      .admin-header { padding: var(--space-sm) var(--space-md); }
+      .admin-tabs { overflow-x: auto; }
+    }
+  </style>
+</head>
+<body class="admin-body">
+
+  <!-- ===== LOGIN SCREEN ===== -->
+  <div class="admin-login" id="loginScreen">
+    <div class="login-card">
+      <img src="images/logo.png" alt="Digi Vidyarthi">
+      <h2>Admin Panel</h2>
+      <p>Blog manage karne ke liye login karein</p>
+      <div class="login-error" id="loginError">Galat password! Try again.</div>
+      <input type="password" class="login-input" id="loginPassword" placeholder="Enter Admin Password" autocomplete="current-password">
+      <button class="btn btn-primary btn-lg" style="width:100%" onclick="handleLogin()">
+        Login <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== ADMIN DASHBOARD ===== -->
+  <div class="admin-wrapper" id="adminWrapper">
+
+    <!-- Header -->
+    <div class="admin-header">
+      <div class="admin-header-left">
+        <img src="images/logo.png" alt="Logo">
+        <h3>Digi Vidyarthi <span>Admin</span></h3>
+      </div>
+      <div class="admin-header-right">
+        <a href="/blog" class="btn btn-secondary btn-sm" target="_blank">
+          <i class="fa-solid fa-eye"></i> View Blog
+        </a>
+        <button class="btn btn-primary btn-sm" onclick="handleLogout()">
+          <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="admin-content">
+
+      <!-- Stats -->
+      <div class="admin-stats" id="adminStats">
+        <div class="admin-stat-card">
+          <div class="admin-stat-icon blue"><i class="fa-solid fa-newspaper"></i></div>
+          <div class="admin-stat-info"><h4 id="totalPosts">0</h4><p>Total Posts</p></div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-icon orange"><i class="fa-solid fa-calendar-day"></i></div>
+          <div class="admin-stat-info"><h4 id="todayPosts">0</h4><p>Today's Posts</p></div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-icon green"><i class="fa-solid fa-tags"></i></div>
+          <div class="admin-stat-info"><h4 id="totalCategories">0</h4><p>Categories</p></div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="admin-tabs">
+        <button class="admin-tab active" data-tab="write" onclick="switchTab('write')">
+          <i class="fa-solid fa-pen"></i> Write Post
+        </button>
+        <button class="admin-tab" data-tab="manage" onclick="switchTab('manage')">
+          <i class="fa-solid fa-list"></i> Manage Posts
+        </button>
+      </div>
+
+      <!-- Write Post Panel -->
+      <div class="admin-panel active" id="panel-write">
+        <div class="editor-card">
+          <h3 id="editorTitle"><i class="fa-solid fa-pen-fancy"></i> New Blog Post</h3>
+          <input type="hidden" id="editPostId" value="">
+
+          <div class="form-row-2">
+            <div class="form-field">
+              <label>Blog Title *</label>
+              <input type="text" id="blogTitle" placeholder="e.g. SEO Tips for Beginners">
+            </div>
+            <div class="form-field">
+              <label>Category *</label>
+              <select id="blogCategory">
+                <option value="">-- Select Category --</option>
+                <option value="seo">SEO</option>
+                <option value="social-media">Social Media</option>
+                <option value="google-ads">Google Ads</option>
+                <option value="ai-tools">AI Tools</option>
+                <option value="tips">Tips & Tricks</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label>Short Description (Excerpt)</label>
+            <input type="text" id="blogExcerpt" placeholder="Blog ka short description (auto-generate hoga agar khali chhoden)">
+            <div class="hint">Agar khali chhodenge toh content se auto-generate hoga</div>
+          </div>
+
+          <div class="form-field">
+            <label>Featured Image</label>
+            <div class="image-upload-area" id="imageUploadArea">
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+              <p>Click ya drag karke image upload karein<br><small>JPG, PNG, WebP — Max 5MB</small></p>
+              <input type="file" id="blogImage" accept="image/jpeg,image/png,image/webp,image/gif">
+            </div>
+            <div class="image-preview" id="imagePreview">
+              <img src="" alt="Preview" id="previewImg">
+              <span class="remove-img" onclick="removeImage()"><i class="fa-solid fa-xmark"></i> Remove</span>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label>Blog Content *</label>
+            <div class="editor-toolbar">
+              <button type="button" class="toolbar-btn" onclick="formatText('bold')" title="Bold"><i class="fa-solid fa-bold"></i></button>
+              <button type="button" class="toolbar-btn" onclick="formatText('italic')" title="Italic"><i class="fa-solid fa-italic"></i></button>
+              <button type="button" class="toolbar-btn" onclick="formatText('underline')" title="Underline"><i class="fa-solid fa-underline"></i></button>
+              <span class="toolbar-separator"></span>
+              <button type="button" class="toolbar-btn" onclick="formatText('h2')" title="Heading">H2</button>
+              <button type="button" class="toolbar-btn" onclick="formatText('h3')" title="Sub Heading">H3</button>
+              <button type="button" class="toolbar-btn" onclick="formatText('p')" title="Normal Text">P</button>
+              <span class="toolbar-separator"></span>
+              <button type="button" class="toolbar-btn" onclick="formatText('ul')" title="Bullet List"><i class="fa-solid fa-list-ul"></i></button>
+              <button type="button" class="toolbar-btn" onclick="formatText('ol')" title="Numbered List"><i class="fa-solid fa-list-ol"></i></button>
+              <span class="toolbar-separator"></span>
+              <button type="button" class="toolbar-btn" onclick="formatText('link')" title="Link"><i class="fa-solid fa-link"></i></button>
+              <button type="button" class="toolbar-btn" onclick="formatText('quote')" title="Quote"><i class="fa-solid fa-quote-left"></i></button>
+            </div>
+            <div id="blogContent" contenteditable="true"></div>
+            <div class="hint">Seedha type karein — jo dikhega yahan wahi blog post pe dikhega! Toolbar se Bold, Heading, List, etc. lagayein. HTML jaanne ki zaroorat nahi.</div>
+          </div>
+
+          <!-- DOCX Upload Option (below content) -->
+          <div class="form-field">
+            <label><i class="fa-solid fa-file-word" style="color:var(--blue);margin-right:6px"></i>Content File Upload (.docx)</label>
+            <div class="docx-upload-area">
+              <i class="fa-solid fa-file-arrow-up"></i>
+              <p>Click ya drag karke .docx file upload karein<br><small>Word document ka content formatting ke saath blog mein aa jayega</small></p>
+              <input type="file" id="docxUpload" accept=".docx" />
+            </div>
+            <div class="hint">DOCX file upload karne se content automatically blog content box mein aa jayega with formatting (headings, lists, bold, etc.)</div>
+          </div>
+
+          <!-- Tags Input -->
+          <div class="form-field">
+            <label><i class="fa-solid fa-tags" style="color:var(--orange);margin-right:6px"></i>Tags</label>
+            <div class="tags-input-wrapper" id="tagsInputWrapper" onclick="document.getElementById('tagsInput').focus()">
+              <input type="text" class="tags-input" id="tagsInput" placeholder="Tag likhein aur Enter dabayein...">
+            </div>
+            <div class="hint">Har tag likhne ke baad Enter ya comma (,) dabayein. e.g. SEO, Digital Marketing, Tips</div>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-primary btn-lg" id="publishBtn" onclick="publishPost()">
+              <i class="fa-solid fa-paper-plane"></i> Publish Post
+            </button>
+            <button class="btn btn-secondary btn-lg" id="cancelEditBtn" onclick="cancelEdit()" style="display:none">
+              Cancel Edit
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Manage Posts Panel -->
+      <div class="admin-panel" id="panel-manage">
+        <div class="posts-list" id="postsList"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Delete Confirm Modal -->
+  <div class="modal-overlay" id="deleteModal">
+    <div class="modal-box">
+      <h3><i class="fa-solid fa-triangle-exclamation" style="color:#dc3545"></i> Delete Post?</h3>
+      <p>Kya aap sure hain? Yeh action undo nahi hoga.</p>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" onclick="closeDeleteModal()">Cancel</button>
+        <button class="btn btn-primary" style="background:#dc3545;border-color:#dc3545" id="confirmDeleteBtn">
+          <i class="fa-solid fa-trash"></i> Delete
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ===== TAGS INPUT LOGIC =====
+    let currentTags = [];
+
+    function renderTags() {
+      const wrapper = document.getElementById('tagsInputWrapper');
+      const input = document.getElementById('tagsInput');
+      // Remove all tag items
+      wrapper.querySelectorAll('.tag-item').forEach(el => el.remove());
+      // Re-render
+      currentTags.forEach((tag, idx) => {
+        const tagEl = document.createElement('span');
+        tagEl.className = 'tag-item';
+        tagEl.innerHTML = `${escapeHtml(tag)} <span class="tag-remove" onclick="removeTag(${idx})"><i class="fa-solid fa-xmark"></i></span>`;
+        wrapper.insertBefore(tagEl, input);
+      });
+    }
+
+    function addTag(tagText) {
+      tagText = tagText.trim();
+      if (!tagText) return;
+      // Avoid duplicates
+      if (currentTags.some(t => t.toLowerCase() === tagText.toLowerCase())) return;
+      currentTags.push(tagText);
+      renderTags();
+    }
+
+    function removeTag(idx) {
+      currentTags.splice(idx, 1);
+      renderTags();
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // ===== SMART PASTE HANDLER for Blog Content Editor =====
+      const blogEditor = document.getElementById('blogContent');
+      if (blogEditor) {
+        blogEditor.addEventListener('paste', function(e) {
+          e.preventDefault();
+
+          // Get plain text from clipboard
+          const plainText = (e.clipboardData || window.clipboardData).getData('text/plain');
+          if (!plainText || !plainText.trim()) return;
+
+          // Auto-format the pasted text
+          const html = smartFormatText(plainText);
+
+          // Insert as HTML
+          document.execCommand('insertHTML', false, html);
+          if (typeof showToast === 'function') showToast('Content paste aur auto-format ho gaya! ✅', 'success');
+        });
+      }
+
+      // Smart text formatter — detects headings, bullets, paragraphs, HR from plain text
+      function smartFormatText(text) {
+        const lines = text.split(/\r?\n/);
+        let html = '';
+        let inBulletList = false;
+        let inNumberedList = false;
+        let i = 0;
+
+        while (i < lines.length) {
+          let line = lines[i].trimEnd();
+          let trimmed = line.trim();
+
+          // Skip empty lines (close any open lists)
+          if (!trimmed) {
+            if (inBulletList) { html += '</ul>'; inBulletList = false; }
+            if (inNumberedList) { html += '</ol>'; inNumberedList = false; }
+            i++;
+            continue;
+          }
+
+          // Horizontal rule — lines full of underscores, dashes, or equals
+          if (/^[_\-=]{5,}$/.test(trimmed)) {
+            if (inBulletList) { html += '</ul>'; inBulletList = false; }
+            if (inNumberedList) { html += '</ol>'; inNumberedList = false; }
+            html += '<hr>';
+            i++;
+            continue;
+          }
+
+          // Bullet point — starts with •, -, *, ▪, ►
+          if (/^[\u2022\u25AA\u25BA\-\*\u2023\u2043]\s+/.test(trimmed) || /^\t[\u2022\u25AA\u25BA\-\*]\s+/.test(line)) {
+            if (inNumberedList) { html += '</ol>'; inNumberedList = false; }
+            if (!inBulletList) { html += '<ul>'; inBulletList = true; }
+            const bulletText = trimmed.replace(/^[\u2022\u25AA\u25BA\-\*\u2023\u2043]\s+/, '').trim();
+            html += '<li>' + escapeForPaste(bulletText) + '</li>';
+            i++;
+            continue;
+          }
+
+          // Numbered list — starts with 1., 2., etc.
+          if (/^\d+[\.\)]\s+/.test(trimmed)) {
+            if (inBulletList) { html += '</ul>'; inBulletList = false; }
+            if (!inNumberedList) { html += '<ol>'; inNumberedList = true; }
+            const numText = trimmed.replace(/^\d+[\.\)]\s+/, '').trim();
+            html += '<li>' + escapeForPaste(numText) + '</li>';
+            i++;
+            continue;
+          }
+
+          // Close any open lists before heading/paragraph
+          if (inBulletList) { html += '</ul>'; inBulletList = false; }
+          if (inNumberedList) { html += '</ol>'; inNumberedList = false; }
+
+          // Detect heading — short line (<=100 chars), NOT ending with common sentence endings
+          // or line that looks like a title (next line is empty or is a separator)
+          const isShortLine = trimmed.length <= 100;
+          const noSentenceEnd = !/[\.,:;]$/.test(trimmed);
+          const nextLine = (i + 1 < lines.length) ? lines[i + 1].trim() : '';
+          const nextIsEmpty = !nextLine;
+          const nextIsSeparator = /^[_\-=]{5,}$/.test(nextLine);
+          const looksLikeHeading = isShortLine && noSentenceEnd && (nextIsEmpty || nextIsSeparator);
+          const hasQuestionMark = /\?$/.test(trimmed);
+
+          // Main heading detection
+          if ((looksLikeHeading || hasQuestionMark) && trimmed.length > 3 && trimmed.length <= 100) {
+            // Check if the content contains "Focus keyword" or similar meta text — make it <p> instead
+            if (/^focus keyword/i.test(trimmed) || /^meta /i.test(trimmed) || /^keyword/i.test(trimmed)) {
+              html += '<p><em>' + escapeForPaste(trimmed) + '</em></p>';
+            } else {
+              html += '<h2>' + escapeForPaste(trimmed) + '</h2>';
+            }
+            i++;
+            continue;
+          }
+
+          // Regular paragraph
+          // Collect consecutive non-empty, non-special lines as one paragraph
+          let paraLines = [trimmed];
+          while (i + 1 < lines.length) {
+            const nxt = lines[i + 1].trim();
+            if (!nxt) break; // empty line ends paragraph
+            if (/^[_\-=]{5,}$/.test(nxt)) break; // separator
+            if (/^[\u2022\u25AA\u25BA\-\*\u2023\u2043]\s+/.test(nxt)) break; // bullet
+            if (/^\d+[\.\)]\s+/.test(nxt)) break; // numbered
+            // Check if next line looks like a new heading
+            const nxtNext = (i + 2 < lines.length) ? lines[i + 2].trim() : '';
+            const nxtIsShort = nxt.length <= 100 && !/[\.,:;]$/.test(nxt);
+            const nxtNextEmpty = !nxtNext || /^[_\-=]{5,}$/.test(nxtNext);
+            if (nxtIsShort && nxtNextEmpty && nxt.length > 3) break;
+            paraLines.push(nxt);
+            i++;
+          }
+          html += '<p>' + paraLines.map(l => escapeForPaste(l)).join(' ') + '</p>';
+          i++;
+        }
+
+        // Close any remaining open lists
+        if (inBulletList) html += '</ul>';
+        if (inNumberedList) html += '</ol>';
+
+        return html;
+      }
+
+      function escapeForPaste(str) {
+        return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      }
+
+      // Tags input handler
+      const tagsInput = document.getElementById('tagsInput');
+      if (tagsInput) {
+        tagsInput.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ',') {
+            e.preventDefault();
+            const val = this.value.replace(/,/g, '').trim();
+            if (val) {
+              addTag(val);
+              this.value = '';
+            }
+          }
+          // Backspace to remove last tag
+          if (e.key === 'Backspace' && !this.value && currentTags.length > 0) {
+            currentTags.pop();
+            renderTags();
+          }
+        });
+        // Handle paste with commas
+        tagsInput.addEventListener('paste', function(e) {
+          setTimeout(() => {
+            const parts = this.value.split(',');
+            parts.forEach(p => addTag(p));
+            this.value = '';
+          }, 50);
+        });
+      }
+
+      // DOCX upload to HTML logic
+      var docxInput = document.getElementById('docxUpload');
+      if (docxInput) {
+        docxInput.addEventListener('change', function(e) {
+          var file = e.target.files[0];
+          if (file && file.name.endsWith('.docx')) {
+            var reader = new FileReader();
+            reader.onload = function(event) {
+              mammoth.convertToHtml({arrayBuffer: event.target.result})
+                .then(function(result) {
+                  document.getElementById('blogContent').innerHTML = result.value;
+                  if (typeof showToast === 'function') showToast('DOCX content successfully loaded! ✅', 'success');
+                })
+                .catch(function(err) {
+                  if (typeof showToast === 'function') showToast('DOCX read error! ❌', 'error');
+                });
+            };
+            reader.readAsArrayBuffer(file);
+          }
+        });
+      }
+    });
+    // ===== ADMIN PANEL JAVASCRIPT =====
+    const API = 'admin.php';
+    let allPosts = [];
+
+    // ----- AUTH -----
+    async function checkAuth() {
+      try {
+        const res = await fetch(`${API}?action=check_auth`);
+        const data = await res.json();
+        if (data.success) {
+          showDashboard();
+          loadPosts();
+        }
+      } catch(e) {}
+    }
+
+    async function handleLogin() {
+      const password = document.getElementById('loginPassword').value;
+      if (!password) return;
+
+      const formData = new FormData();
+      formData.append('action', 'login');
+      formData.append('password', password);
+
+      try {
+        const res = await fetch(API, { method: 'POST', body: formData });
+        const data = await res.json();
+        if (data.success) {
+          showDashboard();
+          loadPosts();
+        } else {
+          document.getElementById('loginError').style.display = 'block';
+          document.getElementById('loginError').textContent = data.message;
+        }
+      } catch(e) {
+        showToast('Server se connection nahi ho paya!', 'error');
+      }
+    }
+
+    async function handleLogout() {
+      await fetch(API, { method: 'POST', body: new URLSearchParams({ action: 'logout' }) });
+      location.reload();
+    }
+
+    function showDashboard() {
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('adminWrapper').style.display = 'block';
+    }
+
+    // Enter key login
+    document.getElementById('loginPassword').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') handleLogin();
+    });
+
+    // ----- POSTS CRUD -----
+    async function loadPosts() {
+      try {
+        const res = await fetch(`${API}?action=get_posts`);
+        const data = await res.json();
+        if (data.success) {
+          allPosts = data.data || [];
+          renderStats();
+          renderPostsList();
+        }
+      } catch(e) {
+        showToast('Posts load nahi ho paye!', 'error');
+      }
+    }
+
+    async function publishPost() {
+      const title    = document.getElementById('blogTitle').value.trim();
+      const category = document.getElementById('blogCategory').value;
+      const excerpt  = document.getElementById('blogExcerpt').value.trim();
+      const content  = document.getElementById('blogContent').innerHTML.trim();
+      const imageFile = document.getElementById('blogImage').files[0];
+      const editId   = document.getElementById('editPostId').value;
+
+      if (!title || !category || !content) {
+        showToast('Title, Category aur Content zaroori hai!', 'error');
+        return;
+      }
+
+      const btn = document.getElementById('publishBtn');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Publishing...';
+
+      const formData = new FormData();
+      formData.append('action', editId ? 'update_post' : 'create_post');
+      formData.append('title', title);
+      formData.append('category', category);
+      formData.append('excerpt', excerpt);
+      formData.append('content', content);
+      formData.append('tags', currentTags.join(','));
+      if (editId) formData.append('id', editId);
+      if (imageFile) formData.append('image', imageFile);
+
+      try {
+        const res = await fetch(API, { method: 'POST', body: formData });
+        const data = await res.json();
+        if (data.success) {
+          showToast(data.message, 'success');
+          clearForm();
+          loadPosts();
+        } else {
+          showToast(data.message, 'error');
+        }
+      } catch(e) {
+        showToast('Server error! Please try again.', 'error');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Publish Post';
+      }
+    }
+
+    function editPost(postId) {
+      const post = allPosts.find(p => p.id === postId);
+      if (!post) return;
+
+      document.getElementById('editPostId').value = post.id;
+      document.getElementById('blogTitle').value = post.title;
+      document.getElementById('blogCategory').value = post.category;
+      document.getElementById('blogExcerpt').value = post.excerpt || '';
+      document.getElementById('blogContent').innerHTML = post.content || '';
+
+      // Load tags
+      currentTags = Array.isArray(post.tags) ? [...post.tags] : (post.tags ? post.tags.split(',').map(t=>t.trim()).filter(Boolean) : []);
+      renderTags();
+
+      document.getElementById('editorTitle').innerHTML = '<i class="fa-solid fa-pen-to-square"></i> Edit Post';
+      document.getElementById('publishBtn').innerHTML = '<i class="fa-solid fa-save"></i> Update Post';
+      document.getElementById('cancelEditBtn').style.display = 'inline-flex';
+
+      switchTab('write');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function cancelEdit() {
+      clearForm();
+    }
+
+    let deleteTargetId = null;
+
+    function confirmDelete(postId) {
+      deleteTargetId = postId;
+      document.getElementById('deleteModal').classList.add('show');
+    }
+
+    function closeDeleteModal() {
+      deleteTargetId = null;
+      document.getElementById('deleteModal').classList.remove('show');
+    }
+
+    document.getElementById('confirmDeleteBtn').addEventListener('click', async () => {
+      if (!deleteTargetId) return;
+
+      const formData = new FormData();
+      formData.append('action', 'delete_post');
+      formData.append('id', deleteTargetId);
+
+      try {
+        const res = await fetch(API, { method: 'POST', body: formData });
+        const data = await res.json();
+        if (data.success) {
+          showToast('Post deleted!', 'success');
+          loadPosts();
+        } else {
+          showToast(data.message, 'error');
+        }
+      } catch(e) {
+        showToast('Delete failed!', 'error');
+      }
+      closeDeleteModal();
+    });
+
+    // ----- RENDER -----
+    function renderStats() {
+      document.getElementById('totalPosts').textContent = allPosts.length;
+      const today = new Date().toISOString().split('T')[0];
+      const todayCount = allPosts.filter(p => p.date === today).length;
+      document.getElementById('todayPosts').textContent = todayCount;
+      const cats = new Set(allPosts.map(p => p.category));
+      document.getElementById('totalCategories').textContent = cats.size;
+    }
+
+    function renderPostsList() {
+      const container = document.getElementById('postsList');
+      if (allPosts.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <i class="fa-regular fa-newspaper"></i>
+            <h3>Koi post nahi hai abhi</h3>
+            <p>Apna pehla blog post likhein!</p>
+          </div>`;
+        return;
+      }
+
+      container.innerHTML = allPosts.map(post => `
+        <div class="post-item">
+          ${post.image
+            ? `<img src="${escapeAttr(post.image)}" class="post-item-img" alt="${escapeAttr(post.title)}" onerror="this.classList.add('no-img'); this.outerHTML='<div class=\\'post-item-img no-img\\'><i class=\\'fa-regular fa-image\\'></i></div>'">`
+            : `<div class="post-item-img no-img"><i class="fa-regular fa-image"></i></div>`
+          }
+          <div class="post-item-info">
+            <h4>${escapeHtml(post.title)}</h4>
+            <div class="post-item-meta">
+              <span><i class="fa-regular fa-calendar"></i> ${escapeHtml(post.dateFormatted)}</span>
+              <span class="post-item-tag">${escapeHtml(post.categoryLabel)}</span>
+            </div>
+          </div>
+          <div class="post-item-actions">
+            <button class="btn-edit" onclick="editPost('${escapeAttr(post.id)}')"><i class="fa-solid fa-pen"></i> Edit</button>
+            <button class="btn-delete" onclick="confirmDelete('${escapeAttr(post.id)}')"><i class="fa-solid fa-trash"></i> Delete</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ----- FORMATTING TOOLBAR (WYSIWYG) -----
+    function formatText(type) {
+      const editor = document.getElementById('blogContent');
+      editor.focus();
+
+      switch(type) {
+        case 'bold':      document.execCommand('bold', false, null); break;
+        case 'italic':    document.execCommand('italic', false, null); break;
+        case 'underline': document.execCommand('underline', false, null); break;
+        case 'h2':        document.execCommand('formatBlock', false, '<h2>'); break;
+        case 'h3':        document.execCommand('formatBlock', false, '<h3>'); break;
+        case 'p':         document.execCommand('formatBlock', false, '<p>'); break;
+        case 'ul':        document.execCommand('insertUnorderedList', false, null); break;
+        case 'ol':        document.execCommand('insertOrderedList', false, null); break;
+        case 'link': {
+          const url = prompt('Link URL daalein:', 'https://');
+          if (url) document.execCommand('createLink', false, url);
+          break;
+        }
+        case 'quote':     document.execCommand('formatBlock', false, '<blockquote>'); break;
+      }
+    }
+
+    // ----- IMAGE PREVIEW -----
+    document.getElementById('blogImage').addEventListener('change', function() {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          document.getElementById('previewImg').src = e.target.result;
+          document.getElementById('imagePreview').style.display = 'block';
+          document.getElementById('imageUploadArea').style.display = 'none';
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    function removeImage() {
+      document.getElementById('blogImage').value = '';
+      document.getElementById('imagePreview').style.display = 'none';
+      document.getElementById('imageUploadArea').style.display = 'block';
+    }
+
+    // ----- HELPERS -----
+    function switchTab(tab) {
+      document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
+      document.querySelector(`.admin-tab[data-tab="${tab}"]`).classList.add('active');
+      document.getElementById(`panel-${tab}`).classList.add('active');
+    }
+
+    function clearForm() {
+      document.getElementById('editPostId').value = '';
+      document.getElementById('blogTitle').value = '';
+      document.getElementById('blogCategory').value = '';
+      document.getElementById('blogExcerpt').value = '';
+      document.getElementById('blogContent').innerHTML = '';
+      currentTags = [];
+      renderTags();
+      document.getElementById('docxUpload').value = '';
+      removeImage();
+      document.getElementById('editorTitle').innerHTML = '<i class="fa-solid fa-pen-fancy"></i> New Blog Post';
+      document.getElementById('publishBtn').innerHTML = '<i class="fa-solid fa-paper-plane"></i> Publish Post';
+      document.getElementById('cancelEditBtn').style.display = 'none';
+    }
+
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.className = `toast ${type} show`;
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    function escapeAttr(str) {
+      return String(str).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,'&#39;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    // Init
+    checkAuth();
+  </script>
+</body>
+</html>
