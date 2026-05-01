@@ -813,7 +813,7 @@ p { margin-bottom: var(--space-md); }
 }
 
 .tier-card.featured::before {
-  content: 'â˜… Most Popular';
+  content: '★ Most Popular';
   position: absolute;
   top: -14px;
   left: 50%;
