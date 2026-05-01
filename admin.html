@@ -395,7 +395,7 @@
               <input type="file" id="blogImage" accept="image/jpeg,image/png,image/webp,image/gif">
             </div>
             <div class="image-preview" id="imagePreview">
-              <img src="" alt="Preview" id="previewImg">
+              <img src="" alt="Preview" id="previewImg" loading="lazy">
               <span class="remove-img" onclick="removeImage()"><i class="fa-solid fa-xmark"></i> Remove</span>
             </div>
           </div>
@@ -885,7 +885,7 @@
       container.innerHTML = allPosts.map(post => `
         <div class="post-item">
           ${post.image
-            ? `<img src="${escapeAttr(post.image)}" class="post-item-img" alt="${escapeAttr(post.title)}" onerror="this.classList.add('no-img'); this.outerHTML='<div class=\\'post-item-img no-img\\'><i class=\\'fa-regular fa-image\\'></i></div>'">`
+            ? `<img src="${escapeAttr(post.image)}" class="post-item-img" alt="${escapeAttr(post.title)}" onerror="this.classList.add('no-img'); this.outerHTML='<div class=\\'post-item-img no-img\\' loading="lazy"><i class=\\'fa-regular fa-image\\'></i></div>'">`
             : `<div class="post-item-img no-img"><i class="fa-regular fa-image"></i></div>`
           }
           <div class="post-item-info">

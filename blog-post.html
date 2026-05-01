@@ -253,7 +253,7 @@
       wrapper.innerHTML = `
         <a href="/blog" class="blog-back-link"><i class="fa-solid fa-arrow-left"></i> Back to Blog</a>
         <article class="blog-post-full">
-          ${post.image ? `<div class="blog-post-hero-img"><img src="${esc(post.image)}" alt="${esc(post.title)}"></div>` : ''}
+          ${post.image ? `<div class="blog-post-hero-img"><img src="${esc(post.image)}" alt="${esc(post.title)}" loading="lazy"></div>` : ''}
           <div class="blog-post-header">
             <span class="blog-card-tag" style="position:relative; top:0; left:0; margin-bottom:1rem; display:inline-block;">${esc(post.categoryLabel || post.category)}</span>
             <h1>${esc(post.title)}</h1>
@@ -293,7 +293,7 @@
           relatedPostsGrid.innerHTML = topRelated.map(rp => `
             <article class="blog-card" data-category="${esc(rp.category)}">
               <div class="blog-card-image ${!rp.image ? 'no-img' : ''}">
-                ${rp.image ? `<img src="${esc(rp.image)}" alt="${esc(rp.title)}" onerror="this.style.display='none'; this.parentElement.classList.add('no-img');">` : ''}
+                ${rp.image ? `<img src="${esc(rp.image)}" alt="${esc(rp.title)}" onerror="this.style.display='none'; this.parentElement.classList.add('no-img');" loading="lazy">` : ''}
                 <span class="blog-card-tag">${esc(rp.categoryLabel || rp.category)}</span>
               </div>
               <div class="blog-card-content">

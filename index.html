@@ -36,6 +36,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="preload" href="images/hero-mentor.png" as="image">
 </head>
 
 <body>
@@ -73,7 +74,7 @@
   <nav class="navbar" id="navbar">
     <div class="nav-container">
       <a href="/" class="nav-logo">
-        <img src="images/logo.png" alt="Digi Vidyarthi Logo">
+        <img src="images/logo.png" alt="Digi Vidyarthi - Best digital marketing institute in Varanasi Logo">
         <span class="nav-logo-text"><span class="digi">Digi</span> <span class="vidyarthi">Vidyarthi</span></span>
       </a>
       <div class="nav-links" id="navLinks">
@@ -805,7 +806,20 @@
   }
   </script>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
+  <!-- Breadcrumb Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://digividyarthi.com/"
+    }]
+  }
+  </script>
 </body>
 
 </html>
