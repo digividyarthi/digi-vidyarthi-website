@@ -3250,7 +3250,8 @@ p { margin-bottom: var(--space-md); }
   padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
   background: var(--gray-800);
 }
-.video-wrapper iframe {
+.video-wrapper iframe,
+.video-wrapper video {
   position: absolute;
   top: 0;
   left: 0;
