@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /admin.php
+
+Sitemap: https://digividyarthi.com/sitemap.xml
