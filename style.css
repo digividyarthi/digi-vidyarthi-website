@@ -201,8 +201,9 @@ p { margin-bottom: var(--space-md); }
 }
 
 .btn-sm {
-  padding: 10px 24px;
-  font-size: 0.9rem;
+  padding: 12px 28px;
+  font-size: 0.95rem;
+  border-radius: var(--radius-md);
 }
 
 .btn-lg {
@@ -310,7 +311,7 @@ p { margin-bottom: var(--space-md); }
 
 .marquee-track span {
   padding: 0 0.25rem;
-  color: var(--orange);
+  color: var(--white);
   font-weight: 600;
 }
 
