@@ -258,7 +258,7 @@
       wrapper.innerHTML = `
         <a href="/blog" class="blog-back-link"><i class="fa-solid fa-arrow-left"></i> Back to Blog</a>
         <article class="blog-post-full">
-          ${post.image ? `<div class="blog-post-hero-img"><img src="${esc(post.image)}" alt="${esc(post.title)}" loading="lazy"></div>` : ''}
+          ${post.image ? `<div class="blog-post-hero-img"><img src="${esc(post.image.startsWith('http') || post.image.startsWith('data:') || post.image.startsWith('/') ? post.image : '/' + post.image)}" alt="${esc(post.title)}" loading="lazy"></div>` : ''}
           <div class="blog-post-header">
             <span class="blog-card-tag" style="position:relative; top:0; left:0; margin-bottom:1rem; display:inline-block;">${esc(post.categoryLabel || post.category)}</span>
             <h1>${esc(post.title)}</h1>
@@ -267,7 +267,11 @@
               <span><i class="fa-regular fa-user"></i> ${esc(post.author || 'Digi Vidyarthi')}</span>
             </div>
           </div>
-          <div class="blog-post-body">${post.content || ''}</div>
+          <div class="blog-toc-container" id="tocContainer" style="display:none;">
+            <div class="blog-toc-title">Table of Contents</div>
+            <div class="blog-toc-content" id="tocContent"></div>
+          </div>
+          <div class="blog-post-body" id="blogPostBody">${post.content || ''}</div>
           <div class="blog-post-tags">
             <span class="tags-label"><i class="fa-solid fa-tags"></i> Tags:</span>
             ${post.tags && post.tags.length > 0 ? 
@@ -276,6 +280,73 @@
           </div>
         </article>
       `;
+
+      // Generate TOC dynamically
+      const blogBody = document.getElementById('blogPostBody');
+      const tocContainer = document.getElementById('tocContainer');
+      const tocContent = document.getElementById('tocContent');
+      const headings = blogBody.querySelectorAll('h2, h3');
+      
+      if (headings.length > 0) {
+        let tocHtml = '<ul>';
+        headings.forEach((heading, index) => {
+          // Add ID if it doesn't have one
+          if (!heading.id) {
+            heading.id = 'heading-' + index;
+          }
+          const level = heading.tagName.toLowerCase() === 'h2' ? 'toc-h2' : 'toc-h3';
+          tocHtml += `<li class="${level}"><a href="#${heading.id}">${heading.textContent}</a></li>`;
+        });
+        tocHtml += '</ul>';
+        tocContent.innerHTML = tocHtml;
+        tocContainer.style.display = 'block';
+
+        // Add smooth scrolling for TOC links
+        tocContent.querySelectorAll('a').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetEl = document.getElementById(targetId);
+            if (targetEl) {
+              const offsetTop = targetEl.getBoundingClientRect().top + window.scrollY - 100; // offset for sticky nav
+              window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+              });
+            }
+          });
+        });
+      }
+
+      // Add Schema Markup
+      const schemaScript = document.createElement('script');
+      schemaScript.type = 'application/ld+json';
+      const schemaData = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": window.location.href
+        },
+        "headline": post.title,
+        "image": post.image ? 'https://digividyarthi.com/' + (post.image.startsWith('/') ? post.image.substring(1) : post.image) : "https://digividyarthi.com/images/logo.png",  
+        "author": {
+          "@type": "Organization",
+          "name": post.author || "Digi Vidyarthi"
+        },  
+        "publisher": {
+          "@type": "Organization",
+          "name": "Digi Vidyarthi",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://digividyarthi.com/images/logo.png"
+          }
+        },
+        "datePublished": post.date,
+        "dateModified": post.date
+      };
+      schemaScript.text = JSON.stringify(schemaData);
+      document.head.appendChild(schemaScript);
 
       // Render Related Posts
       const relatedPostsContainer = document.getElementById('relatedPostsSection');
