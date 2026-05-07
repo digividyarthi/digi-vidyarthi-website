@@ -3196,13 +3196,11 @@ p { margin-bottom: var(--space-md); }
     grid-auto-rows: 220px;
   }
   .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
-  .gallery-item:nth-child(2) { grid-column: span 1; grid-row: span 1; }
+  .gallery-item:nth-child(2) { grid-column: span 2; grid-row: span 1; }
   .gallery-item:nth-child(3) { grid-column: span 1; grid-row: span 1; }
-  .gallery-item:nth-child(4) { grid-column: span 2; grid-row: span 1; }
-  .gallery-item:nth-child(5) { grid-column: span 1; grid-row: span 2; }
-  .gallery-item:nth-child(6) { grid-column: span 2; grid-row: span 1; }
-  .gallery-item:nth-child(7) { grid-column: span 1; grid-row: span 1; }
-  .gallery-item:nth-child(8) { grid-column: span 3; grid-row: span 1; }
+  .gallery-item:nth-child(4) { grid-column: span 1; grid-row: span 1; }
+  .gallery-item:nth-child(5) { grid-column: span 3; grid-row: span 1; }
+  .gallery-item:nth-child(6) { grid-column: span 1; grid-row: span 1; }
 }
 
 .gallery-item {
