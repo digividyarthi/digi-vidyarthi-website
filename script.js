@@ -230,6 +230,15 @@ function toggleFaq(element) {
       return d.innerHTML;
     }
 
+    function resolveImagePath(imgPath) {
+      if (!imgPath) return '';
+      if (imgPath.startsWith('http') || imgPath.startsWith('data:')) return imgPath;
+      if (window.location.protocol === 'file:') {
+        return imgPath.startsWith('/') ? imgPath.substring(1) : imgPath;
+      }
+      return imgPath.startsWith('/') ? imgPath : '/' + imgPath;
+    }
+
     function renderBlogPosts() {
       // Filter posts
       const filtered = currentFilter === 'all'
@@ -252,7 +261,7 @@ function toggleFaq(element) {
       blogGrid.innerHTML = visible.map(post => `
         <article class="blog-card reveal visible" data-category="${escBlogHtml(post.category)}">
           <div class="blog-card-image ${!post.image ? 'no-img' : ''}">
-            ${post.image ? `<img src="${escBlogHtml(post.image)}" alt="${escBlogHtml(post.title)}" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('no-img');">` : ''}
+            ${post.image ? `<img src="${escBlogHtml(resolveImagePath(post.image))}" alt="${escBlogHtml(post.title)}" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('no-img');">` : ''}
             <span class="blog-card-tag">${escBlogHtml(post.categoryLabel || post.category)}</span>
           </div>
           <div class="blog-card-content">
@@ -304,7 +313,7 @@ function toggleFaq(element) {
         recentPostsContainer.innerHTML = recentPosts.map(rp => `
           <div class="recent-post-item">
             <div class="recent-post-img ${!rp.image ? 'no-img' : ''}">
-              ${rp.image ? `<img src="${escBlogHtml(rp.image)}" alt="${escBlogHtml(rp.title)}" onerror="this.style.display='none'; this.parentElement.classList.add('no-img');">` : ''}
+              ${rp.image ? `<img src="${escBlogHtml(resolveImagePath(rp.image))}" alt="${escBlogHtml(rp.title)}" onerror="this.style.display='none'; this.parentElement.classList.add('no-img');">` : ''}
               ${!rp.image ? '<i class="fa-solid fa-image"></i>' : ''}
             </div>
             <div>

@@ -255,11 +255,20 @@
         return d.innerHTML;
       }
 
+      function resolveImagePath(imgPath) {
+        if (!imgPath) return '';
+        if (imgPath.startsWith('http') || imgPath.startsWith('data:')) return imgPath;
+        if (window.location.protocol === 'file:') {
+          return imgPath.startsWith('/') ? imgPath.substring(1) : imgPath;
+        }
+        return imgPath.startsWith('/') ? imgPath : '/' + imgPath;
+      }
+
       // Render content as HTML (not escaped)
       wrapper.innerHTML = `
         <a href="/blog" class="blog-back-link"><i class="fa-solid fa-arrow-left"></i> Back to Blog</a>
         <article class="blog-post-full">
-          ${post.image ? `<div class="blog-post-hero-img"><img src="${esc(post.image.startsWith('http') || post.image.startsWith('data:') || post.image.startsWith('/') ? post.image : '/' + post.image)}" alt="${esc(post.title)}" loading="lazy"></div>` : ''}
+          ${post.image ? `<div class="blog-post-hero-img"><img src="${esc(resolveImagePath(post.image))}" alt="${esc(post.title)}" loading="lazy"></div>` : ''}
           <div class="blog-post-header">
             <span class="blog-card-tag" style="position:relative; top:0; left:0; margin-bottom:1rem; display:inline-block;">${esc(post.categoryLabel || post.category)}</span>
             <h1>${esc(post.title)}</h1>
@@ -370,7 +379,7 @@
           relatedPostsGrid.innerHTML = topRelated.map(rp => `
             <article class="blog-card" data-category="${esc(rp.category)}">
               <div class="blog-card-image ${!rp.image ? 'no-img' : ''}">
-                ${rp.image ? `<img src="${esc(rp.image)}" alt="${esc(rp.title)}" onerror="this.style.display='none'; this.parentElement.classList.add('no-img');" loading="lazy">` : ''}
+                ${rp.image ? `<img src="${esc(resolveImagePath(rp.image))}" alt="${esc(rp.title)}" onerror="this.style.display='none'; this.parentElement.classList.add('no-img');" loading="lazy">` : ''}
                 <span class="blog-card-tag">${esc(rp.categoryLabel || rp.category)}</span>
               </div>
               <div class="blog-card-content">
