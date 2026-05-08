@@ -37,14 +37,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ------- Active nav link -------
   const currentPage = window.location.pathname.split('/').pop() || '';
+  const normalizedCurrent = currentPage.replace('.html', '');
   const pageMap = {
-    '': '',
-    'index.html': ''
+    '': 'index',
+    'index': 'index'
   };
-  const mappedPage = pageMap[currentPage] || currentPage;
+  const mappedPage = pageMap[normalizedCurrent] || normalizedCurrent;
+  
   document.querySelectorAll('.nav-links a:not(.nav-cta)').forEach(link => {
-    const href = link.getAttribute('href');
-    const hrefPage = href.startsWith('/') ? href.substring(1) : href;
+    const href = link.getAttribute('href') || '';
+    const hrefPage = href.split('/').pop().replace('.html', '') || 'index';
+    
     if (hrefPage === mappedPage) {
       link.classList.add('active');
     } else {
