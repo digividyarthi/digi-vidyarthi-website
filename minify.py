@@ -14,7 +14,6 @@ def minify_js(js):
     # This might break if JS relies on ASI (Automatic Semicolon Insertion)
     # To be safe, we'll just remove multi-line comments and empty lines
     js = re.sub(r'/\*.*?\*/', '', js, flags=re.DOTALL)
-    js = re.sub(r'//.*', '', js)
     js = re.sub(r'\n\s*\n', '\n', js)
     js = js.replace('\r', '')
     
