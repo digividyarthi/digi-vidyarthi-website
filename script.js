@@ -380,3 +380,32 @@ function toggleFaq(element) {
     loadBlogPosts();
   }
 
+
+// ===== YOUTUBE FACADE (LAZY LOAD) =====
+document.addEventListener("DOMContentLoaded", function() {
+  const facades = document.querySelectorAll('.youtube-facade');
+  
+  facades.forEach(facade => {
+    facade.addEventListener('click', function() {
+      const videoId = this.getAttribute('data-video-id');
+      const title = this.getAttribute('data-video-title') || "YouTube Video";
+      const iframe = document.createElement('iframe');
+      
+      iframe.setAttribute('src', `https://www.youtube.com/embed/${videoId}?autoplay=1`);
+      iframe.setAttribute('title', title);
+      iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+      iframe.setAttribute('allowfullscreen', 'true');
+      
+      // Iframe inherits wrapper styles but facade was absolute, so we make iframe match
+      iframe.style.position = 'absolute';
+      iframe.style.top = '0';
+      iframe.style.left = '0';
+      iframe.style.width = '100%';
+      iframe.style.height = '100%';
+      iframe.style.border = 'none';
+      iframe.style.borderRadius = '12px';
+      
+      this.parentNode.replaceChild(iframe, this);
+    });
+  });
+});
