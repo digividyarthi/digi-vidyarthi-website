@@ -277,16 +277,23 @@
               <span><i class="fa-regular fa-user"></i> ${esc(post.author || 'Digi Vidyarthi')}</span>
             </div>
           </div>
-          <div class="blog-toc-container" id="tocContainer" style="display:none;">
-            <div class="blog-toc-title">Table of Contents</div>
-            <div class="blog-toc-content" id="tocContent"></div>
-          </div>
-          <div class="blog-post-body" id="blogPostBody">${post.content || ''}</div>
-          <div class="blog-post-tags">
-            <span class="tags-label"><i class="fa-solid fa-tags"></i> Tags:</span>
-            ${post.tags && post.tags.length > 0 ? 
-              post.tags.map(tag => `<span class="blog-tag-pill"><i class="fa-solid fa-hashtag"></i> ${esc(tag)}</span>`).join('') 
-              : '<span class="blog-tag-pill" style="opacity:0.6;">(No tags)</span>'}
+          
+          <div class="blog-content-layout">
+            <aside class="blog-sidebar">
+              <div class="blog-toc-container" id="tocContainer" style="display:none;">
+                <div class="blog-toc-title"><i class="fa-solid fa-list-ul"></i> Table of Contents</div>
+                <div class="blog-toc-content" id="tocContent"></div>
+              </div>
+            </aside>
+            <div class="blog-main-content">
+              <div class="blog-post-body" id="blogPostBody">${post.content || ''}</div>
+              <div class="blog-post-tags">
+                <span class="tags-label"><i class="fa-solid fa-tags"></i> Tags:</span>
+                ${post.tags && post.tags.length > 0 ? 
+                  post.tags.map(tag => `<span class="blog-tag-pill"><i class="fa-solid fa-hashtag"></i> ${esc(tag)}</span>`).join('') 
+                  : '<span class="blog-tag-pill" style="opacity:0.6;">(No tags)</span>'}
+              </div>
+            </div>
           </div>
         </article>
       `;
