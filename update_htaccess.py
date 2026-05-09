@@ -1,29 +1,7 @@
-RewriteEngine On
-ErrorDocument 404 /404.html
-# Force non-www and HTTPS
-RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
-RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+import os
 
-# Force HTTPS
-RewriteCond %{HTTPS} off
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
-
-# Remove .html extension from URLs
-RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
-RewriteRule ^ /%1 [NC,L,R=301]
-
-# Serve .html files without extension
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME}.html -f
-RewriteRule ^([^/.]+)/?$ $1.html [L]
-
-# Handle blog post permalinks: /blog/slug -> blog-post.html?slug=slug
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^blog/([^/]+)/?$ blog-post.html?slug=$1 [L,QSA]
-
+htaccess_path = '.htaccess'
+append_content = """
 
 # Enable Browser Caching
 <IfModule mod_expires.c>
@@ -54,3 +32,9 @@ RewriteRule ^blog/([^/]+)/?$ blog-post.html?slug=$1 [L,QSA]
   AddOutputFilterByType DEFLATE application/x-javascript
   AddOutputFilterByType DEFLATE font/woff2
 </IfModule>
+"""
+
+with open(htaccess_path, 'a', encoding='utf-8') as f:
+    f.write(append_content)
+
+print(".htaccess updated with caching and compression rules.")
