@@ -56,6 +56,9 @@ RewriteRule ^blog/([^/]+)/?$ blog-post.html?slug=$1 [L,QSA]
   Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
   Header always set X-Frame-Options "SAMEORIGIN"
+  
+  # Block Hostinger Tracking Script via CSP
+  Header always set Content-Security-Policy "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://www.youtube-nocookie.com https://www.youtube.com https://s.ytimg.com https://www.googletagmanager.com https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://stats.g.doubleclick.net;"
 </IfModule>
 
 # Enable Gzip Compression
