@@ -391,7 +391,7 @@ document.addEventListener("DOMContentLoaded", function() {
       const title = this.getAttribute('data-video-title') || "YouTube Video";
       const iframe = document.createElement('iframe');
       
-      iframe.setAttribute('src', `https://www.youtube.com/embed/${videoId}?autoplay=1`);
+      iframe.setAttribute('src', `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`);
       iframe.setAttribute('title', title);
       iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
       iframe.setAttribute('allowfullscreen', 'true');

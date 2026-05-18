@@ -1606,7 +1606,7 @@ p { margin-bottom: var(--space-md); }
 
 /* ---------- SKILLS MARQUEE STRIP ---------- */
 .skills-marquee {
-  background: var(--orange);
+  background: #C43E00;
   padding: 14px 0;
   overflow: hidden;
   position: relative;
@@ -2387,7 +2387,8 @@ p { margin-bottom: var(--space-md); }
   flex: 1;
 }
 
-.testimonial-header h4 {
+.testimonial-header h4,
+.testimonial-header h3.testimonial-name {
   font-family: var(--font-heading);
   font-size: 1rem;
   font-weight: 700;
