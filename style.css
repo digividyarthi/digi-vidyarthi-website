@@ -1251,7 +1251,7 @@ p { margin-bottom: var(--space-md); }
 
 /* ---------- OFFER BANNER ---------- */
 .offer-banner {
-  background: var(--gradient-orange);
+  background: var(--gradient-blue);
   border-radius: var(--radius-xl);
   padding: var(--space-2xl) var(--space-3xl);
   display: flex;
