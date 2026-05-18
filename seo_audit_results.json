@@ -1,0 +1,102 @@
+{
+  "summary": {
+    "total_pages": 8,
+    "issues_found": 3
+  },
+  "pages": {
+    "404.html": {
+      "issues": [
+        "Missing canonical link"
+      ],
+      "good": [
+        "Title is optimal",
+        "Meta description is optimal",
+        "Exactly one <h1> tag found",
+        "All images have alt text",
+        "Schema markup present"
+      ]
+    },
+    "about.html": {
+      "issues": [],
+      "good": [
+        "Title is optimal",
+        "Meta description is optimal",
+        "Has canonical link",
+        "Exactly one <h1> tag found",
+        "All images have alt text",
+        "Schema markup present"
+      ]
+    },
+    "blog-post.html": {
+      "issues": [
+        "Missing canonical link",
+        "Missing Schema.org JSON-LD markup"
+      ],
+      "good": [
+        "Title is optimal",
+        "Meta description is optimal",
+        "Exactly one <h1> tag found",
+        "All images have alt text"
+      ]
+    },
+    "blog.html": {
+      "issues": [],
+      "good": [
+        "Title is optimal",
+        "Meta description is optimal",
+        "Has canonical link",
+        "Exactly one <h1> tag found",
+        "All images have alt text",
+        "Schema markup present"
+      ]
+    },
+    "contact.html": {
+      "issues": [],
+      "good": [
+        "Title is optimal",
+        "Meta description is optimal",
+        "Has canonical link",
+        "Exactly one <h1> tag found",
+        "All images have alt text",
+        "Schema markup present"
+      ]
+    },
+    "courses.html": {
+      "issues": [],
+      "good": [
+        "Title is optimal",
+        "Meta description is optimal",
+        "Has canonical link",
+        "Exactly one <h1> tag found",
+        "All images have alt text",
+        "Schema markup present"
+      ]
+    },
+    "index.html": {
+      "issues": [],
+      "good": [
+        "Title is optimal",
+        "Meta description is optimal",
+        "Has canonical link",
+        "Exactly one <h1> tag found",
+        "All images have alt text",
+        "Schema markup present"
+      ]
+    },
+    "tools.html": {
+      "issues": [],
+      "good": [
+        "Title is optimal",
+        "Meta description is optimal",
+        "Has canonical link",
+        "Exactly one <h1> tag found",
+        "All images have alt text",
+        "Schema markup present"
+      ]
+    }
+  },
+  "site_wide": {
+    "robots_txt": true,
+    "sitemap_xml": true
+  }
+}
