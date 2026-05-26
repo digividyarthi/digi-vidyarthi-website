@@ -901,7 +901,7 @@
       container.innerHTML = allPosts.map(post => `
         <div class="post-item">
           ${post.image
-            ? `<img src="${escapeAttr(post.image)}" class="post-item-img" alt="${escapeAttr(post.title)}" onerror="this.classList.add('no-img'); this.outerHTML='<div class=\\'post-item-img no-img\\' loading="lazy"><i class=\\'fa-regular fa-image\\'></i></div>'">`
+            ? `<img src="${escapeAttr(post.image)}" class="post-item-img" alt="${escapeAttr(post.title)}" onerror="this.classList.add('no-img'); this.outerHTML='<div class=\\'post-item-img no-img\\'><i class=\\'fa-regular fa-image\\'></i></div>'">`
             : `<div class="post-item-img no-img"><i class="fa-regular fa-image"></i></div>`
           }
           <div class="post-item-info">
