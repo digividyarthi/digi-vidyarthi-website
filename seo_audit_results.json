@@ -1,16 +1,15 @@
 {
   "summary": {
     "total_pages": 8,
-    "issues_found": 3
+    "issues_found": 0
   },
   "pages": {
     "404.html": {
-      "issues": [
-        "Missing canonical link"
-      ],
+      "issues": [],
       "good": [
         "Title is optimal",
         "Meta description is optimal",
+        "Has canonical link",
         "Exactly one <h1> tag found",
         "All images have alt text",
         "Schema markup present"
@@ -28,15 +27,14 @@
       ]
     },
     "blog-post.html": {
-      "issues": [
-        "Missing canonical link",
-        "Missing Schema.org JSON-LD markup"
-      ],
+      "issues": [],
       "good": [
         "Title is optimal",
         "Meta description is optimal",
+        "Has canonical link",
         "Exactly one <h1> tag found",
-        "All images have alt text"
+        "All images have alt text",
+        "Schema markup present"
       ]
     },
     "blog.html": {

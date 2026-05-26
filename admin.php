@@ -133,7 +133,10 @@ switch ($action) {
 
         // Handle image upload
         $imagePath = '';
-        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+        if (isset($_FILES['image']) && $_FILES['image']['size'] > 0) {
+            if ($_FILES['image']['error'] !== UPLOAD_ERR_OK) {
+                sendResponse(false, 'Image upload failed. Error code: ' . $_FILES['image']['error'] . '. File may be too large.');
+            }
             $file = $_FILES['image'];
             $allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
             $finfo = new finfo(FILEINFO_MIME_TYPE);
@@ -257,7 +260,10 @@ switch ($action) {
 
         $imagePath = $existingPost['image'];
         // Handle image update
-        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+        if (isset($_FILES['image']) && $_FILES['image']['size'] > 0) {
+            if ($_FILES['image']['error'] !== UPLOAD_ERR_OK) {
+                sendResponse(false, 'Image upload failed. Error code: ' . $_FILES['image']['error'] . '. File may be too large.');
+            }
             $file = $_FILES['image'];
             $allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
             $finfo = new finfo(FILEINFO_MIME_TYPE);
