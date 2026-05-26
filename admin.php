@@ -158,6 +158,8 @@ switch ($action) {
 
             if (move_uploaded_file($file['tmp_name'], $destination)) {
                 $imagePath = 'images/blog/' . $safeName;
+            } else {
+                sendResponse(false, 'Image save failed. Check folder permissions on server (images/blog).');
             }
         }
 
@@ -281,6 +283,8 @@ switch ($action) {
                         unlink(__DIR__ . '/' . $existingPost['image']);
                     }
                     $imagePath = 'images/blog/' . $safeName;
+                } else {
+                    sendResponse(false, 'Image update failed. Check folder permissions on server (images/blog).');
                 }
             }
         }
