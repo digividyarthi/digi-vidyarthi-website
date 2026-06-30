@@ -1616,7 +1616,7 @@ p { margin-bottom: var(--space-md); }
   display: inline-flex;
   align-items: center;
   white-space: nowrap;
-  animation: skillsScroll 25s linear infinite;
+  animation: skillsScroll 40s linear infinite;
 }
 
 .skill-item {
