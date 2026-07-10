@@ -192,6 +192,45 @@
     </div>
   </section>
 
+  <!-- ===== FAQ ===== -->
+  <section class="section" style="background: var(--gray-50);" id="faq">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-badge orange"><i class="fa-solid fa-circle-question"></i> FAQs</span>
+        <h2>Frequently Asked <span class="highlight-blue">Questions</span> About Our Blog</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>How does the Digi Vidyarthi blog help students in Varanasi?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-content">Our blog provides free, regular updates on SEO algorithm changes, AI marketing trends, social media strategies, and career tips, helping students stay ahead in the Varanasi digital space.</div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>Can students contribute to the digital marketing blog of Digi Vidyarthi?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-content">Yes, we encourage our active students to publish case studies, industry reports, and blogs as part of their content marketing and practical SEO training.</div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>Are the strategies shared on this blog suitable for local Varanasi businesses?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-content">Absolutely. We regularly share local SEO tactics, Google Business Profile optimization strategies, and social media content ideas specifically designed to grow Varanasi businesses online.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== CTA SECTION ===== -->
   <section class="cta-section">
     <div class="container">
@@ -275,6 +314,40 @@
 
   <!-- WhatsApp Float -->
   <a href="https://wa.me/919278039576" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+
+  <!-- FAQ Schema for Blog Page -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does the Digi Vidyarthi blog help students in Varanasi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our blog provides free, regular updates on SEO algorithm changes, AI marketing trends, social media strategies, and career tips, helping students stay ahead in the Varanasi digital space."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can students contribute to the digital marketing blog of Digi Vidyarthi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, we encourage our active students to publish case studies, industry reports, and blogs as part of their content marketing and practical SEO training."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are the strategies shared on this blog suitable for local Varanasi businesses?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolutely. We regularly share local SEO tactics, Google Business Profile optimization strategies, and social media content ideas specifically designed to grow Varanasi businesses online."
+        }
+      }
+    ]
+  }
+  </script>
 
   <script src="script.min.js?v=4" defer></script>
 </body>

@@ -202,6 +202,45 @@
     </div>
   </section>
 
+  <!-- ===== FAQ ===== -->
+  <section class="section" style="background: var(--gray-50);" id="faq">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-badge orange"><i class="fa-solid fa-circle-question"></i> FAQs</span>
+        <h2>Frequently Asked <span class="highlight-blue">Questions</span> About Digi Vidyarthi</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>Who founded Digi Vidyarthi, the digital marketing institute in Varanasi?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-content">Digi Vidyarthi was founded by industry professionals with years of marketing experience. Our goal is to bridge the gap between academic theory and practical business results for learners in Varanasi.</div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>Why should I choose Digi Vidyarthi for digital marketing training in Varanasi?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-content">Digi Vidyarthi is the most trusted institute because we cap our batches at 15 students, ensure 100% practical learning on live projects, and provide dedicated placement support to launch digital marketing careers in Varanasi.</div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>What is the background of the mentors at this Varanasi institute?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-content">Our mentors are certified professionals who currently manage active campaigns, run agencies, and consult clients. Students learn real-world tactics rather than outdated textbook knowledge.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
     </main>
 
@@ -266,6 +305,40 @@
   </div>
 
   <a href="https://wa.me/919278039576" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+
+  <!-- FAQ Schema for About Page -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Who founded Digi Vidyarthi, the digital marketing institute in Varanasi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Digi Vidyarthi was founded by industry professionals with years of marketing experience. Our goal is to bridge the gap between academic theory and practical business results for learners in Varanasi."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why should I choose Digi Vidyarthi for digital marketing training in Varanasi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Digi Vidyarthi is the most trusted institute because we cap our batches at 15 students, ensure 100% practical learning on live projects, and provide dedicated placement support to launch digital marketing careers in Varanasi."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the background of the mentors at this Varanasi institute?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our mentors are certified professionals who currently manage active campaigns, run agencies, and consult clients. Students learn real-world tactics rather than outdated textbook knowledge."
+        }
+      }
+    ]
+  }
+  </script>
 
   <script src="script.min.js" defer></script>
 </body>

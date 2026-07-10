@@ -3607,3 +3607,262 @@ p { margin-bottom: var(--space-md); }
     right: -10px;
   }
 }
+
+/* ============================================
+   SEO Content Sections & CWV Optimizations
+   ============================================ */
+
+/* --- Stat Number (replaces inline styles) --- */
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #FF9A3D;
+  margin-bottom: 5px;
+  line-height: 1.1;
+}
+
+/* --- SEO Intro Section --- */
+.seo-intro-section {
+  padding: var(--space-3xl) 0;
+  background: linear-gradient(135deg, var(--blue-pale) 0%, var(--white) 50%, var(--orange-pale) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.seo-intro-section::before {
+  content: '';
+  position: absolute;
+  top: -60%;
+  right: -10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(17,73,198,0.06) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.seo-intro-content {
+  max-width: 850px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.seo-intro-content h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  color: var(--gray-800);
+  margin-bottom: var(--space-lg);
+  line-height: 1.3;
+}
+
+.seo-intro-content p {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--gray-600);
+  margin-bottom: 0;
+}
+
+.seo-intro-content strong {
+  color: var(--gray-800);
+  font-weight: 600;
+}
+
+/* --- Fees Section --- */
+.fees-section {
+  padding: var(--space-4xl) 0;
+  background: var(--white);
+}
+
+.fees-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+  margin-top: var(--space-xl);
+}
+
+.fee-card {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: var(--space-2xl);
+  border: 2px solid var(--gray-200);
+  transition: var(--transition-base);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.fee-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: var(--gradient-blue);
+  transition: var(--transition-base);
+}
+
+.fee-card:nth-child(2)::before {
+  background: var(--gradient-orange);
+}
+
+.fee-card:nth-child(3)::before {
+  background: linear-gradient(135deg, #0D3A9E, #1149C6);
+}
+
+.fee-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: transparent;
+}
+
+.fee-card-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  margin: 0 auto var(--space-lg);
+}
+
+.fee-card:nth-child(1) .fee-card-icon {
+  background: var(--blue-pale);
+  color: var(--blue);
+}
+
+.fee-card:nth-child(2) .fee-card-icon {
+  background: var(--orange-pale);
+  color: var(--orange);
+}
+
+.fee-card:nth-child(3) .fee-card-icon {
+  background: linear-gradient(135deg, var(--blue-pale), #d4e0f9);
+  color: var(--blue-dark);
+}
+
+.fee-card-level {
+  display: inline-block;
+  padding: 5px 16px;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: var(--space-md);
+}
+
+.fee-card:nth-child(1) .fee-card-level {
+  background: var(--blue-pale);
+  color: var(--blue);
+}
+
+.fee-card:nth-child(2) .fee-card-level {
+  background: var(--orange-pale);
+  color: var(--orange);
+}
+
+.fee-card:nth-child(3) .fee-card-level {
+  background: var(--gradient-blue);
+  color: var(--white);
+}
+
+.fee-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: var(--space-sm);
+  color: var(--gray-800);
+}
+
+.fee-card p {
+  font-size: 0.92rem;
+  color: var(--gray-500);
+  line-height: 1.7;
+  margin-bottom: var(--space-lg);
+}
+
+.fee-card .btn {
+  width: 100%;
+  justify-content: center;
+}
+
+.fees-cta-note {
+  text-align: center;
+  margin-top: var(--space-2xl);
+  font-size: 0.95rem;
+  color: var(--gray-500);
+  line-height: 1.7;
+}
+
+.fees-cta-note a {
+  color: var(--blue);
+  font-weight: 600;
+}
+
+.fees-cta-note a:hover {
+  color: var(--orange);
+}
+
+/* --- Content Visibility Optimizations (CWV) --- */
+#faq,
+#gallery,
+#video-testimonials,
+#testimonials,
+.footer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+
+/* --- Image Cards Grid (for "with-image" feature cards) --- */
+.image-cards-grid {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.feature-card.with-image {
+  padding: 0;
+  overflow: hidden;
+  background: var(--white);
+}
+
+.feature-card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.feature-card-content {
+  padding: var(--space-xl);
+}
+
+/* --- Responsive: New Sections --- */
+@media (max-width: 992px) {
+  .fees-grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .seo-intro-section {
+    padding: var(--space-2xl) 0;
+  }
+
+  .seo-intro-content p {
+    font-size: 0.95rem;
+    line-height: 1.75;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+  }
+
+  .fees-grid {
+    max-width: 100%;
+  }
+
+  .fee-card {
+    padding: var(--space-xl);
+  }
+}
