@@ -26,13 +26,20 @@ document.addEventListener('DOMContentLoaded', () => {
   // ------- Navbar scroll effect -------
   const navbar = document.getElementById('navbar');
   if (navbar) {
+    let ticking = false;
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+          } else {
+            navbar.classList.remove('scrolled');
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
-    });
+    }, { passive: true });
   }
 
   // ------- Active nav link -------

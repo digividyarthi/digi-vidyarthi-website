@@ -7,22 +7,6 @@
   <meta name="description" content="Read our latest blog post on digital marketing strategies, SEO, and social media trends at Digi Vidyarthi, the best digital marketing institute in Varanasi.">
   <link rel="icon" href="/images/logo.webp" type="image/webp">
   <link rel="apple-touch-icon" href="/images/logo.webp">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/fontawesome.min.css" media="print" onload="this.media='all'">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/solid.min.css" media="print" onload="this.media='all'">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/brands.min.css" media="print" onload="this.media='all'">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/regular.min.css" media="print" onload="this.media='all'">
-  <noscript>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/fontawesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/solid.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/brands.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/regular.min.css">
-  </noscript>
-  
-  <link rel="stylesheet" href="/style.css">
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet"></noscript>
-
   <meta property="og:type" content="article">
   <meta property="og:title" content="Blog Post | Digi Vidyarthi">
   <meta property="og:description" content="Read our latest blog post on digital marketing strategies, SEO, and social media trends at Digi Vidyarthi.">
@@ -54,6 +38,12 @@
     "datePublished": "2024-01-01"
   }
   </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preload" href="style.min.css?v=4" as="style">
+  <link rel="stylesheet" href="style.min.css?v=4">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap">
 </head>
 <body>
   <!-- Block Hostinger tracking script -->
@@ -86,7 +76,7 @@
   <nav class="navbar" id="navbar">
     <div class="nav-container">
       <a href="/" class="nav-logo">
-        <img src="/images/logo.webp" alt="Digi Vidyarthi ">
+        <img src="/images/logo.webp" alt="Digi Vidyarthi " decoding="async">
         <span class="nav-logo-text"><span class="digi">Digi</span> <span class="vidyarthi">Vidyarthi</span></span>
       </a>
       <div class="nav-links" id="navLinks">
@@ -170,7 +160,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="/" class="nav-logo">
-            <img src="/images/logo.webp" alt="Digi Vidyarthi ">
+            <img src="/images/logo.webp" alt="Digi Vidyarthi " decoding="async">
             <span class="nav-logo-text"><span class="digi">Digi</span> <span class="vidyarthi">Vidyarthi</span></span>
           </a>
           <p>Varanasi's leading digital marketing institute providing practical, industry-ready training with live projects and expert mentorship.</p>
@@ -325,7 +315,7 @@
           
           <div class="blog-main-content">
             <article class="blog-post-full">
-              ${post.image ? `<div class="blog-post-hero-img"><img src="${esc(resolveImagePath(post.image))}" alt="${esc(post.title)}" loading="lazy"></div>` : ''}
+              ${post.image ? `<div class="blog-post-hero-img"><img src="${esc(resolveImagePath(post.image))}" alt="${esc(post.title)}" loading="lazy" decoding="async"></div>` : ''}
               <div class="blog-post-header">
                 <span class="blog-card-tag" style="position:relative; top:0; left:0; margin-bottom:1rem; display:inline-block;">${esc(post.categoryLabel || post.category)}</span>
                 <h1>${esc(post.title)}</h1>
@@ -434,7 +424,7 @@
           relatedPostsGrid.innerHTML = topRelated.map(rp => `
             <article class="blog-card" data-category="${esc(rp.category)}">
               <div class="blog-card-image ${!rp.image ? 'no-img' : ''}">
-                ${rp.image ? `<img src="${esc(resolveImagePath(rp.image))}" alt="${esc(rp.title)}" onerror="this.style.display='none'; this.parentElement.classList.add('no-img');" loading="lazy">` : ''}
+                ${rp.image ? `<img src="${esc(resolveImagePath(rp.image))}" alt="${esc(rp.title)}" onerror="this.style.display='none'; this.parentElement.classList.add('no-img');" loading="lazy" decoding="async">` : ''}
                 <span class="blog-card-tag">${esc(rp.categoryLabel || rp.category)}</span>
               </div>
               <div class="blog-card-content">

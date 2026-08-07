@@ -3866,3 +3866,162 @@ p { margin-bottom: var(--space-md); }
     padding: var(--space-xl);
   }
 }
+
+/* ============================================
+   MOBILE RESPONSIVENESS & CORE WEB VITALS OPTIMIZATIONS
+   ============================================ */
+
+/* --- Touch Targets & Input Usability --- */
+a, button, input, select, textarea, .btn, .hamburger, .nav-links a {
+  touch-action: manipulation;
+}
+
+.btn {
+  min-height: 44px;
+}
+
+.hamburger {
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- Mobile Screen Enhancements (< 768px) --- */
+@media (max-width: 768px) {
+  :root {
+    --nav-height: 65px;
+    --topbar-height: 36px;
+    --space-xl: 1.25rem;
+    --space-2xl: 2rem;
+    --space-3xl: 3rem;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .nav-container {
+    padding: 0 1rem;
+  }
+
+  .nav-logo-text {
+    font-size: 1.2rem;
+  }
+
+  .nav-logo img {
+    height: 38px;
+    width: auto;
+  }
+
+  .hero {
+    padding-top: calc(var(--nav-height) + var(--topbar-height) + 1.25rem);
+    padding-bottom: 2.5rem;
+    min-height: auto;
+  }
+
+  .hero-badge {
+    font-size: 0.78rem;
+    padding: 6px 14px;
+    margin-bottom: 1rem;
+  }
+
+  .hero h1 {
+    font-size: 1.85rem;
+    line-height: 1.25;
+  }
+
+  .hero p {
+    font-size: 0.98rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+  }
+
+  .hero-stat .stat-number {
+    font-size: 1.5rem;
+  }
+
+  .hero-stat p {
+    font-size: 0.75rem;
+    line-height: 1.2;
+  }
+
+  .hero-float-badge {
+    font-size: 0.72rem;
+    padding: 5px 10px;
+  }
+
+  /* Prevent overflow on small devices */
+  .badge-seo { top: 5%; left: 0%; }
+  .badge-meta { top: 15%; right: 0%; }
+  .badge-google { bottom: 10%; left: 0%; }
+  .badge-ai { bottom: 5%; right: 0%; }
+
+  .section {
+    padding: 2.5rem 0;
+  }
+
+  .section-header h2 {
+    font-size: 1.6rem;
+  }
+
+  .courses-grid, .features-grid, .fees-grid, .tiers-grid {
+    gap: 1.25rem;
+  }
+
+  .course-card, .tier-card, .fee-card, .feature-card {
+    padding: 1.25rem;
+  }
+
+  .nav-links {
+    width: 85%;
+    max-width: 320px;
+  }
+}
+
+/* --- Extra Small Screen Enhancements (< 480px) --- */
+@media (max-width: 480px) {
+  .hero-stats {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    text-align: center;
+  }
+
+  .top-bar-marquee {
+    margin: 0 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .skills-marquee {
+    padding: 10px 0;
+    font-size: 0.8rem;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
