@@ -47,7 +47,7 @@ RewriteRule ^blog/([^/]+)/?$ blog-post.html?slug=$1 [L,QSA]
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
   <FilesMatch "\.(html|htm)$">
-    Header set Cache-Control "public, max-age=3600, must-revalidate"
+    Header set Cache-Control "public, max-age=300, must-revalidate"
   </FilesMatch>
 
   # Security Headers
@@ -61,7 +61,25 @@ RewriteRule ^blog/([^/]+)/?$ blog-post.html?slug=$1 [L,QSA]
   Header always set Content-Security-Policy "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://www.youtube-nocookie.com https://www.youtube.com https://s.ytimg.com https://www.googletagmanager.com https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://stats.g.doubleclick.net;"
 </IfModule>
 
-# Enable Gzip Compression
+# Enable Brotli Compression (preferred over gzip)
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/plain
+  AddOutputFilterByType BROTLI_COMPRESS text/html
+  AddOutputFilterByType BROTLI_COMPRESS text/xml
+  AddOutputFilterByType BROTLI_COMPRESS text/css
+  AddOutputFilterByType BROTLI_COMPRESS application/xml
+  AddOutputFilterByType BROTLI_COMPRESS application/xhtml+xml
+  AddOutputFilterByType BROTLI_COMPRESS application/rss+xml
+  AddOutputFilterByType BROTLI_COMPRESS application/javascript
+  AddOutputFilterByType BROTLI_COMPRESS application/x-javascript
+  AddOutputFilterByType BROTLI_COMPRESS font/woff2
+  AddOutputFilterByType BROTLI_COMPRESS application/json
+  AddOutputFilterByType BROTLI_COMPRESS image/svg+xml
+  AddOutputFilterByType BROTLI_COMPRESS text/javascript
+  AddOutputFilterByType BROTLI_COMPRESS application/ld+json
+</IfModule>
+
+# Enable Gzip Compression (fallback)
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/plain
   AddOutputFilterByType DEFLATE text/html
@@ -75,4 +93,16 @@ RewriteRule ^blog/([^/]+)/?$ blog-post.html?slug=$1 [L,QSA]
   AddOutputFilterByType DEFLATE font/woff2
   AddOutputFilterByType DEFLATE application/json
   AddOutputFilterByType DEFLATE image/svg+xml
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE application/ld+json
+
+  # Compression level (1-9, higher = smaller but more CPU)
+  DeflateCompressionLevel 6
+</IfModule>
+
+# Send Vary header for proper caching of compressed/regular variants
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|htm|css|js|xml|json|svg)$">
+    Header append Vary Accept-Encoding
+  </FilesMatch>
 </IfModule>
