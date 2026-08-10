@@ -65,19 +65,36 @@ document.addEventListener('DOMContentLoaded', () => {
   // ------- Scroll Reveal -------
   const revealElements = document.querySelectorAll('.reveal');
   
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        revealObserver.unobserve(entry.target);
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.05,
+      rootMargin: '0px 0px 50px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+  } else {
+    revealElements.forEach(el => el.classList.add('visible'));
+  }
+
+  // Fallback: Check viewport position immediately and after short delay
+  function checkInitialReveals() {
+    revealElements.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight + 100 && rect.bottom > -100) {
+        el.classList.add('visible');
       }
     });
-  }, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  });
-
-  revealElements.forEach(el => revealObserver.observe(el));
+  }
+  checkInitialReveals();
+  setTimeout(checkInitialReveals, 300);
+  setTimeout(checkInitialReveals, 1000);
 
   // ------- Counter Animation -------
   const counters = document.querySelectorAll('.hero-stat h3');
