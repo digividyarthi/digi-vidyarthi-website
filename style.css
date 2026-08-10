@@ -4046,3 +4046,119 @@ a, button, input, select, textarea, .btn, .hamburger, .nav-links a {
   }
 }
 
+/* ============================================
+   FLOATING ACTION BUTTONS & SIDEBAR STYLES
+   ============================================ */
+.whatsapp-float {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 56px;
+  height: 56px;
+  background: #25D366;
+  color: #FFFFFF !important;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  box-shadow: 0 6px 24px rgba(37, 211, 102, 0.45);
+  z-index: 9999;
+  transition: transform 0.25 ease, box-shadow 0.25s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
+  color: #FFFFFF !important;
+}
+
+.social-sidebar {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  z-index: 998;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
+}
+
+.sidebar-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--gradient-orange);
+  color: var(--white) !important;
+  padding: 12px 14px;
+  border-radius: 12px 0 0 12px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  box-shadow: -2px 4px 14px rgba(230, 81, 0, 0.3);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  letter-spacing: 0.5px;
+}
+
+.sidebar-social {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white) !important;
+  border-radius: 8px 0 0 8px;
+  font-size: 1.1rem;
+  box-shadow: -2px 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.sidebar-social.yt { background: #FF0000; }
+.sidebar-social.fb { background: #1877F2; }
+.sidebar-social.ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+
+/* --- Mobile Specific Refinements (< 768px) --- */
+@media (max-width: 768px) {
+  .social-sidebar {
+    display: none !important;
+  }
+
+  .whatsapp-float {
+    bottom: 20px;
+    right: 18px;
+    width: 50px;
+    height: 50px;
+    font-size: 26px;
+    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+  }
+
+  .feature-card.with-image {
+    border-radius: 16px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07);
+    border: 1px solid var(--gray-200);
+    overflow: hidden;
+  }
+
+  .feature-card-img {
+    height: 175px;
+    object-fit: cover;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .feature-card-content {
+    padding: 1.25rem 1.25rem 1.5rem 1.25rem;
+  }
+
+  .feature-card-content h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .feature-card-content p {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+}
+
+
