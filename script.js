@@ -255,12 +255,9 @@ function toggleFaq(element) {
     }
 
     function resolveImagePath(imgPath) {
-      if (!imgPath) return '';
-      if (imgPath.startsWith('http') || imgPath.startsWith('data:')) return imgPath;
-      if (window.location.hostname.includes('digividyarthi.com')) {
-        return imgPath.startsWith('/') ? imgPath : '/' + imgPath;
-      }
-      return imgPath.startsWith('/') ? imgPath.substring(1) : imgPath;
+      if (!imgPath) return '/images/og-banner.webp';
+      if (imgPath.startsWith('http://') || imgPath.startsWith('https://') || imgPath.startsWith('data:')) return imgPath;
+      return imgPath.startsWith('/') ? imgPath : '/' + imgPath;
     }
 
     function renderBlogPosts() {
@@ -284,8 +281,8 @@ function toggleFaq(element) {
 
       blogGrid.innerHTML = visible.map(post => `
         <article class="blog-card reveal visible" data-category="${escBlogHtml(post.category)}">
-          <div class="blog-card-image ${!post.image ? 'no-img' : ''}">
-            ${post.image ? `<img src="${escBlogHtml(resolveImagePath(post.image))}" alt="${escBlogHtml(post.title)}" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('no-img');">` : ''}
+          <div class="blog-card-image">
+            <img src="${escBlogHtml(resolveImagePath(post.image))}" alt="${escBlogHtml(post.title)}" loading="lazy" onerror="this.src='/images/og-banner.webp';">
             <span class="blog-card-tag">${escBlogHtml(post.categoryLabel || post.category)}</span>
           </div>
           <div class="blog-card-content">
@@ -336,9 +333,8 @@ function toggleFaq(element) {
         const recentPosts = posts.slice(0, 5); // Take first 5 since JSON is assumed sorted
         recentPostsContainer.innerHTML = recentPosts.map(rp => `
           <div class="recent-post-item">
-            <div class="recent-post-img ${!rp.image ? 'no-img' : ''}">
-              ${rp.image ? `<img src="${escBlogHtml(resolveImagePath(rp.image))}" alt="${escBlogHtml(rp.title)}" onerror="this.style.display='none'; this.parentElement.classList.add('no-img');">` : ''}
-              ${!rp.image ? '<i class="fa-solid fa-image"></i>' : ''}
+            <div class="recent-post-img">
+              <img src="${escBlogHtml(resolveImagePath(rp.image))}" alt="${escBlogHtml(rp.title)}" onerror="this.src='/images/og-banner.webp';">
             </div>
             <div>
               <a href="/blog/${encodeURIComponent(rp.slug || rp.id)}" class="recent-post-title">${escBlogHtml(rp.title)}</a>

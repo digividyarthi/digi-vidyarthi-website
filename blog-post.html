@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="0TRbdMv4MR2gE6LsxD-fuP2x2YcskC3P6S0j8PKK4HY" />
   <title>Blog Post | Best Digital Marketing Institute in Varanasi</title>
   <meta name="description" content="Read our latest blog post on digital marketing strategies, SEO, and social media trends at Digi Vidyarthi, the best digital marketing institute in Varanasi.">
   <link rel="icon" href="/images/logo.webp" type="image/webp">
@@ -298,12 +299,9 @@
       }
 
       function resolveImagePath(imgPath) {
-        if (!imgPath) return '';
-        if (imgPath.startsWith('http') || imgPath.startsWith('data:')) return imgPath;
-        if (window.location.hostname.includes('digividyarthi.com')) {
-          return imgPath.startsWith('/') ? imgPath : '/' + imgPath;
-        }
-        return imgPath.startsWith('/') ? imgPath.substring(1) : imgPath;
+        if (!imgPath) return '/images/og-banner.webp';
+        if (imgPath.startsWith('http://') || imgPath.startsWith('https://') || imgPath.startsWith('data:')) return imgPath;
+        return imgPath.startsWith('/') ? imgPath : '/' + imgPath;
       }
 
       // Render content as HTML (not escaped)
@@ -319,7 +317,7 @@
           
           <div class="blog-main-content">
             <article class="blog-post-full">
-              ${post.image ? `<div class="blog-post-hero-img"><img src="${esc(resolveImagePath(post.image))}" alt="${esc(post.title)}" loading="lazy" decoding="async"></div>` : ''}
+              <div class="blog-post-hero-img"><img src="${esc(resolveImagePath(post.image))}" alt="${esc(post.title)}" loading="lazy" decoding="async" onerror="this.src='/images/og-banner.webp';"></div>
               <div class="blog-post-header">
                 <span class="blog-card-tag" style="position:relative; top:0; left:0; margin-bottom:1rem; display:inline-block;">${esc(post.categoryLabel || post.category)}</span>
                 <h1>${esc(post.title)}</h1>
@@ -427,8 +425,8 @@
           
           relatedPostsGrid.innerHTML = topRelated.map(rp => `
             <article class="blog-card" data-category="${esc(rp.category)}">
-              <div class="blog-card-image ${!rp.image ? 'no-img' : ''}">
-                ${rp.image ? `<img src="${esc(resolveImagePath(rp.image))}" alt="${esc(rp.title)}" onerror="this.style.display='none'; this.parentElement.classList.add('no-img');" loading="lazy" decoding="async">` : ''}
+              <div class="blog-card-image">
+                <img src="${esc(resolveImagePath(rp.image))}" alt="${esc(rp.title)}" onerror="this.src='/images/og-banner.webp';" loading="lazy" decoding="async">
                 <span class="blog-card-tag">${esc(rp.categoryLabel || rp.category)}</span>
               </div>
               <div class="blog-card-content">
