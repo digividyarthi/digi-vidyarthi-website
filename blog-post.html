@@ -321,7 +321,7 @@
           
           <div class="blog-main-content">
             <article class="blog-post-full">
-              <div class="blog-post-hero-img"><img src="${esc(resolveImagePath(post.image))}" alt="${esc(post.title)}" loading="lazy" decoding="async" onerror="this.src='/images/og-banner.webp';"></div>
+              <div class="blog-post-hero-img"><img src="${esc(resolveImagePath(post.image))}" alt="${esc(post.alt || post.title)}" loading="lazy" decoding="async" onerror="this.src='/images/og-banner.webp';"></div>
               <div class="blog-post-header">
                 <span class="blog-card-tag" style="position:relative; top:0; left:0; margin-bottom:1rem; display:inline-block;">${esc(post.categoryLabel || post.category)}</span>
                 <h1>${esc(post.title)}</h1>

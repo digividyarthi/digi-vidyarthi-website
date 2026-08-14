@@ -284,7 +284,7 @@ function toggleFaq(element) {
       blogGrid.innerHTML = visible.map(post => `
         <article class="blog-card reveal visible" data-category="${escBlogHtml(post.category)}">
           <div class="blog-card-image">
-            <img src="${escBlogHtml(resolveImagePath(post.image))}" alt="${escBlogHtml(post.title)}" loading="lazy" onerror="this.src='/images/og-banner.webp';">
+            <img src="${escBlogHtml(resolveImagePath(post.image))}" alt="${escBlogHtml(post.alt || post.title)}" loading="lazy" onerror="this.src='/images/og-banner.webp';">
             <span class="blog-card-tag">${escBlogHtml(post.categoryLabel || post.category)}</span>
           </div>
           <div class="blog-card-content">
@@ -336,7 +336,7 @@ function toggleFaq(element) {
         recentPostsContainer.innerHTML = recentPosts.map(rp => `
           <div class="recent-post-item">
             <div class="recent-post-img">
-              <img src="${escBlogHtml(resolveImagePath(rp.image))}" alt="${escBlogHtml(rp.title)}" onerror="this.src='/images/og-banner.webp';">
+              <img src="${escBlogHtml(resolveImagePath(rp.image))}" alt="${escBlogHtml(rp.alt || rp.title)}" onerror="this.src='/images/og-banner.webp';">
             </div>
             <div>
               <a href="/blog/${encodeURIComponent(rp.slug || rp.id)}" class="recent-post-title">${escBlogHtml(rp.title)}</a>
