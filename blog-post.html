@@ -249,7 +249,11 @@
       try {
         const res = await fetch('/admin.php?action=get_posts');
         const data = await res.json();
-        if (data.success) posts = data.data;
+        if (data.success && Array.isArray(data.data) && data.data.length > 0) {
+          posts = data.data;
+        } else {
+          throw new Error('No posts from DB');
+        }
       } catch(e) {
         try {
           const res = await fetch('/blogs.json');

@@ -41,6 +41,22 @@ function isLoggedIn()
     return isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true;
 }
 
+function syncBlogsJsonFile($pdo)
+{
+    try {
+        $stmt = $pdo->query("SELECT * FROM posts ORDER BY date DESC");
+        $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($posts as &$post) {
+            $post['tags'] = json_decode($post['tags'], true);
+            if (!is_array($post['tags']))
+                $post['tags'] = [];
+        }
+        file_put_contents(__DIR__ . '/blogs.json', json_encode($posts, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+    } catch (Exception $e) {
+        // Silently ignore if file write fails
+    }
+}
+
 function sendResponse($success, $message, $data = null)
 {
     echo json_encode([
@@ -209,6 +225,7 @@ switch ($action) {
                 'date' => $date,
                 'dateFormatted' => $dateFormatted
             ];
+            syncBlogsJsonFile($pdo);
             sendResponse(true, 'Blog post published successfully! 🎉', $newPost);
         } catch (PDOException $e) {
             sendResponse(false, 'Database error: ' . $e->getMessage());
@@ -293,6 +310,7 @@ switch ($action) {
         try {
             $stmt = $pdo->prepare($sql);
             $stmt->execute([$title, $slug, $category, $categoryLabel, $excerpt, $content, $imagePath, $tagsJson, $postId]);
+            syncBlogsJsonFile($pdo);
             sendResponse(true, 'Post updated successfully!');
         } catch (PDOException $e) {
             sendResponse(false, 'Database error: ' . $e->getMessage());
@@ -321,6 +339,7 @@ switch ($action) {
             }
             $delStmt = $pdo->prepare("DELETE FROM posts WHERE id = ?");
             $delStmt->execute([$postId]);
+            syncBlogsJsonFile($pdo);
             sendResponse(true, 'Post deleted successfully.');
         } else {
             sendResponse(false, 'Post not found.');

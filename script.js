@@ -233,8 +233,10 @@ function toggleFaq(element) {
       try {
         const res = await fetch('admin.php?action=get_posts');
         const data = await res.json();
-        if (data.success && data.data) {
+        if (data.success && Array.isArray(data.data) && data.data.length > 0) {
           allBlogPosts = data.data;
+        } else {
+          throw new Error('Database returned no posts or connection failed');
         }
       } catch(e) {
         // Fallback: try loading blogs.json directly
