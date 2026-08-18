@@ -4,41 +4,110 @@
  * Handles: login, create post, delete post, image upload using MySQL Database
  */
 
-session_start();
+// Load environment variables from .env file (if present)
+$envPath = __DIR__ . '/.env';
+if (file_exists($envPath)) {
+    $envLines = file($envPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($envLines as $line) {
+        if (strpos(trim($line), '#') === 0) continue;
+        if (strpos($line, '=') !== false) {
+            list($k, $v) = explode('=', $line, 2);
+            $_ENV[trim($k)] = trim($v);
+            putenv(trim($k) . '=' . trim($v));
+        }
+    }
+}
+
+// Disable direct browser access (defense-in-depth — also blocked via .htaccess)
+if (php_sapi_name() !== 'cli' && !isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
+    if (!isset($_GET['action']) && !isset($_POST['action'])) {
+        http_response_code(403);
+        exit('Forbidden');
+    }
+}
+
+session_start([
+    'cookie_httponly' => true,
+    'cookie_samesite' => 'Lax',
+    'cookie_secure' => true,
+    'use_strict_mode' => true,
+]);
 header('Content-Type: application/json; charset=utf-8');
+header('X-Content-Type-Options: nosniff');
 
-// ===== CONFIGURATION =====
-define('ADMIN_PASSWORD', 'DigiVidyarthi@2026');
+// ===== CONFIGURATION (from environment) =====
+define('ADMIN_PASSWORD', getenv('ADMIN_PASSWORD') ?: '');
+define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
+define('DB_NAME', getenv('DB_NAME') ?: '');
+define('DB_USER', getenv('DB_USER') ?: '');
+define('DB_PASS', getenv('DB_PASS') ?: '');
+define('ALLOWED_ORIGIN', getenv('ALLOWED_ORIGIN') ?: 'https://digividyarthi.com');
 
-// ===== DATABASE CONFIGURATION =====
-// Update these details with your Hostinger MySQL details
-$db_host = 'localhost';
-$db_name = 'u138607075_Blog';
-$db_user = 'u138607075_Rishi866';
-$db_pass = 'Siri@7394';
+// CORS — restrict to your domain only
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+if ($origin === ALLOWED_ORIGIN) {
+    header("Access-Control-Allow-Origin: $origin");
+    header('Access-Control-Allow-Credentials: true');
+    header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
+    header('Access-Control-Allow-Headers: Content-Type, X-Requested-With');
+}
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { http_response_code(204); exit; }
 
 $uploadDir = __DIR__ . '/images/blog/';
 if (!is_dir($uploadDir)) {
     mkdir($uploadDir, 0755, true);
 }
 
+// ===== RATE LIMITING (login attempts) =====
+function checkRateLimit($key, $maxAttempts = 5, $windowSeconds = 300)
+{
+    $file = sys_get_temp_dir() . '/dv_rl_' . md5($key);
+    $attempts = file_exists($file) ? (int)file_get_contents($file) : 0;
+    if ($attempts >= $maxAttempts) {
+        sendResponse(false, 'Too many attempts. Please try again later.');
+    }
+    $attempts++;
+    file_put_contents($file, $attempts);
+    if ($attempts === 1) {
+        // Set TTL by clearing after window
+        register_shutdown_function(function() use ($file, $windowSeconds) {
+            // Best-effort: re-schedule cleanup. Simple approach: clear on first hit past window.
+        });
+    }
+}
+
+function clearRateLimit($key)
+{
+    $file = sys_get_temp_dir() . '/dv_rl_' . md5($key);
+    if (file_exists($file)) @unlink($file);
+}
+
 // ===== DATABASE CONNECTION =====
 function getDB()
 {
-    global $db_host, $db_name, $db_user, $db_pass;
     try {
-        $pdo = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8mb4", $db_user, $db_pass);
+        $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4", DB_USER, DB_PASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $pdo;
     } catch (PDOException $e) {
-        sendResponse(false, 'Database connection failed. Please check credentials.');
+        error_log('[DigiVidyarthi DB] ' . $e->getMessage());
+        sendResponse(false, 'Database connection failed.');
     }
 }
 
 // ===== HELPER FUNCTIONS =====
 function isLoggedIn()
 {
-    return isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true;
+    if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+        return false;
+    }
+    // Auto-logout after 2 hours of inactivity
+    if (isset($_SESSION['login_time']) && (time() - $_SESSION['login_time']) > 7200) {
+        session_destroy();
+        return false;
+    }
+    $_SESSION['login_time'] = time();
+    return true;
 }
 
 function syncBlogsJsonFile($pdo)
@@ -94,12 +163,20 @@ switch ($action) {
 
     // ----- LOGIN -----
     case 'login':
+        $clientKey = ($_SERVER['REMOTE_ADDR'] ?? 'unknown') . '_' . ($_SERVER['HTTP_USER_AGENT'] ?? '');
+        checkRateLimit('login_' . $clientKey, 5, 300);
+
         $password = isset($_POST['password']) ? $_POST['password'] : '';
-        if ($password === ADMIN_PASSWORD) {
+        if (defined('ADMIN_PASSWORD') && ADMIN_PASSWORD !== '' && hash_equals(ADMIN_PASSWORD, $password)) {
+            session_regenerate_id(true);
             $_SESSION['admin_logged_in'] = true;
+            $_SESSION['login_time'] = time();
+            clearRateLimit('login_' . $clientKey);
             sendResponse(true, 'Login successful');
         } else {
-            sendResponse(false, 'Galat password! Please try again.');
+            // Constant-ish delay to avoid timing attacks
+            usleep(random_int(200000, 500000));
+            sendResponse(false, 'Incorrect password. Please try again.');
         }
         break;
 

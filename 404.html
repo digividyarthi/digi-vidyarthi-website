@@ -3,10 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1149C6">
   <meta name="google-site-verification" content="0TRbdMv4MR2gE6LsxD-fuP2x2YcskC3P6S0j8PKK4HY" />
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <title>Page Not Found | Digi Vidyarthi Varanasi</title>
   <meta name="description" content="The page you are looking for does not exist on Digi Vidyarthi. Return to the homepage to explore our digital marketing courses.">
-  <meta name="robots" content="noindex, nofollow">
+  <meta name="robots" content="noindex, follow">
   <link rel="icon" href="/images/logo.webp" type="image/webp">
   <style>
     .error-page {
@@ -36,44 +39,54 @@
       margin-left: auto;
       margin-right: auto;
     }
+    .error-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
   </style>
   <meta property="og:title" content="Page Not Found | Digi Vidyarthi">
-  <meta property="og:description" content="Best Digital Marketing Institute in Varanasi">
+  <meta property="og:description" content="The page you requested could not be found. Return to the homepage to explore our digital marketing courses.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://digividyarthi.com/images/logo.webp">
+  <meta property="og:url" content="https://digividyarthi.com/">
+  <meta property="og:image" content="https://digividyarthi.com/images/og-banner.jpg">
+  <meta property="og:site_name" content="Digi Vidyarthi">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
     "name": "404 Page Not Found",
-    "description": "The page you requested could not be found."
+    "description": "The page you requested could not be found on Digi Vidyarthi.",
+    "isPartOf": {
+      "@id": "https://digividyarthi.com/#organization"
+    }
   }
   </script>
-  <meta name="robots" content="noindex, follow">
-  <link rel="canonical" href="https://digividyarthi.com/404.html">
-      <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-  <link rel="preload" href="style.min.css?v=7" as="style">
-  <link rel="stylesheet" href="style.min.css?v=7">
+  <link rel="preload" href="style.min.css?v=8" as="style">
+  <link rel="stylesheet" href="style.min.css?v=8">
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" as="style">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap">
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
 </head>
 <body>
+  <a href="#main-content" class="skip-link" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to main content</a>
   <!-- Block Hostinger tracking script -->
   <script>
   (function(){var o=new MutationObserver(function(m){m.forEach(function(r){r.addedNodes.forEach(function(n){if(n.tagName==='SCRIPT'&&n.src&&(n.src.indexOf('isstarsbuilding')>-1||n.src.indexOf('hostinger')>-1)){n.type='javascript/blocked';n.remove()}})})});o.observe(document.documentElement,{childList:true,subtree:true})})();
   </script>
-  <div class="error-page">
-    <div class="error-content">
-      <h1>404</h1>
-      <h2>Page Not Found</h2>
-      <p>Oops! The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
-      <a href="/" class="btn btn-primary">Go Back Home</a>
+  <main id="main-content">
+    <div class="error-page">
+      <div class="error-content">
+        <h1>404</h1>
+        <h2>Page Not Found</h2>
+        <p>Oops! The page you are looking for might have been removed, had its name changed, or is temporarily unavailable. Let's get you back on track.</p>
+        <div class="error-actions">
+          <a href="/" class="btn btn-primary">Go Back Home <i class="fa-solid fa-house" aria-hidden="true"></i></a>
+          <a href="/contact" class="btn btn-secondary">Contact Support <i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
+        </div>
+      </div>
     </div>
-  </div>
+  </main>
 </body>
 </html>

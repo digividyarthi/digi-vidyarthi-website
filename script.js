@@ -272,8 +272,8 @@ function toggleFaq(element) {
         blogGrid.innerHTML = `
           <div style="grid-column:1/-1; text-align:center; padding:3rem; color:#6C757D;">
             <i class="fa-regular fa-newspaper" style="font-size:3rem; margin-bottom:1rem; display:block; opacity:0.3;"></i>
-            <h3 style="color:#343A40; margin-bottom:0.5rem;">Koi post nahi mili</h3>
-            <p>Jaldi hi naye posts aayenge. Stay tuned!</p>
+            <h3 style="color:#343A40; margin-bottom:0.5rem;">No posts found</h3>
+            <p>New posts coming soon. Stay tuned!</p>
           </div>`;
         document.getElementById('blogLoadMore').style.display = 'none';
         return;

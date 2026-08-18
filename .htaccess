@@ -1,13 +1,15 @@
 RewriteEngine On
 ErrorDocument 404 /404.html
-# Force non-www and HTTPS
-RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
-RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 
-# Force HTTPS
-RewriteCond %{HTTPS} off
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# Force HTTPS + non-www in a single redirect (avoid double 301s)
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^(.*)$ https://digividyarthi.com/$1 [L,R=301]
 
+# Block sensitive PHP files (security)
+<FilesMatch "^(admin|setup_db)\.php$">
+  Require all denied
+</FilesMatch>
 
 # Remove .html extension from URLs
 RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
@@ -34,6 +36,7 @@ RewriteRule ^blog/([^/]+)/?$ blog-post.html?slug=$1 [L,QSA]
   ExpiresByType image/png "access plus 1 year"
   ExpiresByType image/webp "access plus 1 year"
   ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
   ExpiresByType text/css "access plus 1 month"
   ExpiresByType application/javascript "access plus 1 month"
   ExpiresByType application/x-javascript "access plus 1 month"
@@ -56,9 +59,14 @@ RewriteRule ^blog/([^/]+)/?$ blog-post.html?slug=$1 [L,QSA]
   Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
   Header always set X-Frame-Options "SAMEORIGIN"
-  
+
   # Block Hostinger Tracking Script via CSP
-  Header always set Content-Security-Policy "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://www.youtube-nocookie.com https://www.youtube.com https://s.ytimg.com https://www.googletagmanager.com https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://stats.g.doubleclick.net;"
+  Header always set Content-Security-Policy "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://www.youtube-nocookie.com https://www.youtube.com https://s.ytimg.com https://www.googletagmanager.com https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://stats.g.doubleclick.net; img-src 'self' data: https:;"
+
+  # Allow CORS for fonts
+  <FilesMatch "\.(css|woff2)$">
+    Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
 </IfModule>
 
 # Enable Brotli Compression (preferred over gzip)
@@ -96,7 +104,6 @@ RewriteRule ^blog/([^/]+)/?$ blog-post.html?slug=$1 [L,QSA]
   AddOutputFilterByType DEFLATE text/javascript
   AddOutputFilterByType DEFLATE application/ld+json
 
-  # Compression level (1-9, higher = smaller but more CPU)
   DeflateCompressionLevel 6
 </IfModule>
 
