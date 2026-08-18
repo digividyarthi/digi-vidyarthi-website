@@ -157,6 +157,41 @@ function toggleFaq(element) {
   }
 }
 
+// ------- FAQ Category Filter -------
+function initFaqFilters() {
+  const catButtons = document.querySelectorAll('.faq-cat-btn');
+  if (!catButtons.length) return;
+
+  const faqItems = document.querySelectorAll('.faq-list .faq-item');
+
+  catButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      catButtons.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+
+      const filter = btn.getAttribute('data-filter');
+
+      faqItems.forEach(item => {
+        const cat = item.getAttribute('data-category') || '';
+        const show = filter === 'all' || cat === filter;
+        item.classList.toggle('is-hidden', !show);
+      });
+
+      // Close any open answers when filtering
+      document.querySelectorAll('.faq-item').forEach(item => {
+        item.classList.remove('active');
+        const ans = item.querySelector('.faq-answer');
+        if (ans) ans.style.maxHeight = '0';
+      });
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', initFaqFilters);
+
 // ------- Contact Form Handler (Email) -------
   const emailForm = document.getElementById('email-form');
   if (emailForm) {

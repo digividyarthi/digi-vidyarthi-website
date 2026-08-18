@@ -53,8 +53,8 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
   <link rel="preload" href="images/hero-mentor.webp" as="image" type="image/webp" fetchpriority="high">
-  <link rel="preload" href="style.min.css?v=8" as="style">
-  <link rel="stylesheet" href="style.min.css?v=8">
+  <link rel="preload" href="style.min.css?v=10" as="style">
+  <link rel="stylesheet" href="style.min.css?v=10">
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" as="style">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap">
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" crossorigin="anonymous">
@@ -412,112 +412,149 @@
     </section>
 
     <!-- ===== FAQ ===== -->
-    <section class="section" style="background: var(--gray-50);" id="faq">
+    <section class="section faq-section" id="faq">
       <div class="container">
         <div class="section-header reveal">
           <span class="section-badge orange"><i class="fa-solid fa-circle-question" aria-hidden="true"></i> FAQs</span>
           <h2>Frequently Asked <span class="highlight-blue">Questions</span></h2>
+          <p>Quick answers about our digital marketing courses, fees, placements and admission process in Varanasi.</p>
         </div>
-        <div class="faq-list">
-          <div class="faq-item reveal">
+
+        <!-- Category filter pills -->
+        <div class="faq-categories reveal" role="tablist" aria-label="FAQ categories">
+          <button class="faq-cat-btn active" type="button" data-filter="all" role="tab" aria-selected="true">All Questions <span class="faq-cat-count">9</span></button>
+          <button class="faq-cat-btn" type="button" data-filter="training" role="tab" aria-selected="false"><i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i> Training</button>
+          <button class="faq-cat-btn" type="button" data-filter="courses" role="tab" aria-selected="false"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Courses</button>
+          <button class="faq-cat-btn" type="button" data-filter="career" role="tab" aria-selected="false"><i class="fa-solid fa-briefcase" aria-hidden="true"></i> Career &amp; Fees</button>
+          <button class="faq-cat-btn" type="button" data-filter="admission" role="tab" aria-selected="false"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i> Admission</button>
+        </div>
+
+        <div class="faq-list" role="region" aria-label="Frequently asked questions">
+          <article class="faq-item reveal" data-category="training">
             <h3>
               <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-1">
-                <span>Why choose Digi Vidyarthi for digital marketing training?</span>
-                <span class="faq-icon" aria-hidden="true">+</span>
+                <span class="faq-question-icon" aria-hidden="true"><i class="fa-solid fa-award"></i></span>
+                <span class="faq-question-text">Why choose Digi Vidyarthi for digital marketing training?</span>
+                <span class="faq-toggle" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
               </button>
             </h3>
             <div class="faq-answer" id="faq-1" hidden>
               <div class="faq-answer-content">We stand apart because of our 100% practical training approach, live project experience, industry-expert mentors and proven placement record. Our curriculum is regularly updated to match the latest industry trends and tools.</div>
             </div>
-          </div>
-          <div class="faq-item reveal">
+          </article>
+
+          <article class="faq-item reveal" data-category="training">
             <h3>
               <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-2">
-                <span>Does Digi Vidyarthi provide hands-on digital marketing training?</span>
-                <span class="faq-icon" aria-hidden="true">+</span>
+                <span class="faq-question-icon" aria-hidden="true"><i class="fa-solid fa-laptop-code"></i></span>
+                <span class="faq-question-text">Does Digi Vidyarthi provide hands-on digital marketing training?</span>
+                <span class="faq-toggle" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
               </button>
             </h3>
             <div class="faq-answer" id="faq-2" hidden>
               <div class="faq-answer-content">Yes! Our training focuses on live campaigns, real client projects and actual tool usage. You will work with real budgets, actual platforms like Google Ads &amp; Meta Ads, and genuine client requirements throughout the course.</div>
             </div>
-          </div>
-          <div class="faq-item reveal">
+          </article>
+
+          <article class="faq-item reveal" data-category="courses">
             <h3>
               <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-3">
-                <span>What topics are covered in the digital marketing program?</span>
-                <span class="faq-icon" aria-hidden="true">+</span>
+                <span class="faq-question-icon" aria-hidden="true"><i class="fa-solid fa-list-check"></i></span>
+                <span class="faq-question-text">What topics are covered in the digital marketing program?</span>
+                <span class="faq-toggle" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
               </button>
             </h3>
             <div class="faq-answer" id="faq-3" hidden>
               <div class="faq-answer-content">Our program covers SEO, PPC (Google &amp; Meta Ads), Social Media Marketing, Email Marketing, WhatsApp Marketing, WordPress, Canva, Dropshipping, Affiliate Marketing and AI Tools — giving you a complete 360-degree skillset for the modern digital landscape.</div>
             </div>
-          </div>
-          <div class="faq-item reveal">
+          </article>
+
+          <article class="faq-item reveal" data-category="courses">
             <h3>
               <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-4">
-                <span>Is this course suitable for complete beginners?</span>
-                <span class="faq-icon" aria-hidden="true">+</span>
+                <span class="faq-question-icon" aria-hidden="true"><i class="fa-solid fa-seedling"></i></span>
+                <span class="faq-question-text">Is this course suitable for complete beginners?</span>
+                <span class="faq-toggle" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
               </button>
             </h3>
             <div class="faq-answer" id="faq-4" hidden>
               <div class="faq-answer-content">Absolutely! Our Foundation program is designed for complete beginners with step-by-step structured training. No prior experience in marketing or technology is required. We take you from zero to expert level with personalized attention in small batches.</div>
             </div>
-          </div>
-          <div class="faq-item reveal">
+          </article>
+
+          <article class="faq-item reveal" data-category="career">
             <h3>
               <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-5">
-                <span>Does Digi Vidyarthi help with placement and earning opportunities?</span>
-                <span class="faq-icon" aria-hidden="true">+</span>
+                <span class="faq-question-icon" aria-hidden="true"><i class="fa-solid fa-briefcase"></i></span>
+                <span class="faq-question-text">Does Digi Vidyarthi help with placement and earning opportunities?</span>
+                <span class="faq-toggle" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
               </button>
             </h3>
             <div class="faq-answer" id="faq-5" hidden>
               <div class="faq-answer-content">Yes! We provide freelancing guidance, job placement assistance and business growth support. With a 95% placement record, many of our students start earning while still enrolled. We also help you set up your own freelancing business or digital marketing agency.</div>
             </div>
-          </div>
-          <div class="faq-item reveal">
+          </article>
+
+          <article class="faq-item reveal" data-category="training">
             <h3>
               <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-6">
-                <span>What makes Digi Vidyarthi different from other institutes in Varanasi?</span>
-                <span class="faq-icon" aria-hidden="true">+</span>
+                <span class="faq-question-icon" aria-hidden="true"><i class="fa-solid fa-fingerprint"></i></span>
+                <span class="faq-question-text">What makes Digi Vidyarthi different from other institutes in Varanasi?</span>
+                <span class="faq-toggle" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
               </button>
             </h3>
             <div class="faq-answer" id="faq-6" hidden>
               <div class="faq-answer-content">Our practical-focused approach, 1-on-1 mentorship, performance tracking with real client projects, small batch sizes (max 15 students), AI tools training and guaranteed placement support — all at an affordable price point.</div>
             </div>
-          </div>
-          <div class="faq-item reveal">
+          </article>
+
+          <article class="faq-item reveal" data-category="career">
             <h3>
               <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-7">
-                <span>What are the digital marketing course fees in Varanasi?</span>
-                <span class="faq-icon" aria-hidden="true">+</span>
+                <span class="faq-question-icon" aria-hidden="true"><i class="fa-solid fa-indian-rupee-sign"></i></span>
+                <span class="faq-question-text">What are the digital marketing course fees in Varanasi?</span>
+                <span class="faq-toggle" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
               </button>
             </h3>
             <div class="faq-answer" id="faq-7" hidden>
               <div class="faq-answer-content">Our fees vary by program — Foundation, Advanced and Mastery — and are designed to be affordable without cutting corners on live projects or mentorship. Book a free demo or contact our helpline for the current fee structure and any ongoing discounts.</div>
             </div>
-          </div>
-          <div class="faq-item reveal">
+          </article>
+
+          <article class="faq-item reveal" data-category="courses">
             <h3>
               <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-8">
-                <span>Which program is best for beginners in Varanasi?</span>
-                <span class="faq-icon" aria-hidden="true">+</span>
+                <span class="faq-question-icon" aria-hidden="true"><i class="fa-solid fa-route"></i></span>
+                <span class="faq-question-text">Which program is best for beginners in Varanasi?</span>
+                <span class="faq-toggle" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
               </button>
             </h3>
             <div class="faq-answer" id="faq-8" hidden>
               <div class="faq-answer-content">For beginners, our Foundation program is the best starting point — it covers SEO fundamentals, social media basics, content marketing and Canva design with no prior experience required.</div>
             </div>
-          </div>
-          <div class="faq-item reveal">
+          </article>
+
+          <article class="faq-item reveal" data-category="admission">
             <h3>
               <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-9">
-                <span>How do I know Digi Vidyarthi is the right institute for me?</span>
-                <span class="faq-icon" aria-hidden="true">+</span>
+                <span class="faq-question-icon" aria-hidden="true"><i class="fa-solid fa-shield-check"></i></span>
+                <span class="faq-question-text">How do I know Digi Vidyarthi is the right institute for me?</span>
+                <span class="faq-toggle" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
               </button>
             </h3>
             <div class="faq-answer" id="faq-9" hidden>
               <div class="faq-answer-content">Beyond our 95% placement record and 500+ trained students, our reputation comes from live project experience, small batch sizes and verified Google reviews from students who have gone on to freelance or land marketing roles.</div>
             </div>
+          </article>
+        </div>
+
+        <div class="faq-cta reveal">
+          <div class="faq-cta-icon"><i class="fa-solid fa-headset" aria-hidden="true"></i></div>
+          <div class="faq-cta-content">
+            <h3>Still have questions?</h3>
+            <p>Our admissions team is happy to help you choose the right program.</p>
           </div>
+          <a href="/contact" class="btn btn-primary">Talk to Us <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
         </div>
       </div>
     </section>
@@ -991,7 +1028,7 @@
   }
   </script>
 
-  <script src="script.min.js?v=8" defer></script>
+  <script src="script.min.js?v=10" defer></script>
 
   <!-- Breadcrumb Schema -->
   <script type="application/ld+json">
