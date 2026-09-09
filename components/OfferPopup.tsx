@@ -11,23 +11,26 @@ export default function OfferPopup() {
   const [timeLeft, setTimeLeft] = useState(14 * 60 + 59); // 15 min countdown
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
-  // Frequency capping: 1 time per device per day
+  // Frequency capping: 1 time per device per day (or force via ?offer=true)
   useEffect(() => {
     try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const forceShow = urlParams.get('offer') === 'true' || urlParams.get('popup') === 'true';
+
       const today = new Date().toISOString().slice(0, 10);
       const lastShown = localStorage.getItem('dv_offer_popup_v1');
-      if (lastShown === today) {
+      if (lastShown === today && !forceShow) {
         return; // Already shown today
       }
 
-      // Smooth trigger after 3 seconds
+      // Smooth trigger after 2.5s (or 800ms if force preview)
+      const delay = forceShow ? 800 : 2500;
       const timer = setTimeout(() => {
         setIsOpen(true);
-        // Small delay to trigger smooth CSS scale/fade animation
         requestAnimationFrame(() => {
           setIsAnimating(true);
         });
-      }, 3000);
+      }, delay);
 
       return () => clearTimeout(timer);
     } catch {
