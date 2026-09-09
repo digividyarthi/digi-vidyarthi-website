@@ -18,6 +18,7 @@ import {
   ChevronRight,
 } from 'lucide-react';
 import { courseModules, courseTiers, faqs, gbpReviews, siteConfig } from '@/data/siteData';
+import VideoTestimonials from '@/components/VideoTestimonials';
 
 export const metadata = {
   title: 'Best Digital Marketing Institute in Varanasi | Digi Vidyarthi',
@@ -296,6 +297,9 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+
+      {/* ===== STUDENT VIDEO REVIEWS & CAMPUS GALLERY ===== */}
+      <VideoTestimonials />
 
       {/* ===== GOOGLE VERIFIED REVIEWS ===== */}
       <section className="bg-slate-50 py-20 border-y border-slate-200/60">

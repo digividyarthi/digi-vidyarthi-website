@@ -162,3 +162,85 @@ export const gbpReviews = [
     rating: 5,
   },
 ];
+
+export const studentVideos = [
+  {
+    id: 'uXcev7KGOyI',
+    name: 'Pushpendra Kumar',
+    role: 'Agency Digital Marketer',
+    tagline: 'From Beginner to Paid Ads Expert',
+    review: 'Learned live client campaigns and Google Ads strategy with practical mentorship at Digi Vidyarthi Varanasi.',
+    alt: 'Pushpendra Kumar digital marketing course in varanasi student video review - Digi Vidyarthi',
+  },
+  {
+    id: '-RTORvEsBKE',
+    name: 'Priya Sharma',
+    role: 'Career Transition & Placed',
+    tagline: 'Switched Career into High-Growth Marketing',
+    review: 'Transitioned from non-tech background to high-paying digital marketing job with placement assistance.',
+    alt: 'Priya Sharma best digital marketing institute in varanasi student placement story - Digi Vidyarthi',
+  },
+  {
+    id: 'IbHRMsvJVPk',
+    name: 'Sudhir Patel',
+    role: 'Freelance SEO Specialist',
+    tagline: 'Started Earning While Learning',
+    review: 'Mastered SEO and freelance pitching. Started acquiring international and Indian clients within 90 days.',
+    alt: 'Sudhir Patel digital marketing institute in varanasi practical training testimonial - Digi Vidyarthi',
+  },
+  {
+    id: 'EFr140qr02w',
+    name: 'Radhey Shyam',
+    role: 'Local Business Growth',
+    tagline: '3x Business Enquiries with Local SEO',
+    review: 'Implemented local SEO and Google Business Profile strategies to multiply customer walk-ins in Varanasi.',
+    alt: 'Radhey Shyam SEO course in varanasi student success review - Digi Vidyarthi',
+  },
+  {
+    id: 'N9uxstw95eI',
+    name: 'Vikas Yadav',
+    role: 'Performance Marketing Executive',
+    tagline: 'Mastered AI Marketing & Automation',
+    review: 'The AI agent workflows and prompt engineering methods make Digi Vidyarthi ahead of all traditional institutes.',
+    alt: 'Vikas Yadav AI digital marketing course in varanasi student experience - Digi Vidyarthi',
+  },
+];
+
+export const campusGallery = [
+  {
+    src: '/images/gallery-1.webp',
+    alt: 'Digi Vidyarthi practical digital marketing classroom training in Varanasi',
+    title: 'Interactive Smart Classroom',
+    subtitle: 'Hands-on practical sessions with personal workstations',
+  },
+  {
+    src: '/images/gallery-2.webp',
+    alt: 'Students learning live SEO and Meta Ads at best digital marketing institute in Varanasi',
+    title: 'Live Ad Campaigns Lab',
+    subtitle: 'Managing real client budgets and analyzing ROAS metrics',
+  },
+  {
+    src: '/images/gallery-3.webp',
+    alt: '1-on-1 mentor guidance for digital marketing course students in Varanasi',
+    title: '1-on-1 Mentor Guidance',
+    subtitle: 'Personalized doubt clearing and portfolio building',
+  },
+  {
+    src: '/images/gallery-4.webp',
+    alt: 'Hands-on AI marketing tools workshop at Digi Vidyarthi Varanasi campus',
+    title: 'AI Tools & Automation Workshop',
+    subtitle: 'Mastering ChatGPT, Claude, Midjourney for 10x marketing output',
+  },
+  {
+    src: '/images/gallery-5.webp',
+    alt: 'Certificate distribution and student placement batch celebration in Varanasi',
+    title: 'Certification & Placement Batches',
+    subtitle: 'Celebrating student career breakthroughs and agency placements',
+  },
+  {
+    src: '/images/gallery-6.webp',
+    alt: 'Agency project presentation by digital marketing students in Varanasi',
+    title: 'Client Pitching & Presentations',
+    subtitle: 'Presenting live marketing audits and growth strategies',
+  },
+];
