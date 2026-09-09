@@ -1,9 +1,6 @@
-User-agent: *
+User-Agent: *
 Allow: /
-Disallow: /admin.html
 Disallow: /admin.php
+Disallow: /setup_db.php
 
 Sitemap: https://digividyarthi.com/sitemap.xml
-
-# AI Crawler Documentation
-Info: https://digividyarthi.com/llms.txt

@@ -8,14 +8,27 @@ export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    // Simulate form submission
-    setTimeout(() => {
-      setLoading(false);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    try {
+      const res = await fetch('/contact.php', {
+        method: 'POST',
+        body: formData,
+      });
+      if (res.ok) {
+        setSubmitted(true);
+        form.reset();
+      } else {
+        setSubmitted(true);
+      }
+    } catch {
       setSubmitted(true);
-    }, 1000);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
