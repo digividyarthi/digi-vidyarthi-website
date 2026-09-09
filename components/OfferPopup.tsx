@@ -332,45 +332,48 @@ export default function OfferPopup() {
               />
 
               <div>
-                <label className="block text-[11px] font-medium text-slate-300 mb-1">
+                <label htmlFor="popup-name" className="block text-[11px] font-semibold text-slate-200 mb-1">
                   Your Full Name *
                 </label>
                 <input
+                  id="popup-name"
                   type="text"
                   name="name"
                   required
                   placeholder="e.g. Rahul Sharma"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-800/80 border border-slate-700/80 text-white placeholder-slate-400 text-sm focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange transition-all"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-800/80 border border-slate-600 text-white placeholder-slate-400 text-sm focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange transition-all"
                 />
               </div>
 
               <div>
-                <label className="block text-[11px] font-medium text-slate-300 mb-1">
+                <label htmlFor="popup-phone" className="block text-[11px] font-semibold text-slate-200 mb-1">
                   WhatsApp / Phone Number *
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm font-semibold">
+                  <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-300 text-sm font-semibold">
                     +91
                   </span>
                   <input
+                    id="popup-phone"
                     type="tel"
                     name="phone"
                     required
                     pattern="[6-9][0-9]{9}"
                     maxLength={10}
                     placeholder="9876543210"
-                    className="w-full pl-12 pr-3.5 py-2.5 rounded-xl bg-slate-800/80 border border-slate-700/80 text-white placeholder-slate-400 text-sm focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange transition-all"
+                    className="w-full pl-12 pr-3.5 py-2.5 rounded-xl bg-slate-800/80 border border-slate-600 text-white placeholder-slate-400 text-sm focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange transition-all"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[11px] font-medium text-slate-300 mb-1">
+                <label htmlFor="popup-profile" className="block text-[11px] font-semibold text-slate-200 mb-1">
                   Your Qualification / Profile
                 </label>
                 <select
+                  id="popup-profile"
                   name="message"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-800/80 border border-slate-700/80 text-white text-sm focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange transition-all"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-800/80 border border-slate-600 text-white text-sm focus:outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange transition-all"
                 >
                   <option value="12th Pass / Intermediate">12th Pass / Intermediate</option>
                   <option value="College Undergraduate / Graduate">College Undergraduate / Graduate</option>

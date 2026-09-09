@@ -69,32 +69,32 @@ export default function Footer() {
 
           {/* Col 2: Course Programs */}
           <div>
-            <h4 className="font-heading font-bold text-white text-base mb-4 relative pb-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-8 after:h-0.5 after:bg-brand-orange">
+            <h3 className="font-heading font-bold text-white text-base mb-4 relative pb-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-8 after:h-0.5 after:bg-brand-orange">
               Programs
-            </h4>
+            </h3>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <Link href="/courses" className="hover:text-brand-orange-light transition-colors">
+                <Link href="/courses" className="text-slate-300 hover:text-white transition-colors">
                   Foundation in Digital Marketing
                 </Link>
               </li>
               <li>
-                <Link href="/courses" className="hover:text-brand-orange-light transition-colors">
+                <Link href="/courses" className="text-slate-300 hover:text-white transition-colors">
                   Advanced Digital Marketing & AI
                 </Link>
               </li>
               <li>
-                <Link href="/courses" className="hover:text-brand-orange-light transition-colors">
+                <Link href="/courses" className="text-slate-300 hover:text-white transition-colors">
                   Digital Marketing Mastery Track
                 </Link>
               </li>
               <li>
-                <Link href="/courses" className="hover:text-brand-orange-light transition-colors">
+                <Link href="/courses" className="text-slate-300 hover:text-white transition-colors">
                   Performance & Meta Ads
                 </Link>
               </li>
               <li>
-                <Link href="/courses" className="hover:text-brand-orange-light transition-colors">
+                <Link href="/courses" className="text-slate-300 hover:text-white transition-colors">
                   Technical & Local SEO
                 </Link>
               </li>
@@ -103,37 +103,37 @@ export default function Footer() {
 
           {/* Col 3: Quick Links */}
           <div>
-            <h4 className="font-heading font-bold text-white text-base mb-4 relative pb-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-8 after:h-0.5 after:bg-brand-orange">
+            <h3 className="font-heading font-bold text-white text-base mb-4 relative pb-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-8 after:h-0.5 after:bg-brand-orange">
               Quick Links
-            </h4>
+            </h3>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <Link href="/" className="hover:text-brand-orange-light transition-colors">
+                <Link href="/" className="text-slate-300 hover:text-white transition-colors">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-brand-orange-light transition-colors">
+                <Link href="/about" className="text-slate-300 hover:text-white transition-colors">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/courses" className="hover:text-brand-orange-light transition-colors">
+                <Link href="/courses" className="text-slate-300 hover:text-white transition-colors">
                   Explore Programs
                 </Link>
               </li>
               <li>
-                <Link href="/tools" className="hover:text-brand-orange-light transition-colors">
+                <Link href="/tools" className="text-slate-300 hover:text-white transition-colors">
                   AI Marketing Tools
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="hover:text-brand-orange-light transition-colors">
+                <Link href="/blog" className="text-slate-300 hover:text-white transition-colors">
                   Digital Marketing Blog
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-brand-orange-light transition-colors">
+                <Link href="/contact" className="text-slate-300 hover:text-white transition-colors">
                   Book Free Demo
                 </Link>
               </li>
@@ -142,9 +142,9 @@ export default function Footer() {
 
           {/* Col 4: Contact Information */}
           <div>
-            <h4 className="font-heading font-bold text-white text-base mb-4 relative pb-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-8 after:h-0.5 after:bg-brand-orange">
+            <h3 className="font-heading font-bold text-white text-base mb-4 relative pb-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-8 after:h-0.5 after:bg-brand-orange">
               Campus Contact
-            </h4>
+            </h3>
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-brand-orange shrink-0 mt-1" />
