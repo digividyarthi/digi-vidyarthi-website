@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { courseModules, courseTiers, faqs, gbpReviews, siteConfig } from '@/data/siteData';
 import VideoTestimonials from '@/components/VideoTestimonials';
+import ScholarshipBanner from '@/components/ScholarshipBanner';
 
 export const metadata = {
   title: 'Best Digital Marketing Institute in Varanasi | Digi Vidyarthi',
@@ -136,6 +137,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ===== 25% SCHOLARSHIP OFFER BANNER (PERMANENT) ===== */}
+      <ScholarshipBanner />
 
       {/* ===== WHY AI-FIRST SECTION ===== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
