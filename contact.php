@@ -62,7 +62,7 @@ if (strlen($phoneDigits) < 10 || strlen($phoneDigits) > 13 || !preg_match('/^[6-
 }
 
 // Validate course selection
-$allowedCourses = ['Foundation', 'Advanced', 'Mastery', 'Demo', 'Other'];
+$allowedCourses = ['Foundation', 'Advanced', 'Mastery', 'Demo', 'Scholarship-25', 'Other'];
 if (!in_array($course, $allowedCourses, true)) {
     http_response_code(400);
     echo "Please select a valid course.";
@@ -86,13 +86,23 @@ file_put_contents($rlFile, $rlCount + 1);
 
 // --- Send email ---
 $recipient = "Info@digividyarthi.com";
-$subject = "New Course Inquiry from: $name";
+$isScholarship = ($course === 'Scholarship-25');
+$subject = $isScholarship
+    ? "🔥 [25% OFF Scholarship Lead] $name ($phoneDigits)"
+    : "New Course Inquiry from: $name";
 
-$email_content  = "You have received a new inquiry from the Digi Vidyarthi website.\n\n";
-$email_content .= "Name: $name\n";
-$email_content .= "Phone: $phoneDigits\n";
-$email_content .= "Interested In: $course\n\n";
-$email_content .= "Message:\n$message\n";
+$email_content  = "=== NEW LEAD FROM DIGI VIDYARTHI WEBSITE ===\n\n";
+if ($isScholarship) {
+    $email_content .= "🔥 SPECIAL OFFER: Flat 25% OFF Scholarship Code Claimed!\n";
+}
+$email_content .= "Student Name   : $name\n";
+$email_content .= "Phone / WhatsApp: $phoneDigits\n";
+$email_content .= "Course / Program: $course\n";
+if (!empty($message)) {
+    $email_content .= "Qualification / Details: $message\n";
+}
+$email_content .= "Submission Time : " . date("d M Y, h:i A") . " IST\n";
+$email_content .= "IP Address      : $ip\n";
 
 // Headers — use a verified sender, set proper From and Reply-To
 $email_headers  = "From: Digi Vidyarthi Website <noreply@digividyarthi.com>\r\n";

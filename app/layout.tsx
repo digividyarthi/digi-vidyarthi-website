@@ -6,6 +6,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import WhatsAppFloat from '@/components/WhatsAppFloat';
 import SocialSidebar from '@/components/SocialSidebar';
+import OfferPopup from '@/components/OfferPopup';
 import { siteConfig } from '@/data/siteData';
 
 const inter = Inter({
@@ -181,6 +182,7 @@ export default function RootLayout({
         <Footer />
         <WhatsAppFloat />
         <SocialSidebar />
+        <OfferPopup />
       </body>
     </html>
   );
