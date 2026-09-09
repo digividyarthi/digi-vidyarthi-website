@@ -90,45 +90,89 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Global JSON-LD Schema
-  const organizationSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'EducationalOrganization',
-    name: 'Digi Vidyarthi',
-    url: siteConfig.url,
-    logo: `${siteConfig.url}/images/logo.webp`,
-    image: siteConfig.ogImage,
-    description:
-      'Premier AI-powered digital marketing institute in Varanasi providing practical training, live projects, and placement assistance.',
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: '9238+VR9, Ashok Vihar Colony Phase-I, Paharia',
-      addressLocality: 'Varanasi',
-      addressRegion: 'Uttar Pradesh',
-      postalCode: '221007',
-      addressCountry: 'IN',
+  // Global JSON-LD Schema (Organization, WebSite, Breadcrumbs)
+  const schemas = [
+    {
+      '@context': 'https://schema.org',
+      '@type': ['EducationalOrganization', 'LocalBusiness'],
+      '@id': `${siteConfig.url}/#organization`,
+      name: 'Digi Vidyarthi',
+      url: siteConfig.url,
+      logo: `${siteConfig.url}/images/logo.webp`,
+      image: siteConfig.ogImage,
+      description:
+        'Premier AI-powered digital marketing institute in Varanasi providing practical training, live projects, and placement assistance.',
+      telephone: siteConfig.phone1,
+      email: siteConfig.email,
+      priceRange: '₹₹',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '9238+VR9, Ashok Vihar Colony Phase-I, Paharia',
+        addressLocality: 'Varanasi',
+        addressRegion: 'Uttar Pradesh',
+        postalCode: '221007',
+        addressCountry: 'IN',
+      },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: 25.3544304,
+        longitude: 83.0049044,
+      },
+      openingHoursSpecification: {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: [
+          'Monday',
+          'Tuesday',
+          'Wednesday',
+          'Thursday',
+          'Friday',
+          'Saturday',
+        ],
+        opens: '09:00',
+        closes: '19:00',
+      },
+      sameAs: [
+        siteConfig.social.instagram,
+        siteConfig.social.youtube,
+        siteConfig.social.facebook,
+        siteConfig.social.linkedin,
+      ],
     },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: '25.3544304',
-      longitude: '83.0049044',
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      '@id': `${siteConfig.url}/#website`,
+      url: siteConfig.url,
+      name: 'Digi Vidyarthi',
+      description: siteConfig.tagline,
+      publisher: {
+        '@id': `${siteConfig.url}/#organization`,
+      },
     },
-    telephone: siteConfig.phone1,
-    sameAs: [
-      siteConfig.social.instagram,
-      siteConfig.social.youtube,
-      siteConfig.social.facebook,
-      siteConfig.social.linkedin,
-    ],
-  };
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: siteConfig.url,
+        },
+      ],
+    },
+  ];
 
   return (
     <html lang="en" className={`${inter.variable} ${outfit.variable}`}>
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-        />
+        {schemas.map((schema, idx) => (
+          <script
+            key={idx}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+          />
+        ))}
       </head>
       <body className="font-body min-h-screen flex flex-col">
         <TopBar />
