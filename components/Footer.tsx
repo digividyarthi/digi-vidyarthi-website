@@ -23,7 +23,7 @@ export default function Footer() {
                 Digi <span className="text-brand-orange-light">Vidyarthi</span>
               </span>
             </Link>
-            <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
+            <p className="text-slate-200 text-sm leading-relaxed max-w-sm">
               Varanasi's leading AI-powered digital marketing institute. Empowering students, professionals, and entrepreneurs with 100% practical, project-based digital marketing training.
             </p>
             <div className="flex items-center gap-3 pt-2">
@@ -32,7 +32,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
-                className="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-brand-blue hover:text-white transition-all"
+                className="w-9 h-9 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-white hover:bg-brand-blue transition-all"
               >
                 <Facebook className="w-4 h-4" />
               </a>
@@ -41,7 +41,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-[#E1306C] hover:text-white transition-all"
+                className="w-9 h-9 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-white hover:bg-[#E1306C] transition-all"
               >
                 <Instagram className="w-4 h-4" />
               </a>
@@ -50,7 +50,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="YouTube"
-                className="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-[#FF0000] hover:text-white transition-all"
+                className="w-9 h-9 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-white hover:bg-[#FF0000] transition-all"
               >
                 <Youtube className="w-4 h-4" />
               </a>
@@ -59,7 +59,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center text-slate-300 hover:bg-[#0A66C2] hover:text-white transition-all"
+                className="w-9 h-9 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-white hover:bg-[#0A66C2] transition-all"
               >
                 <Linkedin className="w-4 h-4" />
               </a>
@@ -147,25 +147,25 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-brand-orange shrink-0 mt-1" />
-                <span className="text-slate-400 leading-relaxed text-xs">
+                <span className="text-slate-200 leading-relaxed text-xs">
                   {siteConfig.address}
                 </span>
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-brand-orange shrink-0" />
-                <a href={`tel:${siteConfig.phone1.replace(/[^0-9+]/g, '')}`} className="hover:text-white transition-colors">
+                <a href={`tel:${siteConfig.phone1.replace(/[^0-9+]/g, '')}`} className="text-slate-200 hover:text-white transition-colors">
                   {siteConfig.phone1}
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-brand-orange shrink-0" />
-                <a href={`tel:${siteConfig.phone2.replace(/[^0-9+]/g, '')}`} className="hover:text-white transition-colors">
+                <a href={`tel:${siteConfig.phone2.replace(/[^0-9+]/g, '')}`} className="text-slate-200 hover:text-white transition-colors">
                   {siteConfig.phone2}
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-brand-orange shrink-0" />
-                <a href={`mailto:${siteConfig.email}`} className="hover:text-white transition-colors">
+                <a href={`mailto:${siteConfig.email}`} className="text-slate-200 hover:text-white transition-colors">
                   {siteConfig.email}
                 </a>
               </li>
@@ -174,14 +174,14 @@ export default function Footer() {
         </div>
 
         {/* Bottom copyright & SEO footer */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-300 border-t border-slate-800/80">
           <p>
             &copy; {new Date().getFullYear()} Digi Vidyarthi. All rights reserved. |{' '}
-            <Link href="/llms.txt" className="underline hover:text-slate-400">
+            <Link href="/llms.txt" className="underline text-slate-300 hover:text-white">
               AI-Readable Info (llms.txt)
             </Link>
           </p>
-          <p className="text-slate-400 font-medium">
+          <p className="text-slate-200 font-medium">
             Best Digital Marketing Institute in Varanasi, UP
           </p>
         </div>

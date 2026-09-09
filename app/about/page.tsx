@@ -23,10 +23,10 @@ export default function AboutPage() {
           <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/10 text-brand-orange-light text-xs font-semibold uppercase tracking-wider">
             Our Story &amp; Mission
           </span>
-          <h1 className="font-heading text-3xl sm:text-5xl font-extrabold tracking-tight">
+          <h1 className="font-heading text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
             Empowering Varanasi with <span className="text-brand-orange-light">Practical</span> Digital Education
           </h1>
-          <p className="text-white/85 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-white text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
             Digi Vidyarthi was established to bridge the gap between traditional textbook theory and real agency marketing requirements.
           </p>
         </div>
@@ -144,10 +144,10 @@ export default function AboutPage() {
       {/* CTA */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="rounded-3xl bg-gradient-to-r from-brand-blue to-[#0B2E7D] text-white p-8 sm:p-12 text-center space-y-4 shadow-xl">
-          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold">
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-white">
             Want to Experience Our Teaching Style?
           </h2>
-          <p className="text-white/85 text-sm sm:text-base max-w-lg mx-auto">
+          <p className="text-white text-sm sm:text-base max-w-lg mx-auto">
             Book a free, zero-obligation demo class at our Varanasi campus or join live online.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">

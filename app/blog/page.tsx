@@ -51,10 +51,10 @@ export default function BlogListingPage() {
           <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/10 text-brand-orange-light text-xs font-semibold uppercase tracking-wider">
             Knowledge Hub
           </span>
-          <h1 className="font-heading text-3xl sm:text-5xl font-extrabold tracking-tight">
+          <h1 className="font-heading text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
             The <span className="text-brand-orange-light">Blog</span> of Varanasi&apos;s Best Digital Marketing Institute
           </h1>
-          <p className="text-white/85 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-white text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
             Actionable SEO guides, AI marketing tactics, social media growth playbooks, and career strategies from industry mentors.
           </p>
         </div>

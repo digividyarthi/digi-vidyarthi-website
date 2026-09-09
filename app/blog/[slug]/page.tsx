@@ -179,8 +179,8 @@ export default async function BlogPostPage({ params }: Props) {
 
             {/* Quick Demo CTA Card */}
             <div className="p-6 rounded-3xl bg-gradient-to-br from-brand-blue to-brand-blue-dark text-white space-y-3 shadow-lg">
-              <h4 className="font-heading font-bold text-base">Want to Learn This Practically?</h4>
-              <p className="text-white/80 text-xs leading-relaxed">
+              <h4 className="font-heading font-bold text-base text-white">Want to Learn This Practically?</h4>
+              <p className="text-white text-xs leading-relaxed">
                 Join our next digital marketing batch in Varanasi with live ad campaigns and 1-on-1 mentorship.
               </p>
               <Link

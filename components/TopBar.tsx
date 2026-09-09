@@ -4,7 +4,7 @@ import { siteConfig } from '@/data/siteData';
 
 export default function TopBar() {
   return (
-    <div className="bg-brand-blue text-white/90 text-xs py-2 overflow-hidden border-b border-white/10 relative z-50">
+    <div className="bg-brand-blue text-white text-xs py-2 overflow-hidden border-b border-white/10 relative z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
         {/* Left Contact Info (Hidden on Mobile) */}
         <div className="hidden lg:flex items-center gap-6 shrink-0">

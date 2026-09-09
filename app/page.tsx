@@ -382,12 +382,10 @@ export default function HomePage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
         <div className="rounded-3xl bg-gradient-to-r from-brand-blue to-[#0B2E7D] text-white p-8 sm:p-14 text-center relative overflow-hidden shadow-2xl space-y-6">
           <div className="absolute -top-24 -right-24 w-72 h-72 bg-brand-orange/20 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-white/10 rounded-full blur-3xl pointer-events-none" />
-
-          <h2 className="font-heading text-3xl sm:text-4xl font-extrabold max-w-2xl mx-auto">
+          <h2 className="font-heading text-3xl sm:text-4xl font-extrabold max-w-2xl mx-auto text-white">
             Ready to Build a High-Paying Digital Marketing Career?
           </h2>
-          <p className="text-white/85 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+          <p className="text-white text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
             Join the upcoming batch at Digi Vidyarthi Varanasi. Book your free interactive demo class today and experience practical learning firsthand.
           </p>
 

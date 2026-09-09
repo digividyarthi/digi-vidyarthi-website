@@ -40,10 +40,10 @@ export default function ContactPage() {
           <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/10 text-brand-orange-light text-xs font-semibold uppercase tracking-wider">
             Get in Touch
           </span>
-          <h1 className="font-heading text-3xl sm:text-5xl font-extrabold tracking-tight">
+          <h1 className="font-heading text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
             Book Your Free <span className="text-brand-orange-light">Demo Class</span>
           </h1>
-          <p className="text-white/85 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-white text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
             Have questions about our syllabus, fees, or upcoming batches? Visit our Varanasi center, call our counselors, or fill out the form below.
           </p>
         </div>

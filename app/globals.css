@@ -19,7 +19,34 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading font-bold text-slate-900 tracking-tight;
+    @apply font-heading font-bold tracking-tight text-slate-900;
+  }
+
+  /* Universal high-contrast rule: Blue & Dark backgrounds must ALWAYS have pure white headings & text */
+  .bg-brand-blue,
+  .bg-slate-900,
+  [class*="bg-brand-blue"],
+  [class*="from-brand-blue"],
+  [class*="from-[#0B2E7D]"],
+  [class*="to-[#0B2E7D]"] {
+    color: #FFFFFF;
+  }
+
+  .bg-brand-blue h1, .bg-brand-blue h2, .bg-brand-blue h3, .bg-brand-blue h4, .bg-brand-blue h5, .bg-brand-blue h6,
+  .bg-slate-900 h1, .bg-slate-900 h2, .bg-slate-900 h3, .bg-slate-900 h4, .bg-slate-900 h5, .bg-slate-900 h6,
+  [class*="bg-brand-blue"] h1, [class*="bg-brand-blue"] h2, [class*="bg-brand-blue"] h3, [class*="bg-brand-blue"] h4,
+  [class*="from-brand-blue"] h1, [class*="from-brand-blue"] h2, [class*="from-brand-blue"] h3, [class*="from-brand-blue"] h4,
+  [class*="from-[#0B2E7D]"] h1, [class*="from-[#0B2E7D]"] h2, [class*="from-[#0B2E7D]"] h3, [class*="from-[#0B2E7D]"] h4,
+  [class*="to-[#0B2E7D]"] h1, [class*="to-[#0B2E7D]"] h2, [class*="to-[#0B2E7D]"] h3, [class*="to-[#0B2E7D]"] h4 {
+    color: #FFFFFF !important;
+  }
+
+  .bg-brand-blue p,
+  [class*="bg-brand-blue"] p,
+  [class*="from-brand-blue"] p,
+  [class*="from-[#0B2E7D]"] p,
+  [class*="to-[#0B2E7D]"] p {
+    color: rgba(255, 255, 255, 0.95) !important;
   }
 }
 
