@@ -11,16 +11,17 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
           {/* Col 1: Brand Info */}
           <div className="lg:col-span-2 space-y-4">
-            <Link href="/" className="flex items-center gap-2.5">
+            <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group">
               <Image
                 src={siteConfig.logo}
                 alt="Digi Vidyarthi"
-                width={160}
-                height={45}
-                className="h-10 w-auto object-contain brightness-0 invert"
+                width={96}
+                height={108}
+                className="h-12 w-auto object-contain shrink-0 transition-transform duration-200 group-hover:scale-105 drop-shadow-[0_2px_8px_rgba(255,255,255,0.2)]"
               />
-              <span className="font-heading font-extrabold text-2xl text-white">
-                Digi <span className="text-brand-orange-light">Vidyarthi</span>
+              <span className="font-heading font-extrabold text-2xl tracking-tight leading-none flex items-center">
+                <span className="text-white">Digi</span>
+                <span className="text-brand-orange ml-1.5">Vidyarthi</span>
               </span>
             </Link>
             <p className="text-slate-200 text-sm leading-relaxed max-w-sm">

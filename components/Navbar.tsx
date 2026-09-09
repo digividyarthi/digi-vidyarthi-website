@@ -44,20 +44,18 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="relative h-10 w-auto flex items-center">
-            <Image
-              src={siteConfig.logo}
-              alt="Digi Vidyarthi Logo"
-              width={160}
-              height={45}
-              className="h-9 sm:h-10 w-auto object-contain"
-              priority
-            />
-          </div>
-          <span className="font-heading font-extrabold text-xl sm:text-2xl tracking-tight hidden xs:inline-block">
-            <span className="text-brand-blue">Digi</span>{' '}
-            <span className="text-brand-orange">Vidyarthi</span>
+        <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group">
+          <Image
+            src={siteConfig.logo}
+            alt="Digi Vidyarthi Logo"
+            width={96}
+            height={108}
+            className="h-11 sm:h-12 w-auto object-contain shrink-0 transition-transform duration-200 group-hover:scale-105"
+            priority
+          />
+          <span className="font-heading font-extrabold text-xl sm:text-2xl tracking-tight leading-none flex items-center">
+            <span className="text-brand-blue">Digi</span>
+            <span className="text-brand-orange ml-1 sm:ml-1.5">Vidyarthi</span>
           </span>
         </Link>
 
