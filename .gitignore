@@ -5,3 +5,9 @@ local_server.py
 __pycache__/
 .env
 *.log
+node_modules/
+.next/
+out/
+.env*.local
+*.tsbuildinfo
+next-env.d.ts

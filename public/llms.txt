@@ -1,0 +1,23 @@
+# Digi Vidyarthi
+
+> Digi Vidyarthi is Varanasi's premier digital marketing institute offering 100% practical, mentor-led offline training, live client campaigns, industry certifications, and 95% placement assistance.
+
+## Core Information
+- **Website:** [digividyarthi.com](https://digividyarthi.com/)
+- **Location:** Varanasi, Uttar Pradesh, India
+- **Batch Size:** Capped at 15 students per batch for personalized 1-on-1 mentorship.
+- **Contact Email:** Info@digividyarthi.com
+- **Contact Helpline:** +91-9278027950 | +91-9278039576
+- **Placement Rate:** 95% verified success rate.
+- **Google Rating:** 5.0 / 5.0 (based on student reviews).
+
+## Main Sections & Resources
+- [Home Page](https://digividyarthi.com/) - Overview of training programs, placement success, student reviews, transparent fee structure, and FAQs.
+- [About Us](https://digividyarthi.com/about) - The story of Digi Vidyarthi, our practical training approach, vision, mission, and our industry-expert mentors.
+- [Courses](https://digividyarthi.com/courses) - Comprehensive modules covering Foundation, Advanced, and Mastery tracks.
+- [AI & Marketing Tools](https://digividyarthi.com/tools) - Cutting-edge tools taught during the course (ChatGPT, SEMrush, Canva AI, Midjourney, Google Analytics 4, Zapier, Jasper, etc.).
+- [Blog](https://digividyarthi.com/blog) - Regular updates, local SEO strategies, PPC campaign optimization tips, and industry trends.
+- [Contact Us](https://digividyarthi.com/contact) - Helpline numbers, institute address, free demo registration, and interactive location map.
+
+## Detailed Information
+- For the full combined text, curriculum descriptions, pricing indicators, and FAQs, see [llms-full.txt](https://digividyarthi.com/llms-full.txt).

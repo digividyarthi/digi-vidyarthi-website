@@ -1,0 +1,114 @@
+# Digi Vidyarthi — Complete Information Document
+
+This document contains the complete and detailed text of the Digi Vidyarthi website. It is designed to be parsed by LLMs, AI assistants, and crawler bots.
+
+---
+
+## 1. Executive Summary & Vision
+
+Digi Vidyarthi is the top digital marketing institute in Varanasi, Uttar Pradesh, India. Built by active industry professionals, the institute focuses on hands-on practical learning, live campaign budgets, small batch sizes, and comprehensive job placement assistance.
+
+### Key Stats:
+- **Placement Rate:** 95% verified success.
+- **Students Trained:** 500+ successful graduates.
+- **Batch Size:** Strictly capped at 15 students per batch to ensure personalized attention and 1-on-1 mentorship.
+- **Instructors:** Active industry professionals, business consultants, and agency founders.
+
+---
+
+## 2. Learning Paths & Program Details
+
+Digi Vidyarthi structures its digital marketing training into three progression levels, matching student budgets, background levels, and career ambitions:
+
+### A. Foundation Program (Beginner Track)
+- **Target Audience:** Beginners, students, hobbyists.
+- **Key Modules Covered:**
+  - SEO (Search Engine Optimization) Fundamentals
+  - Social Media Marketing (SMM) basics
+  - Content Marketing principles
+  - Google Analytics introduction
+  - Canva graphic design basics
+- **Certification:** Digi Vidyarthi Certificate of Completion.
+
+### B. Advanced Program (Intermediate Track)
+- **Target Audience:** Job seekers, professionals seeking promotion.
+- **Key Modules Covered:**
+  - Everything in the Foundation track
+  - Google Ads (Search, Display, Shopping, Video campaigns)
+  - Meta Ads (Facebook & Instagram campaigns, pixel tracking)
+  - Email Marketing Automation (Mailchimp, active campaigns)
+  - WhatsApp Marketing (Business profile setup, bulk broadcasting, chatbots)
+  - WordPress Website Development (themes, plugins, hosting, basic coding)
+  - Live client campaign management
+- **Placement:** Active placement assistance and resume styling.
+
+### C. Mastery Program (Professional/Growth Track)
+- **Target Audience:** Aspiring agency owners, freelancers, dropshippers, business owners.
+- **Key Modules Covered:**
+  - Everything in the Advanced track
+  - Dropshipping & E-commerce setup (Shopify, payment gateways)
+  - Affiliate Marketing strategies
+  - Cutting-edge AI tools for marketing automation
+  - Freelancing profile building (Upwork, Fiverr) & client closing strategies
+  - Agency business setup guidance
+- **Support:** 1-on-1 mentorship, lifetime community access, and guaranteed placement support.
+
+---
+
+## 3. Training Modules in Detail
+
+- **Canva & Graphic Design:** Training on design principles, creating high-converting ad layouts, banners, thumbnails, branding palettes, and using Canva AI filters.
+- **WordPress Web Development:** Zero-code site building using page builders (Elementor), e-commerce integrations (WooCommerce), technical setup, domain pointing, SSL configuration, and custom forms.
+- **SEO (Search Engine Optimization):** Comprehensive training across three layers:
+  - *On-page SEO:* Title tags, meta descriptions, content optimization, image optimization, internal linking.
+  - *Technical SEO:* Sitemaps, robots.txt, schema markup, site speed optimization (Core Web Vitals).
+  - *Off-page SEO:* Backlink building, domain authority growth, guest blogging.
+- **PPC Advertising (Google & Meta Ads):** Account creation, target audience building, retargeting funnels, A/B ad copy testing, budget management, ROAS (Return on Ad Spend) calculation, and conversion API tracking.
+- **Social Media Marketing:** Growing page engagement, organic algorithms, hashtag research, content calendars, brand building, and influencer marketing outreach.
+- **Automation & Broadcast:** Bulk messaging, list segmenting, email marketing templates, funnel mapping, auto-responders, and CRM integrations.
+
+---
+
+## 4. AI Tools Curriculum
+
+Digi Vidyarthi integrates AI tools directly into its curriculum to prepare students for the future of marketing:
+- **ChatGPT:** Prompts for copywriting, content briefs, SEO keyword research, strategy planning, and basic script generation.
+- **Canva AI & Midjourney:** AI-driven image generation for high-impact ad campaigns and thumbnail styling.
+- **Jasper AI:** Generating high-converting sales copy, emails, and bulk blog concepts.
+- **Synthesia:** Quick high-quality video script-to-video generation for social media loops.
+- **Zapier:** Setting up automation rules connecting webhooks, databases, leads sheets, and automated alerts.
+- **Google Analytics 4 (GA4):** Tracking user signals, custom event tagging, and traffic reports.
+- **SEMrush:** Conducting detailed SEO gap analysis, competitor audits, and keyword difficulty checks.
+
+---
+
+## 5. Frequently Asked Questions (FAQs)
+
+### General Questions
+- **Why is Digi Vidyarthi the best digital marketing institute in Varanasi?**
+  Digi Vidyarthi offers a 100% practical approach, live campaign budgets, small batch caps (max 15), verified 5.0 Google ratings, and 95% placement rate.
+- **Is prior marketing or coding experience required?**
+  No, our Foundation program is designed for complete beginners and requires no technical background.
+
+### Fees & Budgeting
+- **What are the digital marketing fees in Varanasi at Digi Vidyarthi?**
+  Fees vary by program track (Foundation, Advanced, Mastery) to remain affordable and transparent. The institute supports flexible payment plans and easy EMI options.
+- **Are there any hidden costs?**
+  No. We believe in transparent pricing. Live campaign practice budgets and certifications are included in the program fee structure.
+
+### Tools & Infrastructure
+- **Do students get hands-on access to premium tools?**
+  Yes. We provide guided access to industry-standard tools like SEMrush, Canva Pro, Elementor, and hosting instances during lab practice hours.
+- **How do AI tools help in digital marketing training?**
+  By mastering AI tools like ChatGPT, Zapier, and Midjourney, students learn to accomplish marketing tasks 10x faster, making them highly competitive in modern agency environments.
+
+---
+
+## 6. Location & Contact Details
+
+- **Institute Name:** Digi Vidyarthi
+- **Address Location:** Varanasi, Uttar Pradesh, India
+- **Helplines:** +91-9278027950 | +91-9278039576
+- **Email:** Info@digividyarthi.com
+- **Timings:** Monday - Saturday (09:00 AM - 07:00 PM)
+- **Demo Booking:** Interested candidates can schedule a free classroom demo session by calling the helplines or filling out the demo registration form on our contact page.
