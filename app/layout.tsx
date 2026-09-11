@@ -7,7 +7,7 @@ import Footer from '@/components/Footer';
 import WhatsAppFloat from '@/components/WhatsAppFloat';
 import SocialSidebar from '@/components/SocialSidebar';
 import OfferPopup from '@/components/OfferPopup';
-import { siteConfig } from '@/data/siteData';
+import { siteConfig, verifiedCourses } from '@/data/siteData';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -24,22 +24,22 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: 'Digi Vidyarthi | Best Digital Marketing Institute in Varanasi',
-    template: '%s | Digi Vidyarthi Varanasi',
+    default: 'Best Digital Marketing Institute in Varanasi | Digi Vidyarthi',
+    template: '%s',
   },
   description:
-    'Join Digi Vidyarthi, the premier AI-powered digital marketing institute in Varanasi. 100% practical training in SEO, Google Ads, Meta Ads, and AI tools with live projects and career support.',
+    'Digi Vidyarthi is the best digital marketing institute in Varanasi offering practical classroom training, live projects, AI tools, and career guidance in Paharia.',
   verification: {
     google: siteConfig.googleVerification,
   },
   keywords: [
     'best digital marketing institute in varanasi',
-    'digital marketing course in varanasi',
+    'best digital marketing course in varanasi',
     'digital marketing institute in varanasi',
-    'best digital marketing courses in varanasi',
-    'digital marketing fees in varanasi',
-    'seo course in varanasi',
-    'ai digital marketing institute',
+    'digital marketing course in varanasi',
+    'digital marketing course fees in varanasi',
+    'practical digital marketing training varanasi',
+    'ai marketing institute varanasi',
     'Digi Vidyarthi',
   ],
   authors: [{ name: 'Digi Vidyarthi', url: siteConfig.url }],
@@ -61,9 +61,9 @@ export const metadata: Metadata = {
     locale: 'en_IN',
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: 'Digi Vidyarthi | Best Digital Marketing Institute in Varanasi',
+    title: 'Best Digital Marketing Institute in Varanasi | Digi Vidyarthi',
     description:
-      'Transform your career with practical digital marketing and AI tools training in Varanasi. Live projects, agency mentorship, and placement support.',
+      'Practical digital marketing training with live projects, AI marketing tools, and mentor support at Digi Vidyarthi in Paharia, Varanasi.',
     images: [
       {
         url: siteConfig.ogImage,
@@ -75,9 +75,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Digi Vidyarthi | Best Digital Marketing Institute in Varanasi',
+    title: 'Best Digital Marketing Institute in Varanasi | Digi Vidyarthi',
     description:
-      'Varanasi leading practical AI-powered digital marketing institute with 100% live projects and placement assistance.',
+      'Practical digital marketing institute in Varanasi. Live projects, AI marketing tools, and classroom training in Paharia.',
     images: [siteConfig.ogImage],
   },
   icons: {
@@ -91,21 +91,21 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Global JSON-LD Schema (Organization, WebSite, Breadcrumbs)
-  const schemas = [
+  // Global JSON-LD Schemas (Organization, LocalBusiness, WebSite, Courses)
+  const schemas: any[] = [
     {
       '@context': 'https://schema.org',
       '@type': ['EducationalOrganization', 'LocalBusiness'],
       '@id': `${siteConfig.url}/#organization`,
-      name: 'Digi Vidyarthi',
+      name: siteConfig.name,
       url: siteConfig.url,
       logo: `${siteConfig.url}/images/logo.webp`,
       image: siteConfig.ogImage,
       description:
-        'Premier AI-powered digital marketing institute in Varanasi providing practical training, live projects, and placement assistance.',
-      telephone: siteConfig.phone1,
+        'Practical digital marketing training institute in Varanasi providing classroom instruction, live campaign assignments, and AI marketing tools.',
+      telephone: [siteConfig.phone1, siteConfig.phone2],
       email: siteConfig.email,
-      priceRange: '₹₹',
+      priceRange: '₹10,000 - ₹50,000',
       address: {
         '@type': 'PostalAddress',
         streetAddress: '9238+VR9, Ashok Vihar Colony Phase-I, Paharia',
@@ -144,24 +144,47 @@ export default function RootLayout({
       '@type': 'WebSite',
       '@id': `${siteConfig.url}/#website`,
       url: siteConfig.url,
-      name: 'Digi Vidyarthi',
+      name: siteConfig.name,
       description: siteConfig.tagline,
       publisher: {
         '@id': `${siteConfig.url}/#organization`,
       },
     },
-    {
+    ...verifiedCourses.map((course) => ({
       '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: 'Home',
-          item: siteConfig.url,
+      '@type': 'Course',
+      '@id': `${siteConfig.url}/courses#${course.id}`,
+      name: course.name,
+      description: course.summary,
+      provider: {
+        '@id': `${siteConfig.url}/#organization`,
+      },
+      offers: {
+        '@type': 'AggregateOffer',
+        priceCurrency: 'INR',
+        lowPrice: 10000,
+        highPrice: 50000,
+        offerCount: 1,
+        url: `${siteConfig.url}/courses`,
+      },
+      hasCourseInstance: {
+        '@type': 'CourseInstance',
+        courseMode: 'Onsite',
+        duration: 'P2M/P6M',
+        location: {
+          '@type': 'Place',
+          name: 'Digi Vidyarthi Varanasi Campus',
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: '9238+VR9, Ashok Vihar Colony Phase-I, Paharia',
+            addressLocality: 'Varanasi',
+            addressRegion: 'Uttar Pradesh',
+            postalCode: '221007',
+            addressCountry: 'IN',
+          },
         },
-      ],
-    },
+      },
+    })),
   ];
 
   return (

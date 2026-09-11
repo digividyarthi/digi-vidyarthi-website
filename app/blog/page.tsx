@@ -52,7 +52,7 @@ export default function BlogListingPage() {
             Knowledge Hub
           </span>
           <h1 className="font-heading text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
-            The <span className="text-brand-orange-light">Blog</span> of Varanasi&apos;s Best Digital Marketing Institute
+            Digital Marketing &amp; AI <span className="text-brand-orange-light">Blog</span>
           </h1>
           <p className="text-white text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
             Actionable SEO guides, AI marketing tactics, social media growth playbooks, and career strategies from industry mentors.

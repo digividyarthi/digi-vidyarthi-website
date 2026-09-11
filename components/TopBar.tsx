@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Phone, GraduationCap, Gift, Rocket, Instagram, Youtube, Facebook } from 'lucide-react';
+import { Mail, Phone, GraduationCap, Sparkles, BookOpen, Instagram, Youtube, Facebook } from 'lucide-react';
 import { siteConfig } from '@/data/siteData';
 
 export default function TopBar() {
@@ -16,11 +16,11 @@ export default function TopBar() {
             <span>{siteConfig.email}</span>
           </a>
           <a
-            href={`tel:${siteConfig.phone2.replace(/[^0-9+]/g, '')}`}
+            href={`tel:${siteConfig.phone1.replace(/[^0-9+]/g, '')}`}
             className="inline-flex items-center gap-1.5 hover:text-brand-orange-light transition-colors"
           >
             <Phone className="w-3.5 h-3.5 text-brand-orange-light" />
-            <span>{siteConfig.phone2}</span>
+            <span>{siteConfig.phone1}</span>
           </a>
         </div>
 
@@ -29,23 +29,23 @@ export default function TopBar() {
           <div className="animate-marquee font-medium">
             <span className="inline-flex items-center gap-2 mr-8">
               <GraduationCap className="w-3.5 h-3.5 text-brand-orange-light" />
-              Admission Open! Call Helpline: {siteConfig.phone1}
+              Admissions Open for Upcoming Batches &bull; Call Helpline: {siteConfig.phone1}
             </span>
             <span className="inline-flex items-center gap-2 mr-8">
-              <Gift className="w-3.5 h-3.5 text-brand-orange-light" />
-              Grand Opening Special — Exclusive Discounts for First 10 Students!
+              <Sparkles className="w-3.5 h-3.5 text-brand-orange-light" />
+              Practical Digital Marketing &amp; AI Tools Training in Varanasi
             </span>
             <span className="inline-flex items-center gap-2 mr-8">
-              <Rocket className="w-3.5 h-3.5 text-brand-orange-light" />
-              New AI Marketing Batch Starting Soon — Reserve Your Free Demo!
+              <BookOpen className="w-3.5 h-3.5 text-brand-orange-light" />
+              Reserve Your Free Interactive Demo Class &bull; Paharia Campus
             </span>
             <span className="inline-flex items-center gap-2 mr-8">
               <GraduationCap className="w-3.5 h-3.5 text-brand-orange-light" />
-              Admission Open! Call Helpline: {siteConfig.phone1}
+              Admissions Open for Upcoming Batches &bull; Call Helpline: {siteConfig.phone1}
             </span>
             <span className="inline-flex items-center gap-2 mr-8">
-              <Gift className="w-3.5 h-3.5 text-brand-orange-light" />
-              Grand Opening Special — Exclusive Discounts for First 10 Students!
+              <Sparkles className="w-3.5 h-3.5 text-brand-orange-light" />
+              Practical Digital Marketing &amp; AI Tools Training in Varanasi
             </span>
           </div>
         </div>

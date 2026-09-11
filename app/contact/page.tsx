@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, MessageSquare, CheckCircle2, Clock } from 'lucide-react';
-import { siteConfig } from '@/data/siteData';
+import { siteConfig, verifiedCourses } from '@/data/siteData';
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -40,11 +40,12 @@ export default function ContactPage() {
           <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/10 text-brand-orange-light text-xs font-semibold uppercase tracking-wider">
             Get in Touch
           </span>
+          {/* Exactly One H1 */}
           <h1 className="font-heading text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
             Book Your Free <span className="text-brand-orange-light">Demo Class</span>
           </h1>
-          <p className="text-white text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-            Have questions about our syllabus, fees, or upcoming batches? Visit our Varanasi center, call our counselors, or fill out the form below.
+          <p className="text-white/90 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+            Have questions about our syllabus, fee structure (₹10,000 to ₹50,000), or upcoming batches? Visit our Varanasi center in Paharia, call our counselors, or reserve your free demo class below.
           </p>
         </div>
       </section>
@@ -77,15 +78,15 @@ export default function ContactPage() {
                 <Phone className="w-5 h-5" />
               </div>
               <h3 className="font-heading font-bold text-base text-slate-900">Phone Helplines</h3>
-              <p className="text-xs sm:text-sm text-slate-600">Call us Monday to Saturday (9 AM – 7 PM):</p>
+              <p className="text-xs sm:text-sm text-slate-600">Call us Monday to Saturday (9:00 AM &ndash; 7:00 PM):</p>
               <div className="space-y-1 pt-1 text-sm font-semibold text-slate-800">
                 <div>
-                  <a href={`tel:${siteConfig.phone1.replace(/[^0-9+]/g, '')}`} className="hover:text-brand-blue">
+                  <a href={`tel:${siteConfig.phone1.replace(/[^0-9+]/g, '')}`} className="text-brand-blue hover:text-brand-orange">
                     {siteConfig.phone1} (Admissions)
                   </a>
                 </div>
                 <div>
-                  <a href={`tel:${siteConfig.phone2.replace(/[^0-9+]/g, '')}`} className="hover:text-brand-blue">
+                  <a href={`tel:${siteConfig.phone2.replace(/[^0-9+]/g, '')}`} className="text-brand-blue hover:text-brand-orange">
                     {siteConfig.phone2} (Helpline)
                   </a>
                 </div>
@@ -113,17 +114,17 @@ export default function ContactPage() {
               Reserve Your Seat in Next Batch
             </h2>
             <p className="text-xs sm:text-sm text-slate-500 mb-6">
-              Fill in your details to book a free interactive demo class or receive complete course syllabus PDF.
+              Fill in your details to book a free interactive demo class or receive current fee structure details.
             </p>
 
             {submitted ? (
-              <div className="p-8 rounded-2xl bg-green-50 border border-green-200 text-center space-y-3 animate-fadeIn">
+              <div className="p-8 rounded-2xl bg-green-50 border border-green-200 text-center space-y-3">
                 <CheckCircle2 className="w-12 h-12 text-green-600 mx-auto" />
                 <h3 className="font-heading font-bold text-lg text-green-900">
-                  Thank you! Your demo request has been received.
+                  Thank you! Your request has been received.
                 </h3>
                 <p className="text-sm text-green-700 max-w-md mx-auto">
-                  Our admissions counselor will call you shortly at your registered number with batch timings and demo details.
+                  Our admissions counselor will contact you shortly with batch schedules and fee details.
                 </p>
               </div>
             ) : (
@@ -135,6 +136,7 @@ export default function ContactPage() {
                     </label>
                     <input
                       type="text"
+                      name="name"
                       required
                       placeholder="e.g. Rahul Sharma"
                       className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/10"
@@ -146,6 +148,7 @@ export default function ContactPage() {
                     </label>
                     <input
                       type="tel"
+                      name="phone"
                       required
                       placeholder="e.g. 9876543210"
                       className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/10"
@@ -160,6 +163,7 @@ export default function ContactPage() {
                     </label>
                     <input
                       type="email"
+                      name="email"
                       required
                       placeholder="e.g. rahul@gmail.com"
                       className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/10"
@@ -167,14 +171,20 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">
-                      Program of Interest
+                      Programme of Interest
                     </label>
-                    <select className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/10 bg-white">
-                      <option value="foundation">Foundation in Digital Marketing</option>
-                      <option value="advanced">Advanced Digital Marketing &amp; AI</option>
-                      <option value="mastery">Digital Marketing Mastery Track</option>
-                      <option value="seo">Specialized SEO Training</option>
-                      <option value="ads">Performance &amp; Meta Ads</option>
+                    <select
+                      name="course"
+                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/10 bg-white"
+                    >
+                      {verifiedCourses.map((c) => (
+                        <option key={c.id} value={c.name}>
+                          {c.name}
+                        </option>
+                      ))}
+                      <option value="General Demo Inquiry">
+                        General Demo / Fee Structure Inquiry
+                      </option>
                     </select>
                   </div>
                 </div>
@@ -184,8 +194,9 @@ export default function ContactPage() {
                     Your Message or Questions (Optional)
                   </label>
                   <textarea
+                    name="message"
                     rows={4}
-                    placeholder="Tell us about your background, career goal, or batch timing preference..."
+                    placeholder="Tell us about your goals, current background, or batch timing preference..."
                     className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/10"
                   />
                 </div>
@@ -208,7 +219,7 @@ export default function ContactPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="rounded-3xl overflow-hidden border border-slate-200 shadow-md h-96">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3605.5186000000003!2d83.0023295!3d25.3544304!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398e2f0a8f8c5805%3A0xac07bd1a5e012ee7!2sDigi%20Vidyarthi%20%7C%20Digital%20marketing%20institute%20in%20varanasi!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin"
+            src={siteConfig.googleMapsEmbed}
             width="100%"
             height="100%"
             style={{ border: 0 }}

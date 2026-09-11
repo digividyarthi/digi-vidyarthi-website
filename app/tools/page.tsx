@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { Bot, Wand2, Image as ImageIcon, Sparkles, BarChart3, Zap, Search, ArrowRight, PhoneCall, CheckCircle2 } from 'lucide-react';
 
 export const metadata = {
-  title: 'AI Marketing Tools Directory & Training | Digi Vidyarthi',
+  title: 'AI Digital Marketing Tools & Workflows | Digi Vidyarthi Varanasi',
   description:
-    'Master 15+ cutting-edge AI marketing tools in Varanasi. Hands-on practical training in ChatGPT, Claude, Midjourney, Canva AI, SEMrush, and Zapier for modern marketers.',
+    'Master essential AI tools including ChatGPT, Claude, Midjourney, Canva AI, and SEMrush with hands-on practical training at Digi Vidyarthi in Varanasi.',
   alternates: {
     canonical: 'https://digividyarthi.com/tools',
   },

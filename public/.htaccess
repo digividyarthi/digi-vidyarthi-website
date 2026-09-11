@@ -9,6 +9,9 @@ RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 
+# 301 Redirect for legacy indexed URL /blog/tools -> /tools
+RewriteRule ^blog/tools/?$ /tools [R=301,L]
+
 # Remove .html extension from URLs
 RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
 RewriteRule ^ /%1 [NC,L,R=301]
