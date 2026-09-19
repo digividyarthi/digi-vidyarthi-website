@@ -62,10 +62,10 @@ if (strlen($phoneDigits) < 10 || strlen($phoneDigits) > 13 || !preg_match('/^[6-
 }
 
 // Validate course selection
-$allowedCourses = ['Foundation', 'Advanced', 'Mastery', 'Demo', 'Scholarship-25', 'Other'];
-if (!in_array($course, $allowedCourses, true)) {
+$course = strip_tags(trim($_POST["course"] ?? ''));
+if (empty($course) || mb_strlen($course) < 2 || mb_strlen($course) > 200) {
     http_response_code(400);
-    echo "Please select a valid course.";
+    echo "Please select a valid course or inquiry option.";
     exit;
 }
 
@@ -73,33 +73,60 @@ if (!in_array($course, $allowedCourses, true)) {
 $message = mb_substr($message, 0, 2000);
 $safeMessage = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
 
-// --- Rate limiting by IP (simple file-based) ---
+// --- Rate limiting by IP (sliding 15 minutes window) ---
 $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
-$rlFile = sys_get_temp_dir() . '/dv_contact_' . md5($ip);
-$rlCount = file_exists($rlFile) ? (int)file_get_contents($rlFile) : 0;
-if ($rlCount >= 5) {
+$rlFile = sys_get_temp_dir() . '/dv_contact_' . md5($ip) . '.json';
+$now = time();
+$rlData = ['count' => 0, 'time' => $now];
+if (file_exists($rlFile)) {
+    $parsed = json_decode(@file_get_contents($rlFile), true);
+    if (is_array($parsed) && isset($parsed['time']) && ($now - $parsed['time'] < 900)) {
+        $rlData = $parsed;
+    }
+}
+if ($rlData['count'] >= 25) {
     http_response_code(429);
-    echo "Too many submissions. Please try again later.";
+    echo "Too many submissions. Please wait a few minutes or call us directly.";
     exit;
 }
-file_put_contents($rlFile, $rlCount + 1);
+$rlData['count']++;
+@file_put_contents($rlFile, json_encode($rlData));
+
+// --- Save Lead Backup (leads.json) ---
+$leadRecord = [
+    'name' => $name,
+    'phone' => $phoneDigits,
+    'email' => strip_tags(trim($_POST["email"] ?? '')),
+    'course' => $course,
+    'message' => $safeMessage,
+    'time' => date("Y-m-d H:i:s"),
+    'ip' => $ip
+];
+$leadsFile = __DIR__ . '/leads.json';
+$currentLeads = file_exists($leadsFile) ? json_decode(@file_get_contents($leadsFile), true) : [];
+if (!is_array($currentLeads)) $currentLeads = [];
+$currentLeads[] = $leadRecord;
+@file_put_contents($leadsFile, json_encode($currentLeads, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 
 // --- Send email ---
 $recipient = "Info@digividyarthi.com";
 $isScholarship = ($course === 'Scholarship-25');
 $subject = $isScholarship
     ? "🔥 [25% OFF Scholarship Lead] $name ($phoneDigits)"
-    : "New Course Inquiry from: $name";
+    : "New Course Inquiry: $course from $name";
 
 $email_content  = "=== NEW LEAD FROM DIGI VIDYARTHI WEBSITE ===\n\n";
 if ($isScholarship) {
     $email_content .= "🔥 SPECIAL OFFER: Flat 25% OFF Scholarship Code Claimed!\n";
 }
-$email_content .= "Student Name   : $name\n";
+$email_content .= "Student Name    : $name\n";
 $email_content .= "Phone / WhatsApp: $phoneDigits\n";
+if (!empty($_POST["email"])) {
+    $email_content .= "Email Address   : " . strip_tags(trim($_POST["email"])) . "\n";
+}
 $email_content .= "Course / Program: $course\n";
 if (!empty($message)) {
-    $email_content .= "Qualification / Details: $message\n";
+    $email_content .= "Student Message : $message\n";
 }
 $email_content .= "Submission Time : " . date("d M Y, h:i A") . " IST\n";
 $email_content .= "IP Address      : $ip\n";
@@ -110,11 +137,7 @@ $email_headers .= "Reply-To: $name <info@digividyarthi.com>\r\n";
 $email_headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 $email_headers .= "X-Mailer: PHP/" . phpversion();
 
-if (mail($recipient, $subject, $email_content, $email_headers)) {
-    http_response_code(200);
-    echo "Thank You! Your message has been sent.";
-} else {
-    error_log('[DigiVidyarthi Contact] Mail send failed from IP: ' . $ip);
-    http_response_code(500);
-    echo "Oops! Something went wrong and we couldn't send your message.";
-}
+@mail($recipient, $subject, $email_content, $email_headers);
+
+http_response_code(200);
+echo "Thank You! Your message has been sent.";
