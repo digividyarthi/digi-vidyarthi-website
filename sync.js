@@ -24,6 +24,12 @@ if (fs.existsSync(path.join(__dirname, 'out', '_next'))) {
   console.log('✓ Synced _next to root');
 }
 
+// 1b. Sync images to root
+if (fs.existsSync(path.join(__dirname, 'public', 'images'))) {
+  copyDirSync(path.join(__dirname, 'public', 'images'), path.join(__dirname, 'images'));
+  console.log('✓ Synced images/ to root');
+}
+
 // 2. Sync blog/
 if (fs.existsSync(path.join(__dirname, 'out', 'blog'))) {
   copyDirSync(path.join(__dirname, 'out', 'blog'), path.join(__dirname, 'blog'));
