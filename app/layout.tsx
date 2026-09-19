@@ -190,6 +190,17 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${outfit.variable}`}>
       <head>
+        {/* Google Tag Manager */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MWFPWWXP');`,
+          }}
+        />
+        {/* End Google Tag Manager */}
         <link rel="preload" as="image" href="/images/logo.webp" type="image/webp" />
         <link rel="preload" as="image" href="/images/hero-mentor.webp" type="image/webp" fetchPriority="high" />
         <link rel="preconnect" href="https://i.ytimg.com" />
@@ -203,6 +214,16 @@ export default function RootLayout({
         ))}
       </head>
       <body className="font-body min-h-screen flex flex-col">
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-MWFPWWXP"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
+        {/* End Google Tag Manager (noscript) */}
         <TopBar />
         <Navbar />
         <main className="flex-1">{children}</main>
