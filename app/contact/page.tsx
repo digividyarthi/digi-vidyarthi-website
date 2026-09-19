@@ -24,6 +24,23 @@ export default function ContactPage() {
       } else {
         setSubmitted(true);
       }
+
+      // Push custom event to dataLayer for GTM / GA4 / Google Ads conversion tracking
+      if (typeof window !== 'undefined') {
+        const w = window as any;
+        w.dataLayer = w.dataLayer || [];
+        w.dataLayer.push({
+          event: 'lead_form_submit',
+          form_id: 'contact-page-form',
+          form_name: 'Contact Demo Class Form',
+          inquiry_type: (formData.get('course') as string) || 'General Inquiry',
+        });
+        w.dataLayer.push({
+          event: 'generate_lead',
+          form_id: 'contact-page-form',
+          form_name: 'Contact Demo Class Form',
+        });
+      }
     } catch {
       setSubmitted(true);
     } finally {
@@ -128,7 +145,12 @@ export default function ContactPage() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form
+                id="contact-page-form"
+                name="contact_page_form"
+                onSubmit={handleSubmit}
+                className="space-y-4"
+              >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">

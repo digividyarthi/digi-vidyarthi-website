@@ -85,6 +85,24 @@ export default function BrochureModal({
       setIsSubmitting(false);
       setIsSuccess(true);
 
+      // Push custom event to dataLayer for GTM / GA4 / Google Ads conversion tracking
+      if (typeof window !== 'undefined') {
+        const w = window as any;
+        w.dataLayer = w.dataLayer || [];
+        w.dataLayer.push({
+          event: 'lead_form_submit',
+          form_id: 'brochure-download-form',
+          form_name: 'Brochure Download Form',
+          course_selected: course,
+        });
+        w.dataLayer.push({
+          event: 'generate_lead',
+          form_id: 'brochure-download-form',
+          form_name: 'Brochure Download Form',
+          course: course,
+        });
+      }
+
       // Auto trigger brochure download
       const link = document.createElement('a');
       link.href = '/brochure.pdf';
@@ -189,7 +207,12 @@ export default function BrochureModal({
               </div>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-3.5">
+            <form
+              id="brochure-download-form"
+              name="brochure_download_form"
+              onSubmit={handleSubmit}
+              className="space-y-3.5"
+            >
               {errorMessage && (
                 <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-medium">
                   {errorMessage}
