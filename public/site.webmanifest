@@ -1,0 +1,45 @@
+{
+  "name": "Digi Vidyarthi — Digital Marketing Institute Varanasi",
+  "short_name": "Digi Vidyarthi",
+  "description": "Varanasi's leading digital marketing institute — SEO, social media, Google Ads and AI marketing courses.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#FFFFFF",
+  "theme_color": "#1149C6",
+  "lang": "en-IN",
+  "dir": "ltr",
+  "categories": ["education", "business", "productivity"],
+  "icons": [
+    {
+      "src": "/images/logo.webp",
+      "sizes": "192x192",
+      "type": "image/webp",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Courses",
+      "url": "/courses",
+      "description": "Browse digital marketing courses"
+    },
+    {
+      "name": "Contact",
+      "url": "/contact",
+      "description": "Book a free demo class"
+    },
+    {
+      "name": "Blog",
+      "url": "/blog",
+      "description": "Read latest digital marketing insights"
+    }
+  ]
+}

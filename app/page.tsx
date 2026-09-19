@@ -27,6 +27,7 @@ import FeeDurationSection from '@/components/FeeDurationSection';
 import StudentOutcomesSection from '@/components/StudentOutcomesSection';
 import CampusContactSection from '@/components/CampusContactSection';
 import VideoTestimonials from '@/components/VideoTestimonials';
+import HeroActions from '@/components/HeroActions';
 
 export const metadata = {
   title: 'Best Digital Marketing Institute in Varanasi | Digi Vidyarthi',
@@ -66,23 +67,8 @@ export default function HomePage() {
                 Learn practical digital marketing with hands-on live projects and modern AI marketing tools at our Varanasi classroom location in Paharia. Work directly on SEO campaigns, Google Ads, Meta Ads Manager, and content strategies with personalized trainer guidance and free demo classes.
               </p>
 
-              {/* Primary & Secondary CTAs */}
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-                <Link
-                  href="/contact"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-brand-orange to-[#FF7A00] text-white font-heading font-bold text-base shadow-orangeGlow hover:scale-105 transition-all text-center"
-                >
-                  <PhoneCall className="w-4 h-4" />
-                  <span>Book Free Demo</span>
-                </Link>
-                <Link
-                  href="/courses"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-white/10 hover:bg-white text-white hover:text-brand-blue border border-white/30 font-heading font-bold text-base transition-all text-center"
-                >
-                  <span>View Course Curriculum</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
+              {/* Primary, Secondary & Brochure CTAs */}
+              <HeroActions />
 
               {/* Factual Trust Indicators */}
               <div className="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-white/15">
@@ -232,14 +218,30 @@ export default function HomePage() {
                   <p className="text-slate-500 text-xs leading-relaxed">{course.tagline}</p>
                 </div>
 
-                <div className="space-y-3 mb-6 bg-slate-50 p-4 rounded-2xl border border-slate-100 text-xs text-slate-600">
-                  <div>
-                    <span className="font-semibold text-slate-800">Duration: </span>
-                    <span>{course.duration}</span>
+                {/* Visual Pop-out Pricing & Duration Box */}
+                <div className="relative space-y-3 mb-6 p-4 rounded-2xl bg-gradient-to-br from-blue-50/70 via-slate-50 to-orange-50/50 border-2 border-brand-blue/20 shadow-sm hover:border-brand-orange/50 transition-colors">
+                  <div className="flex items-center justify-between border-b border-slate-200/60 pb-2">
+                    <span className="text-[10px] font-extrabold uppercase tracking-wider text-brand-orange bg-brand-orange-pale px-2.5 py-0.5 rounded-full flex items-center gap-1">
+                      <Sparkles className="w-3 h-3" />
+                      <span>Special Batch Offer</span>
+                    </span>
+                    <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">
+                      EMI Available
+                    </span>
                   </div>
-                  <div>
-                    <span className="font-semibold text-slate-800">Fee Range: </span>
-                    <span>{course.fee}</span>
+                  <div className="flex items-start gap-2 pt-0.5">
+                    <Clock className="w-4 h-4 text-brand-orange shrink-0 mt-0.5" />
+                    <div>
+                      <span className="text-xs font-bold text-slate-900 block">Duration:</span>
+                      <span className="text-xs text-slate-700 font-medium">{course.duration}</span>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <IndianRupee className="w-4 h-4 text-brand-orange shrink-0 mt-0.5" />
+                    <div>
+                      <span className="text-xs font-bold text-brand-blue block">Fee Range:</span>
+                      <span className="text-sm font-extrabold text-slate-900">{course.fee}</span>
+                    </div>
                   </div>
                 </div>
 

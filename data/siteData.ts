@@ -30,8 +30,8 @@ export const trainers = [
   {
     name: 'Aryan Rai',
     role: 'Lead Digital Marketing Trainer',
-    experience: '6 years in digital marketing',
-    experienceYears: 6,
+    experience: '7 years in digital marketing',
+    experienceYears: 7,
     bio: 'Experienced digital marketing strategist and lead mentor specializing in Search Engine Optimization (SEO), Performance Marketing, Google & Meta Ads, and agency client acquisition.',
     imagePlaceholder: '/images/trainer-aryan-rai.webp',
     imageAlt: 'Aryan Rai Lead Digital Marketing Trainer at Digi Vidyarthi Varanasi',
@@ -40,8 +40,8 @@ export const trainers = [
   {
     name: 'Rishitesh Kumar',
     role: 'Digital Marketing Trainer',
-    experience: '1 year in digital marketing',
-    experienceYears: 1,
+    experience: '2 years in digital marketing',
+    experienceYears: 2,
     bio: 'Hands-on practical instructor focusing on modern digital marketing tools, social media marketing execution, content workflows, and campaign management.',
     imagePlaceholder: '/images/trainer-rishitesh-kumar.webp',
     imageAlt: 'Rishitesh Kumar Digital Marketing Trainer at Digi Vidyarthi Varanasi',
@@ -177,7 +177,7 @@ export const faqs = [
   },
   {
     q: 'Who are the trainers at Digi Vidyarthi Varanasi?',
-    a: 'Our courses are conducted by verified trainers: Aryan Rai, Lead Digital Marketing Trainer with 6 years of industry experience, and Rishitesh Kumar, Digital Marketing Trainer with 1 year of practical experience.',
+    a: 'Our courses are conducted by verified trainers: Aryan Rai, Lead Digital Marketing Trainer with 7 years of industry experience, and Rishitesh Kumar, Digital Marketing Trainer with 2 years of practical experience.',
   },
   {
     q: 'What placement and career support does Digi Vidyarthi provide?',
@@ -295,3 +295,31 @@ export const campusGallery = [
     subtitle: 'Students presenting marketing audit findings and strategic campaign plans',
   },
 ];
+
+export const certificationsGallery = [
+  {
+    src: '/images/certification-1.webp',
+    alt: 'Digi Vidyarthi Course Completion & Practical Live Project Master Certificate',
+    title: 'Digi Vidyarthi Master Certification',
+    issuer: 'Digi Vidyarthi Institute',
+    description: 'Accredited certificate verifying practical mastery of SEO, Paid Ads, Content Strategy, and AI Workflows.',
+    tag: 'Live Project Verified',
+  },
+  {
+    src: '/images/certification-2.webp',
+    alt: 'Google Certified Digital Marketing Professional Credential',
+    title: 'Google Professional Certification',
+    issuer: 'Google Certified Curriculum',
+    description: 'Hands-on preparation and exam guidance for Google Ads Search, Display, Video, and Google Analytics 4.',
+    tag: 'Industry Standard',
+  },
+  {
+    src: '/images/certification-3.webp',
+    alt: 'Meta Certified Digital Marketing Associate Credential',
+    title: 'Meta Certified Associate',
+    issuer: 'Meta Blueprint Standards',
+    description: 'Demonstrating competence in Meta Ads Manager, Instagram campaigns, ROAS optimization, and audience targeting.',
+    tag: 'Performance Marketing',
+  },
+];
+

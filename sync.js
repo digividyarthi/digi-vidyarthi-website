@@ -59,7 +59,12 @@ function optimizeHtmlFile(filePath) {
 }
 
 // 4. Sync root pages with CSS inlining
-const rootFiles = ['index.html', 'about.html', 'courses.html', 'tools.html', 'blog.html', 'contact.html', '404.html', 'sitemap.xml', 'robots.txt'];
+const rootFiles = [
+  'index.html', 'about.html', 'courses.html', 'tools.html', 
+  'blog.html', 'contact.html', '404.html', 
+  'privacy-policy.html', 'terms.html', 'refund-policy.html',
+  'sitemap.xml', 'robots.txt'
+];
 for (const f of rootFiles) {
   const src = path.join(__dirname, 'out', f);
   const dest = path.join(__dirname, f);
@@ -83,8 +88,15 @@ if (fs.existsSync(path.join(__dirname, 'blog'))) {
   console.log('✓ Inlined CSS in blog HTML files');
 }
 
-// 4. Sync .htaccess
-if (fs.existsSync(path.join(__dirname, 'public', '.htaccess'))) {
-  fs.copyFileSync(path.join(__dirname, 'public', '.htaccess'), path.join(__dirname, '.htaccess'));
-  console.log('✓ Synced .htaccess');
+// 5. Sync .htaccess and CMS backend files to out/ and root
+const cmsFiles = ['admin.html', 'admin.php', 'contact.php', 'setup_db.php', 'blogs.json', 'style.min.css', '.htaccess'];
+for (const f of cmsFiles) {
+  const pubPath = path.join(__dirname, 'public', f);
+  const outPath = path.join(__dirname, 'out', f);
+  const rootPath = path.join(__dirname, f);
+  if (fs.existsSync(pubPath)) {
+    if (!fs.existsSync(outPath)) fs.copyFileSync(pubPath, outPath);
+    if (!fs.existsSync(rootPath)) fs.copyFileSync(pubPath, rootPath);
+  }
 }
+console.log('✓ Verified CMS backend files (admin.html, admin.php, blogs.json, contact.php) in out/ & root');
