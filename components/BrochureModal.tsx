@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { X, Download, CheckCircle2, PhoneCall, Sparkles, FileText, ArrowRight, ShieldCheck } from 'lucide-react';
 import { siteConfig } from '@/data/siteData';
 
@@ -15,6 +16,7 @@ export default function BrochureModal({
   onClose,
   defaultCourse = 'AI Powered Digital Marketing Course',
 }: BrochureModalProps) {
+  const [mounted, setMounted] = useState(false);
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
@@ -22,6 +24,10 @@ export default function BrochureModal({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -35,7 +41,7 @@ export default function BrochureModal({
     };
   }, [isOpen]);
 
-  if (!isOpen) return null;
+  if (!isOpen || !mounted) return null;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -97,17 +103,22 @@ export default function BrochureModal({
     onClose();
   };
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-slate-950/70 backdrop-blur-sm animate-fadeIn">
+  return createPortal(
+    <div
+      className="fixed inset-0 z-[99999] flex items-center justify-center p-3 sm:p-4 md:p-6 overflow-y-auto bg-slate-950/80 backdrop-blur-md animate-fadeIn"
+      role="dialog"
+      aria-modal="true"
+      onClick={onClose}
+    >
       <div
-        className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden"
+        className="relative w-full max-w-lg my-auto bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden max-h-[90vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Gradient Header */}
-        <div className="bg-gradient-to-r from-[#0B2E7D] via-brand-blue to-[#1A55D4] text-white p-6 sm:p-8 relative">
+        <div className="bg-gradient-to-r from-[#0B2E7D] via-brand-blue to-[#1A55D4] text-white p-5 sm:p-6 relative shrink-0">
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
+            className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/15 hover:bg-white/30 text-white flex items-center justify-center transition-colors"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
@@ -127,7 +138,7 @@ export default function BrochureModal({
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 sm:p-8">
+        <div className="p-5 sm:p-6 overflow-y-auto flex-1">
           {isSuccess ? (
             <div className="text-center space-y-5 py-4">
               <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 mx-auto flex items-center justify-center animate-bounce">
@@ -178,7 +189,7 @@ export default function BrochureModal({
               </div>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-3.5">
               {errorMessage && (
                 <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-medium">
                   {errorMessage}
@@ -195,7 +206,7 @@ export default function BrochureModal({
                   placeholder="e.g. Rahul Sharma"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 outline-none text-sm text-slate-800 transition-all"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 outline-none text-sm text-slate-800 transition-all"
                 />
               </div>
 
@@ -214,7 +225,7 @@ export default function BrochureModal({
                     placeholder="9876543210"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="w-full pl-12 pr-4 py-3 rounded-xl border border-slate-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 outline-none text-sm text-slate-800 transition-all"
+                    className="w-full pl-12 pr-4 py-2.5 rounded-xl border border-slate-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 outline-none text-sm text-slate-800 transition-all"
                   />
                 </div>
               </div>
@@ -229,7 +240,7 @@ export default function BrochureModal({
                   placeholder="name@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 outline-none text-sm text-slate-800 transition-all"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 outline-none text-sm text-slate-800 transition-all"
                 />
               </div>
 
@@ -240,7 +251,7 @@ export default function BrochureModal({
                 <select
                   value={course}
                   onChange={(e) => setCourse(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 outline-none text-sm text-slate-800 transition-all bg-white"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 outline-none text-sm text-slate-800 transition-all bg-white"
                 >
                   <option value="AI Powered Digital Marketing Course">
                     AI Powered Digital Marketing Course (Comprehensive)
@@ -254,11 +265,11 @@ export default function BrochureModal({
                 </select>
               </div>
 
-              <div className="pt-2">
+              <div className="pt-1">
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-3.5 px-6 rounded-full bg-gradient-to-r from-brand-orange to-[#FF7A00] text-white font-heading font-bold text-sm shadow-md hover:shadow-orangeGlow hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 disabled:opacity-60"
+                  className="w-full py-3 px-6 rounded-full bg-gradient-to-r from-brand-orange to-[#FF7A00] text-white font-heading font-bold text-sm shadow-md hover:shadow-orangeGlow hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 disabled:opacity-60"
                 >
                   {isSubmitting ? (
                     <span>Preparing Download...</span>
@@ -271,7 +282,7 @@ export default function BrochureModal({
                 </button>
               </div>
 
-              <div className="flex items-center justify-center gap-1.5 text-[11px] text-slate-500 pt-1">
+              <div className="flex items-center justify-center gap-1.5 text-[11px] text-slate-500 pt-0.5">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
                 <span>We respect your privacy. No spam guarantee.</span>
               </div>
@@ -279,6 +290,7 @@ export default function BrochureModal({
           )}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

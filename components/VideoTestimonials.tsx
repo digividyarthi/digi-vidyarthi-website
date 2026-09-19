@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import {
   Play,
@@ -19,9 +20,14 @@ import {
 import { studentVideos, campusGallery, certificationsGallery } from '@/data/siteData';
 
 export default function VideoTestimonials() {
+  const [mounted, setMounted] = useState(false);
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   const [selectedCert, setSelectedCert] = useState<{
     src: string;
     alt: string;
@@ -361,16 +367,18 @@ export default function VideoTestimonials() {
         </div>
 
         {/* Certificate Modal Lightbox */}
-        {selectedCert && (
+        {selectedCert && mounted && createPortal(
           <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-950/80 backdrop-blur-sm animate-fadeIn"
+            className="fixed inset-0 z-[99999] flex items-center justify-center p-4 sm:p-6 bg-slate-950/85 backdrop-blur-md animate-fadeIn"
+            role="dialog"
+            aria-modal="true"
             onClick={() => setSelectedCert(null)}
           >
             <div
-              className="relative max-w-3xl w-full bg-white rounded-3xl overflow-hidden shadow-2xl border border-white/20 p-6 sm:p-8 space-y-4"
+              className="relative max-w-3xl w-full bg-white rounded-3xl overflow-hidden shadow-2xl border border-white/20 p-6 sm:p-8 space-y-4 my-auto max-h-[92vh] flex flex-col"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+              <div className="flex items-center justify-between border-b border-slate-100 pb-4 shrink-0">
                 <div>
                   <span className="text-xs font-bold uppercase tracking-wider text-brand-orange">
                     {selectedCert.issuer}
@@ -382,12 +390,13 @@ export default function VideoTestimonials() {
                 <button
                   onClick={() => setSelectedCert(null)}
                   className="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition-colors"
+                  aria-label="Close preview"
                 >
                   <X className="w-5 h-5" />
                 </button>
               </div>
 
-              <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden border border-slate-200 bg-slate-50">
+              <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 flex-1 min-h-[300px]">
                 <Image
                   src={selectedCert.src}
                   alt={selectedCert.alt}
@@ -397,11 +406,11 @@ export default function VideoTestimonials() {
                 />
               </div>
 
-              <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+              <p className="text-slate-600 text-xs sm:text-sm leading-relaxed shrink-0">
                 {selectedCert.description}
               </p>
 
-              <div className="pt-2 flex justify-end">
+              <div className="pt-2 flex justify-end shrink-0">
                 <button
                   onClick={() => setSelectedCert(null)}
                   className="px-6 py-2.5 rounded-full bg-brand-blue text-white font-heading font-bold text-xs hover:bg-brand-blue-dark transition-colors"
@@ -410,7 +419,8 @@ export default function VideoTestimonials() {
                 </button>
               </div>
             </div>
-          </div>
+          </div>,
+          document.body
         )}
       </div>
     </section>

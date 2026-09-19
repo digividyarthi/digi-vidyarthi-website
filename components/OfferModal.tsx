@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { X, Sparkles, IndianRupee, Clock, CheckCircle2, PhoneCall, ArrowRight, ShieldCheck, Zap, Gift } from 'lucide-react';
 import { siteConfig, batchOfferConfig } from '@/data/siteData';
 
@@ -10,6 +11,12 @@ interface OfferModalProps {
 }
 
 export default function OfferModal({ isOpen, onClose }: OfferModalProps) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -21,16 +28,21 @@ export default function OfferModal({ isOpen, onClose }: OfferModalProps) {
     };
   }, [isOpen]);
 
-  if (!isOpen) return null;
+  if (!isOpen || !mounted) return null;
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-slate-950/70 backdrop-blur-sm animate-fadeIn">
+  return createPortal(
+    <div
+      className="fixed inset-0 z-[99999] flex items-center justify-center p-3 sm:p-4 md:p-6 overflow-y-auto bg-slate-950/80 backdrop-blur-md animate-fadeIn"
+      role="dialog"
+      aria-modal="true"
+      onClick={onClose}
+    >
       <div
-        className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl border border-brand-orange/30 overflow-hidden"
+        className="relative w-full max-w-lg my-auto bg-white rounded-3xl shadow-2xl border border-brand-orange/30 overflow-hidden max-h-[90vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Gradient Banner */}
-        <div className="bg-gradient-to-r from-brand-orange via-[#FF7A00] to-[#E05300] text-white p-6 sm:p-8 relative">
+        <div className="bg-gradient-to-r from-brand-orange via-[#FF7A00] to-[#E05300] text-white p-5 sm:p-6 relative shrink-0">
           <button
             onClick={onClose}
             className="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/20 hover:bg-black/40 text-white flex items-center justify-center transition-colors"
@@ -53,7 +65,7 @@ export default function OfferModal({ isOpen, onClose }: OfferModalProps) {
         </div>
 
         {/* Modal Content */}
-        <div className="p-6 sm:p-8 space-y-6">
+        <div className="p-5 sm:p-6 space-y-5 overflow-y-auto flex-1">
           {/* Highlight Cards */}
           <div className="grid grid-cols-2 gap-4">
             <div className="p-4 rounded-2xl bg-brand-blue-pale/50 border border-brand-blue/20 text-center space-y-1">
@@ -97,7 +109,7 @@ export default function OfferModal({ isOpen, onClose }: OfferModalProps) {
           </div>
 
           {/* CTAs */}
-          <div className="space-y-3 pt-2">
+          <div className="space-y-3 pt-1">
             <a
               href={`https://wa.me/${siteConfig.whatsapp}?text=Hello%20Digi%20Vidyarthi,%20I%20want%20to%20claim%20the%20Special%20Batch%20Offer%20for%20Digital%20Marketing%20Course.`}
               target="_blank"
@@ -110,7 +122,7 @@ export default function OfferModal({ isOpen, onClose }: OfferModalProps) {
 
             <a
               href="/contact"
-              className="w-full py-3 px-6 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-heading font-semibold text-xs flex items-center justify-center gap-2 transition-colors text-center"
+              className="w-full py-2.5 px-6 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-heading font-semibold text-xs flex items-center justify-center gap-2 transition-colors text-center"
             >
               <PhoneCall className="w-3.5 h-3.5 text-brand-blue" />
               <span>Book Free Demo Class in Paharia</span>
@@ -122,6 +134,7 @@ export default function OfferModal({ isOpen, onClose }: OfferModalProps) {
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
