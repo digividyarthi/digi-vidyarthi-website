@@ -290,18 +290,18 @@ export default function VideoTestimonials() {
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-orange bg-brand-orange-pale px-3.5 py-1 rounded-full">
             <ShieldCheck className="w-3.5 h-3.5" />
-            Accredited Credentials
+            Verified Student Achievements
           </span>
           <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
-            Industry &amp; Course <span className="text-brand-blue">Certifications</span>
+            Internship &amp; Course <span className="text-brand-blue">Certificates</span>
           </h2>
           <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-            Gain recognized industry credentials from Digi Vidyarthi, Google, and Meta upon successful completion of your live campaign assignments and assessments.
+            Congratulations to our student interns! Real credentials awarded upon mastering live SEO campaigns, client advertising funnels, and industry projects at Digi Vidyarthi Varanasi.
           </p>
         </div>
 
-        {/* 3 Certification Image Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* 5 Certification Image Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {certificationsGallery.map((cert) => (
             <div
               key={cert.title}
