@@ -29,13 +29,13 @@ export default function TrainersSection() {
               {/* Photo & Identity Row */}
               <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 text-center sm:text-left">
                 {/* Photo Container */}
-                <div className="relative w-32 h-32 rounded-2xl overflow-hidden border-2 border-brand-orange/40 shadow-md bg-slate-900 shrink-0 group-hover:border-brand-orange transition-colors">
+                <div className="relative w-32 h-32 rounded-2xl overflow-hidden border-2 border-brand-orange/40 shadow-md bg-slate-100 shrink-0 group-hover:border-brand-orange transition-colors">
                   <Image
-                    src={trainer.imagePlaceholder}
+                    src={trainer.image || trainer.imagePlaceholder}
                     alt={trainer.imageAlt}
                     width={160}
                     height={160}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-md">
                     <CheckCircle2 className="w-4 h-4" />

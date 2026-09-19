@@ -33,8 +33,9 @@ export const trainers = [
     experience: '7 years in digital marketing',
     experienceYears: 7,
     bio: 'Experienced digital marketing strategist and lead mentor specializing in Search Engine Optimization (SEO), Performance Marketing, Google & Meta Ads, and agency client acquisition.',
+    image: '/images/trainer-aryan-rai.webp',
     imagePlaceholder: '/images/trainer-aryan-rai.webp',
-    imageAlt: 'Aryan Rai Lead Digital Marketing Trainer at Digi Vidyarthi Varanasi',
+    imageAlt: 'Aryan Rai - Lead Digital Marketing Trainer and Mentor at Digi Vidyarthi Varanasi',
     linkedIn: '', // Owner to supply URL if available
   },
   {
@@ -43,8 +44,9 @@ export const trainers = [
     experience: '2 years in digital marketing',
     experienceYears: 2,
     bio: 'Hands-on practical instructor focusing on modern digital marketing tools, social media marketing execution, content workflows, and campaign management.',
+    image: '/images/trainer-rishitesh-kumar.webp',
     imagePlaceholder: '/images/trainer-rishitesh-kumar.webp',
-    imageAlt: 'Rishitesh Kumar Digital Marketing Trainer at Digi Vidyarthi Varanasi',
+    imageAlt: 'Rishitesh Kumar - Digital Marketing Trainer and Practical Mentor at Digi Vidyarthi Varanasi',
     linkedIn: '', // Owner to supply URL if available
   },
 ];
