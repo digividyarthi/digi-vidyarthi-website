@@ -65,7 +65,7 @@ export default function OfferModal({ isOpen, onClose }: OfferModalProps) {
         </div>
 
         {/* Modal Content */}
-        <div className="p-5 sm:p-6 space-y-5 overflow-y-auto flex-1">
+        <div className="p-5 sm:p-6 space-y-5 overflow-y-auto flex-1 bg-white">
           {/* Highlight Cards */}
           <div className="grid grid-cols-2 gap-4">
             <div className="p-4 rounded-2xl bg-brand-blue-pale/50 border border-brand-blue/20 text-center space-y-1">

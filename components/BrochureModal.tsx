@@ -138,34 +138,34 @@ export default function BrochureModal({
         </div>
 
         {/* Modal Body */}
-        <div className="p-5 sm:p-6 overflow-y-auto flex-1">
+        <div className="p-5 sm:p-6 overflow-y-auto flex-1 bg-white">
           {isSuccess ? (
-            <div className="text-center space-y-5 py-4">
+            <div className="text-center space-y-5 py-3">
               <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 mx-auto flex items-center justify-center animate-bounce">
                 <CheckCircle2 className="w-10 h-10" />
               </div>
 
-              <div className="space-y-1">
-                <h4 className="font-heading font-extrabold text-2xl text-slate-900">
+              <div className="space-y-1.5">
+                <h4 className="font-heading font-extrabold text-2xl !text-slate-900 text-slate-900">
                   Brochure Download Started!
                 </h4>
-                <p className="text-slate-600 text-sm">
-                  Thank you, <span className="font-semibold text-slate-800">{name}</span>. Your syllabus brochure is downloading automatically.
+                <p className="!text-slate-700 text-slate-700 text-sm font-medium">
+                  Thank you, <span className="font-bold !text-slate-950 text-slate-950">{name}</span>. Your syllabus brochure is downloading automatically.
                 </p>
               </div>
 
-              <div className="p-4 rounded-2xl bg-brand-blue-pale/50 border border-brand-blue/20 text-left text-xs space-y-2 text-slate-700">
-                <div className="flex items-center gap-2 text-brand-blue font-bold">
-                  <FileText className="w-4 h-4" />
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-left text-xs space-y-2 !text-slate-800 text-slate-800">
+                <div className="flex items-center gap-2 !text-brand-blue text-brand-blue font-bold text-sm">
+                  <FileText className="w-4 h-4 text-brand-blue shrink-0" />
                   <span>Manual Download Link:</span>
                 </div>
-                <p>If your download did not start automatically, please click below:</p>
+                <p className="!text-slate-600 text-slate-600 text-xs">If your download did not start automatically, please click below:</p>
                 <a
                   href="/brochure.pdf"
                   download="Digi-Vidyarthi-Course-Brochure.pdf"
-                  className="inline-flex items-center gap-2 font-bold text-brand-blue hover:text-brand-orange text-sm underline pt-1"
+                  className="inline-flex items-center gap-2 font-extrabold !text-brand-blue text-brand-blue hover:!text-brand-orange text-sm underline pt-1"
                 >
-                  <Download className="w-4 h-4" />
+                  <Download className="w-4 h-4 text-brand-orange" />
                   <span>Click here to download brochure (PDF)</span>
                 </a>
               </div>
@@ -175,7 +175,7 @@ export default function BrochureModal({
                   href={`https://wa.me/${siteConfig.whatsapp}?text=Hello%20Digi%20Vidyarthi,%20I%20just%20downloaded%20the%20brochure%20and%20want%20to%20know%20about%20the%20upcoming%20batch%20discount.`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 py-3 px-4 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-heading font-bold text-xs flex items-center justify-center gap-2 shadow-md transition-colors"
+                  className="flex-1 py-3 px-4 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-heading font-bold text-xs flex items-center justify-center gap-2 shadow-md transition-colors text-center"
                 >
                   <span>Inquire on WhatsApp</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -197,7 +197,7 @@ export default function BrochureModal({
               )}
 
               <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                <label className="block text-xs font-bold !text-slate-800 text-slate-800 uppercase tracking-wider mb-1">
                   Full Name <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -206,16 +206,16 @@ export default function BrochureModal({
                   placeholder="e.g. Rahul Sharma"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 outline-none text-sm text-slate-800 transition-all"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 outline-none text-sm !text-slate-900 text-slate-900 bg-white placeholder:text-slate-400 transition-all"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                <label className="block text-xs font-bold !text-slate-800 text-slate-800 uppercase tracking-wider mb-1">
                   Mobile / WhatsApp Number <span className="text-red-500">*</span>
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400">
+                  <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-500">
                     +91
                   </span>
                   <input
@@ -225,13 +225,13 @@ export default function BrochureModal({
                     placeholder="9876543210"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="w-full pl-12 pr-4 py-2.5 rounded-xl border border-slate-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 outline-none text-sm text-slate-800 transition-all"
+                    className="w-full pl-12 pr-4 py-2.5 rounded-xl border border-slate-300 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 outline-none text-sm !text-slate-900 text-slate-900 bg-white placeholder:text-slate-400 transition-all"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                <label className="block text-xs font-bold !text-slate-800 text-slate-800 uppercase tracking-wider mb-1">
                   Email Address <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -240,18 +240,18 @@ export default function BrochureModal({
                   placeholder="name@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 outline-none text-sm text-slate-800 transition-all"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 outline-none text-sm !text-slate-900 text-slate-900 bg-white placeholder:text-slate-400 transition-all"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                <label className="block text-xs font-bold !text-slate-800 text-slate-800 uppercase tracking-wider mb-1">
                   Interested Course
                 </label>
                 <select
                   value={course}
                   onChange={(e) => setCourse(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 outline-none text-sm text-slate-800 transition-all bg-white"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 outline-none text-sm !text-slate-900 text-slate-900 transition-all bg-white"
                 >
                   <option value="AI Powered Digital Marketing Course">
                     AI Powered Digital Marketing Course (Comprehensive)
@@ -282,7 +282,7 @@ export default function BrochureModal({
                 </button>
               </div>
 
-              <div className="flex items-center justify-center gap-1.5 text-[11px] text-slate-500 pt-0.5">
+              <div className="flex items-center justify-center gap-1.5 text-[11px] !text-slate-600 text-slate-600 pt-0.5">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
                 <span>We respect your privacy. No spam guarantee.</span>
               </div>
