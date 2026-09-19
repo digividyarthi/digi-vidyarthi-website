@@ -43,10 +43,11 @@ export default function BrochureModal({
 
   if (!isOpen || !mounted) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage('');
 
+    // 1. Validation check - do NOT push generate_lead if validation fails
     if (!name.trim()) {
       setErrorMessage('Please enter your full name.');
       return;
@@ -66,7 +67,7 @@ export default function BrochureModal({
     setIsSubmitting(true);
 
     try {
-      // Save lead locally
+      // 2. Save lead locally
       const existingLeads = JSON.parse(localStorage.getItem('dv_brochure_leads') || '[]');
       const newLead = {
         name: name.trim(),
@@ -77,29 +78,35 @@ export default function BrochureModal({
       };
       existingLeads.push(newLead);
       localStorage.setItem('dv_brochure_leads', JSON.stringify(existingLeads));
-    } catch {
-      // Ignore storage errors
-    }
 
-    setTimeout(() => {
+      // 3. API submission to /contact.php
+      const leadFormData = new FormData();
+      leadFormData.append('name', name.trim());
+      leadFormData.append('phone', cleanPhone);
+      leadFormData.append('email', email.trim());
+      leadFormData.append('course', course || 'Brochure Download');
+      leadFormData.append('message', `Brochure & Syllabus download requested for ${course}. Email: ${email.trim()}`);
+
+      try {
+        await fetch('/contact.php', {
+          method: 'POST',
+          body: leadFormData,
+        });
+      } catch {
+        // Fallback for offline/static environments
+      }
+
+      // 4. ONLY AFTER submission is successfully completed:
       setIsSubmitting(false);
       setIsSuccess(true);
 
-      // Push custom event to dataLayer for GTM / GA4 / Google Ads conversion tracking
+      // Push custom event to browser dataLayer exactly once (Strictly No PII)
       if (typeof window !== 'undefined') {
         const w = window as any;
         w.dataLayer = w.dataLayer || [];
         w.dataLayer.push({
-          event: 'lead_form_submit',
-          form_id: 'brochure-download-form',
-          form_name: 'Brochure Download Form',
-          course_selected: course,
-        });
-        w.dataLayer.push({
           event: 'generate_lead',
-          form_id: 'brochure-download-form',
-          form_name: 'Brochure Download Form',
-          course: course,
+          form_name: 'course_enquiry',
         });
       }
 
@@ -110,7 +117,11 @@ export default function BrochureModal({
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-    }, 600);
+    } catch {
+      // Do NOT push generate_lead if submission fails
+      setIsSubmitting(false);
+      setErrorMessage('Could not complete submission. Please try again.');
+    }
   };
 
   const handleReset = () => {

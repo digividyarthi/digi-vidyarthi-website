@@ -7,42 +7,84 @@ import { siteConfig, verifiedCourses } from '@/data/siteData';
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setErrorMessage('');
     setLoading(true);
+
     const form = e.currentTarget;
     const formData = new FormData(form);
+
+    const name = (formData.get('name') as string)?.trim() || '';
+    const phone = (formData.get('phone') as string)?.trim().replace(/[^0-9]/g, '') || '';
+    const email = (formData.get('email') as string)?.trim() || '';
+
+    // 1. Validation check - do NOT push generate_lead if validation fails
+    if (!name) {
+      setLoading(false);
+      setErrorMessage('Please enter your full name.');
+      return;
+    }
+    if (phone.length < 10) {
+      setLoading(false);
+      setErrorMessage('Please enter a valid 10-digit mobile number.');
+      return;
+    }
+    if (!email || !email.includes('@')) {
+      setLoading(false);
+      setErrorMessage('Please enter a valid email address.');
+      return;
+    }
+
     try {
+      // 2. API submission to /contact.php
       const res = await fetch('/contact.php', {
         method: 'POST',
         body: formData,
       });
-      if (res.ok) {
-        setSubmitted(true);
-        form.reset();
-      } else {
-        setSubmitted(true);
+
+      // 3. Check if API succeeded
+      if (!res.ok) {
+        // Do NOT push generate_lead when API request fails
+        const errorText = await res.text().catch(() => '');
+        setErrorMessage(errorText || 'Submission failed. Please check your information and try again.');
+        return;
       }
 
-      // Push custom event to dataLayer for GTM / GA4 / Google Ads conversion tracking
+      // 4. ONLY AFTER API submission is successfully completed:
+      setSubmitted(true);
+      form.reset();
+
+      // Determine appropriate form_name based on context
+      let formName = 'free_demo';
       if (typeof window !== 'undefined') {
+        const urlParams = new URLSearchParams(window.location.search);
+        const inq = (urlParams.get('inquiry') || '').toLowerCase();
+        const selectedCourse = (formData.get('course') as string) || '';
+
+        if (inq === 'fees' || inq === 'fee-structure' || inq === 'capsule-fee' || inq === 'batch-offer') {
+          formName = 'admission_enquiry';
+        } else if (inq === 'contact' || selectedCourse === 'General Demo / Fee Structure Inquiry') {
+          formName = 'contact';
+        } else if (selectedCourse && selectedCourse !== 'General Demo Inquiry') {
+          formName = 'course_enquiry';
+        } else {
+          formName = 'free_demo';
+        }
+
+        // Push event to browser dataLayer exactly once (Strictly No PII)
         const w = window as any;
         w.dataLayer = w.dataLayer || [];
         w.dataLayer.push({
-          event: 'lead_form_submit',
-          form_id: 'contact-page-form',
-          form_name: 'Contact Demo Class Form',
-          inquiry_type: (formData.get('course') as string) || 'General Inquiry',
-        });
-        w.dataLayer.push({
           event: 'generate_lead',
-          form_id: 'contact-page-form',
-          form_name: 'Contact Demo Class Form',
+          form_name: formName,
         });
       }
     } catch {
-      setSubmitted(true);
+      // Do NOT push generate_lead on network or API failure
+      setErrorMessage('Network connection error. Please try again or call us directly.');
     } finally {
       setLoading(false);
     }
@@ -151,6 +193,11 @@ export default function ContactPage() {
                 onSubmit={handleSubmit}
                 className="space-y-4"
               >
+                {errorMessage && (
+                  <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-semibold">
+                    {errorMessage}
+                  </div>
+                )}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">
