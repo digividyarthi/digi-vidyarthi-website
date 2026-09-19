@@ -35,6 +35,7 @@ export default function TrainersSection() {
                     alt={trainer.imageAlt}
                     width={160}
                     height={160}
+                    loading="lazy"
                     className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-md">

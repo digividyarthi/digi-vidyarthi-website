@@ -79,9 +79,10 @@ export default function VideoTestimonials() {
                       aria-label={`Play video review of ${video.name}`}
                     >
                       <Image
-                        src={`https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`}
+                        src={video.thumbnail || `/images/video-${video.id}.webp`}
                         alt={video.alt}
                         fill
+                        loading="lazy"
                         className="object-cover group-hover/thumb:scale-105 transition-transform duration-500"
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 20vw"
                       />
@@ -177,6 +178,7 @@ export default function VideoTestimonials() {
                     src={item.src}
                     alt={item.alt}
                     fill
+                    loading="lazy"
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
@@ -230,6 +232,7 @@ export default function VideoTestimonials() {
                   src={cert.src}
                   alt={cert.alt}
                   fill
+                  loading="lazy"
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />

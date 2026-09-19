@@ -224,6 +224,7 @@ export const studentVideos = [
     tagline: 'Practical Paid Ads Training',
     review: 'Learned campaign structure, keyword research, and Google Ads management through practical mentorship at Digi Vidyarthi Varanasi.',
     alt: 'Pushpendra Srivastava student practical review at Digi Vidyarthi digital marketing institute in Varanasi',
+    thumbnail: '/images/video-uXcev7KGOyI.webp',
   },
   {
     id: '-RTORvEsBKE',
@@ -232,6 +233,7 @@ export const studentVideos = [
     tagline: 'Transition to Digital Marketing',
     review: 'Transitioned to digital marketing with clear guidance on SEO, campaign management, and practical portfolio creation.',
     alt: 'Priya Rai student career transition story at Digi Vidyarthi Varanasi',
+    thumbnail: '/images/video--RTORvEsBKE.webp',
   },
   {
     id: 'IbHRMsvJVPk',
@@ -240,6 +242,7 @@ export const studentVideos = [
     tagline: 'Practical Search Engine Optimization',
     review: 'Learned on-page SEO, site auditing, and local ranking techniques that gave me the confidence to pitch clients.',
     alt: 'Sudhir Kumar SEO training review at Digi Vidyarthi Varanasi',
+    thumbnail: '/images/video-IbHRMsvJVPk.webp',
   },
   {
     id: 'EFr140qr02w',
@@ -248,6 +251,7 @@ export const studentVideos = [
     tagline: 'Local Business SEO & GBP Optimization',
     review: 'Applied local SEO strategies and Google Business Profile optimization to improve customer visibility for my local store.',
     alt: 'Radheshyam local business marketing review at Digi Vidyarthi Varanasi',
+    thumbnail: '/images/video-EFr140qr02w.webp',
   },
   {
     id: 'N9uxstw95eI',
@@ -256,6 +260,7 @@ export const studentVideos = [
     tagline: 'AI Tools & Automation Training',
     review: 'Hands-on training with modern AI tools and automated marketing workflows helped me increase productivity and output.',
     alt: 'Vikas Gupta AI marketing course experience at Digi Vidyarthi Varanasi',
+    thumbnail: '/images/video-N9uxstw95eI.webp',
   },
 ];
 

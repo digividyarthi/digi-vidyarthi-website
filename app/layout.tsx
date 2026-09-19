@@ -190,6 +190,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${outfit.variable}`}>
       <head>
+        <link rel="preload" as="image" href="/images/logo.webp" type="image/webp" />
         <link rel="preload" as="image" href="/images/hero-mentor.webp" type="image/webp" fetchPriority="high" />
         <link rel="preconnect" href="https://i.ytimg.com" />
         <link rel="dns-prefetch" href="https://i.ytimg.com" />
