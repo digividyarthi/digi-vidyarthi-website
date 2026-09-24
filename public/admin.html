@@ -168,35 +168,86 @@
     #blogContent {
       border: 2px solid var(--gray-200); border-top: none;
       border-radius: 0 0 var(--radius-sm) var(--radius-sm);
-      min-height: 350px; padding: 16px 18px;
-      font-family: var(--font-body) !important; font-size: 0.92rem !important;
-      line-height: 1.6 !important; color: var(--gray-500) !important;
-      font-weight: 400 !important;
+      min-height: 420px; padding: 24px 28px;
+      font-family: var(--font-body), -apple-system, sans-serif;
+      font-size: 1.05rem; line-height: 1.85; color: #334155;
       outline: none; overflow-y: auto; background: var(--white);
-    }
-    #blogContent * {
-      font-family: inherit !important;
-      font-size: inherit !important;
-      line-height: inherit !important;
-      color: inherit !important;
-      font-weight: inherit !important;
-      background: none !important;
     }
     #blogContent:focus { border-color: var(--blue); }
     #blogContent:empty::before {
-      content: 'Apna blog content yahan likhein... Sidha type karein — jo likhenge wahi blog pe dikhega!';
-      color: var(--gray-400) !important; pointer-events: none; font-size: 0.92rem !important;
+      content: 'Apna blog content yahan likhein ya paste karein... Heading, bullets, table, spacing sab automatically sahi format me aayenge!';
+      color: #94a3b8; pointer-events: none; font-size: 0.98rem;
     }
-    #blogContent h2, #blogContent h2 * { font-family: var(--font-heading) !important; font-size: 1.6rem !important; font-weight: 700 !important; color: var(--gray-800) !important; margin: 1.8rem 0 0.9rem; line-height: 1.35; padding-bottom: 0.4rem; border-bottom: 2px solid var(--gray-100); }
-    #blogContent h3, #blogContent h3 * { font-family: var(--font-heading) !important; font-size: 1.15rem !important; font-weight: 600 !important; color: var(--gray-800) !important; margin: 1.5rem 0 0.5rem; line-height: 1.4; }
-    #blogContent h4, #blogContent h4 * { font-family: var(--font-heading) !important; font-size: 1rem !important; font-weight: 600 !important; color: var(--gray-700) !important; margin: 1.2rem 0 0.5rem; }
-    #blogContent p { margin: 0 0 1rem; line-height: 1.6 !important; font-weight: 400 !important; color: var(--gray-500) !important; font-size: 0.92rem !important; }
-    #blogContent b, #blogContent strong, #blogContent p b, #blogContent p strong { font-weight: 700 !important; color: var(--gray-800) !important; }
-    #blogContent ul, #blogContent ol { margin: 0.8rem 0 1.4rem 1.5rem; padding: 0; }
-    #blogContent li { margin-bottom: 0.5rem; padding-left: 0.3rem; line-height: 1.6 !important; color: var(--gray-500) !important; font-size: 0.92rem !important; }
+    #blogContent h2 {
+      font-family: var(--font-heading), sans-serif;
+      font-size: 1.75rem; font-weight: 700; color: #0f172a;
+      margin: 2.5rem 0 1rem; padding-bottom: 0.5rem;
+      border-bottom: 2px solid #f1f5f9; line-height: 1.35;
+    }
+    #blogContent h3 {
+      font-family: var(--font-heading), sans-serif;
+      font-size: 1.35rem; font-weight: 700; color: #1e293b;
+      margin: 2rem 0 0.75rem; line-height: 1.4;
+    }
+    #blogContent h4 {
+      font-family: var(--font-heading), sans-serif;
+      font-size: 1.15rem; font-weight: 600; color: #334155;
+      margin: 1.5rem 0 0.5rem; line-height: 1.5;
+    }
+    #blogContent p, #blogContent div:not(.table-responsive) {
+      margin: 0 0 1.5rem; line-height: 1.85; color: #334155; font-size: 1.05rem;
+    }
+    #blogContent strong, #blogContent b { font-weight: 700; color: #0f172a; }
+    #blogContent ul {
+      list-style-type: disc !important; margin: 1rem 0 1.6rem 1.75rem !important; padding: 0 !important;
+    }
+    #blogContent ol {
+      list-style-type: decimal !important; margin: 1rem 0 1.6rem 1.75rem !important; padding: 0 !important;
+    }
+    #blogContent li {
+      margin-bottom: 0.65rem; padding-left: 0.25rem; line-height: 1.75; color: #334155;
+    }
     #blogContent li::marker { color: var(--orange); font-weight: 700; }
-    #blogContent blockquote { border-left: 3px solid var(--orange); padding: 8px 14px; margin: 0.5rem 0; background: var(--orange-pale); font-style: italic; color: var(--gray-700); font-size: 1.05rem; line-height: 1.7; }
-    #blogContent a { color: var(--blue) !important; text-decoration: underline; font-weight: 500 !important; }
+    #blogContent blockquote {
+      border-left: 4px solid var(--orange); padding: 1rem 1.35rem; margin: 1.8rem 0;
+      background: var(--orange-pale); font-style: italic; color: #9a3412;
+      border-radius: 0 8px 8px 0; line-height: 1.75;
+    }
+    #blogContent a { color: var(--blue); text-decoration: underline; font-weight: 600; }
+    #blogContent .table-responsive {
+      overflow-x: auto; margin: 1.8rem 0; border-radius: 8px; border: 1px solid var(--gray-200);
+    }
+    #blogContent table, #blogContent .blog-table {
+      width: 100%; border-collapse: collapse; font-size: 0.95rem; margin: 0;
+    }
+    #blogContent th {
+      background: #f8fafc; color: #0f172a; font-weight: 700; padding: 12px 14px;
+      border-bottom: 2px solid #cbd5e1; text-align: left;
+    }
+    #blogContent td {
+      padding: 10px 14px; border-bottom: 1px solid #f1f5f9; color: #334155;
+    }
+    #blogContent tbody tr:nth-child(even) { background: #fbfdfe; }
+    #blogContent hr { border: none; border-top: 1px solid #e2e8f0; margin: 2rem 0; }
+
+    /* Live Preview Panel */
+    .preview-card {
+      background: var(--white); border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm); padding: var(--space-2xl);
+    }
+    .preview-header { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--gray-200); }
+    .preview-badge {
+      display: inline-block; background: var(--orange-pale); color: var(--orange);
+      padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700;
+      text-transform: uppercase; margin-bottom: 12px;
+    }
+    .preview-title { font-size: 2.2rem; font-weight: 800; color: #0f172a; line-height: 1.25; margin-bottom: 1rem; }
+    .preview-meta { display: flex; gap: 1.5rem; font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem; }
+    .preview-hero-img {
+      width: 100%; max-height: 400px; object-fit: cover; border-radius: 1rem;
+      margin-bottom: 2.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
 
     /* Action Buttons */
     .form-actions {
@@ -369,6 +420,9 @@
         <button class="admin-tab active" data-tab="write" onclick="switchTab('write')">
           <i class="fa-solid fa-pen"></i> Write Post
         </button>
+        <button class="admin-tab" data-tab="preview" onclick="showLivePreviewTab()">
+          <i class="fa-solid fa-eye"></i> Live Preview
+        </button>
         <button class="admin-tab" data-tab="manage" onclick="switchTab('manage')">
           <i class="fa-solid fa-list"></i> Manage Posts
         </button>
@@ -424,18 +478,21 @@
               <button type="button" class="toolbar-btn" onclick="formatText('italic')" title="Italic"><i class="fa-solid fa-italic"></i></button>
               <button type="button" class="toolbar-btn" onclick="formatText('underline')" title="Underline"><i class="fa-solid fa-underline"></i></button>
               <span class="toolbar-separator"></span>
-              <button type="button" class="toolbar-btn" onclick="formatText('h2')" title="Heading">H2</button>
-              <button type="button" class="toolbar-btn" onclick="formatText('h3')" title="Sub Heading">H3</button>
-              <button type="button" class="toolbar-btn" onclick="formatText('p')" title="Normal Text">P</button>
+              <button type="button" class="toolbar-btn" onclick="formatText('h2')" title="Main Heading (H2)">H2</button>
+              <button type="button" class="toolbar-btn" onclick="formatText('h3')" title="Sub Heading (H3)">H3</button>
+              <button type="button" class="toolbar-btn" onclick="formatText('p')" title="Normal Text (P)">P</button>
               <span class="toolbar-separator"></span>
               <button type="button" class="toolbar-btn" onclick="formatText('ul')" title="Bullet List"><i class="fa-solid fa-list-ul"></i></button>
               <button type="button" class="toolbar-btn" onclick="formatText('ol')" title="Numbered List"><i class="fa-solid fa-list-ol"></i></button>
               <span class="toolbar-separator"></span>
-              <button type="button" class="toolbar-btn" onclick="formatText('link')" title="Link"><i class="fa-solid fa-link"></i></button>
-              <button type="button" class="toolbar-btn" onclick="formatText('quote')" title="Quote"><i class="fa-solid fa-quote-left"></i></button>
+              <button type="button" class="toolbar-btn" onclick="formatText('link')" title="Insert Link"><i class="fa-solid fa-link"></i></button>
+              <button type="button" class="toolbar-btn" onclick="formatText('quote')" title="Quote / Callout"><i class="fa-solid fa-quote-left"></i></button>
+              <button type="button" class="toolbar-btn" onclick="insertTable()" title="Insert Comparison Table"><i class="fa-solid fa-table"></i> Table</button>
+              <span class="toolbar-separator"></span>
+              <button type="button" class="toolbar-btn" style="background:#FFF3E0;color:#E65100;font-weight:600;border-color:#FFCC80" onclick="autoFormatEditorContent()" title="Auto-Format Headings, Spacing & Tables"><i class="fa-solid fa-wand-magic-sparkles"></i> Auto-Format</button>
             </div>
             <div id="blogContent" contenteditable="true"></div>
-            <div class="hint">Seedha type karein — jo dikhega yahan wahi blog post pe dikhega! Toolbar se Bold, Heading, List, etc. lagayein. HTML jaanne ki zaroorat nahi.</div>
+            <div class="hint">Seedha type ya paste karein! Word/Docs ya plain text paste karne par automatically headings, bullets aur spacing format ho jayenge.</div>
           </div>
 
           <!-- DOCX Upload Option (below content) -->
@@ -462,10 +519,36 @@
             <button class="btn btn-primary btn-lg" id="publishBtn" onclick="publishPost()">
               <i class="fa-solid fa-paper-plane"></i> Publish Post
             </button>
+            <button class="btn btn-secondary btn-lg" type="button" onclick="showLivePreviewTab()">
+              <i class="fa-solid fa-eye"></i> Preview Before Publish
+            </button>
             <button class="btn btn-secondary btn-lg" id="cancelEditBtn" onclick="cancelEdit()" style="display:none">
               Cancel Edit
             </button>
           </div>
+        </div>
+      </div>
+
+      <!-- Live Preview Panel -->
+      <div class="admin-panel" id="panel-preview">
+        <div class="preview-card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem">
+            <h3 style="margin:0;font-family:var(--font-heading);color:#0f172a"><i class="fa-solid fa-mobile-screen"></i> Live Blog Preview (Fixed Format)</h3>
+            <div style="display:flex;gap:0.75rem">
+              <button class="btn btn-secondary btn-sm" onclick="switchTab('write')"><i class="fa-solid fa-arrow-left"></i> Back to Editor</button>
+              <button class="btn btn-primary btn-sm" onclick="publishPost()"><i class="fa-solid fa-paper-plane"></i> Publish Now</button>
+            </div>
+          </div>
+          <div class="preview-header">
+            <span class="preview-badge" id="previewBadge">Category</span>
+            <h1 class="preview-title" id="previewTitle">Blog Title</h1>
+            <div class="preview-meta">
+              <span><i class="fa-regular fa-calendar"></i> Today</span>
+              <span><i class="fa-regular fa-user"></i> Digi Vidyarthi</span>
+            </div>
+            <img src="" id="previewHero" class="preview-hero-img" style="display:none" alt="Hero">
+          </div>
+          <div class="blog-content" id="previewContent"></div>
         </div>
       </div>
 
@@ -526,6 +609,247 @@
       renderTags();
     }
 
+    // ===== CONTENT SANITIZATION & AUTO-FORMATTERS =====
+
+    // Cleans HTML from Word, Google Docs, or rich text editors
+    function smartFormatHtml(rawHtml) {
+      if (!rawHtml || !rawHtml.trim()) return '';
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(rawHtml, 'text/html');
+
+      // Remove forbidden elements
+      const forbidden = doc.querySelectorAll('script, style, meta, link, noscript, svg, object, embed, iframe, form, button');
+      forbidden.forEach(el => el.remove());
+
+      // Helper to process node recursively
+      function cleanNode(node) {
+        if (node.nodeType === Node.TEXT_NODE) return;
+        if (node.nodeType !== Node.ELEMENT_NODE) {
+          node.remove();
+          return;
+        }
+
+        // Clean attributes (keep href for a, src/alt for img)
+        const allowedAttrs = ['href', 'src', 'alt', 'title', 'target', 'rel'];
+        const tag = node.tagName.toLowerCase();
+        Array.from(node.attributes).forEach(attr => {
+          if (!allowedAttrs.includes(attr.name.toLowerCase())) {
+            node.removeAttribute(attr.name);
+          }
+        });
+
+        // Convert H1 to H2
+        if (tag === 'h1') {
+          const h2 = doc.createElement('h2');
+          h2.innerHTML = node.innerHTML;
+          node.parentNode.replaceChild(h2, node);
+          node = h2;
+        }
+
+        // Clean children
+        Array.from(node.childNodes).forEach(cleanNode);
+      }
+
+      Array.from(doc.body.childNodes).forEach(cleanNode);
+      let clean = doc.body.innerHTML;
+
+      // Normalize standalone <p><strong>Heading</strong></p> into <h2> or <h3>
+      clean = clean.replace(/<p(?:\s+[^>]*)?>\s*<(?:strong|b)>\s*([^<]{3,120}?)\s*<\/(?:strong|b)>\s*<\/p>/gi, (match, text) => {
+        const t = text.trim();
+        if (/^(?:about the author|contact digi vidyarthi|source:|note:)/i.test(t)) {
+          return `<p class="author-note"><strong>${t}</strong></p>`;
+        }
+        if (/^\d+\.\s+/.test(t)) {
+          return `<h2>${t}</h2>`;
+        }
+        if (/\?$/.test(t)) {
+          return `<h3>${t}</h3>`;
+        }
+        if (t.length <= 75 && !/[.:;,!]$/.test(t)) {
+          return `<h2>${t}</h2>`;
+        }
+        return `<h3>${t}</h3>`;
+      });
+
+      // Wrap tables into table-responsive + blog-table
+      clean = clean.replace(/<table(?!\s+class)/gi, '<table class="blog-table"');
+      if (!clean.includes('table-responsive') && clean.includes('<table')) {
+        clean = clean.replace(/(<table[\s\S]*?<\/table>)/gi, '<div class="table-responsive">$1</div>');
+      }
+
+      // Remove empty paragraphs
+      clean = clean.replace(/<p>\s*(?:&nbsp;|<br\s*\/?>|\s)*<\/p>/gi, '');
+
+      return clean.trim();
+    }
+
+    // Formats plain text (e.g. from Notepad or ChatGPT) preserving paragraphs and headings
+    function smartFormatPlainText(text) {
+      if (!text || !text.trim()) return '';
+      const rawBlocks = text.split(/\r?\n\s*\r?\n/);
+      let html = '';
+
+      for (let block of rawBlocks) {
+        let trimmed = block.trim();
+        if (!trimmed) continue;
+
+        // Check for horizontal rule
+        if (/^[_\-=]{4,}$/.test(trimmed)) {
+          html += '<hr>';
+          continue;
+        }
+
+        // Check for Markdown headings: # Heading, ## Heading, ### Heading
+        const mdHead = trimmed.match(/^(#{1,4})\s+(.+)$/);
+        if (mdHead) {
+          const level = mdHead[1].length === 1 ? 'h2' : (mdHead[1].length === 2 ? 'h2' : 'h3');
+          html += `<${level}>${escapeHtml(mdHead[2].trim())}</${level}>`;
+          continue;
+        }
+
+        // Check if block consists of bullet points
+        const lines = trimmed.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+        const allBullets = lines.every(l => /^[\u2022\u25AA\u25BA\-\*\u2023\u2043]\s+/.test(l));
+        if (allBullets && lines.length > 0) {
+          html += '<ul>';
+          lines.forEach(l => {
+            const content = l.replace(/^[\u2022\u25AA\u25BA\-\*\u2023\u2043]\s+/, '').trim();
+            html += `<li>${parseInlineMarkdown(content)}</li>`;
+          });
+          html += '</ul>';
+          continue;
+        }
+
+        // Check if block consists of numbered list
+        const allNumbered = lines.every(l => /^\d+[\.\)]\s+/.test(l));
+        if (allNumbered && lines.length > 0) {
+          html += '<ol>';
+          lines.forEach(l => {
+            const content = l.replace(/^\d+[\.\)]\s+/, '').trim();
+            html += `<li>${parseInlineMarkdown(content)}</li>`;
+          });
+          html += '</ol>';
+          continue;
+        }
+
+        // Check if single short line that looks like a title or heading
+        if (lines.length === 1) {
+          const line = lines[0];
+          if (/^\d+\.\s+[A-Za-z]/.test(line)) {
+            html += `<h2>${escapeHtml(line)}</h2>`;
+            continue;
+          }
+          if (line.length <= 75 && /\?$/.test(line)) {
+            html += `<h3>${escapeHtml(line)}</h3>`;
+            continue;
+          }
+          if (line.length <= 65 && !/[.:;,!]$/.test(line) && /^[A-Z0-9]/.test(line)) {
+            html += `<h2>${escapeHtml(line)}</h2>`;
+            continue;
+          }
+        }
+
+        // Regular paragraph (join multiple lines in the block with <br> instead of mashing into single line)
+        const formattedLines = lines.map(l => parseInlineMarkdown(l)).join('<br>');
+        html += `<p>${formattedLines}</p>`;
+      }
+
+      return html;
+    }
+
+    function parseInlineMarkdown(str) {
+      let escaped = escapeHtml(str);
+      // **bold** -> <strong>bold</strong>
+      escaped = escaped.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      // *italic* -> <em>italic</em>
+      escaped = escaped.replace(/\*(.+?)\*/g, '<em>$1</em>');
+      return escaped;
+    }
+
+    // Auto-Format currently active editor content
+    function autoFormatEditorContent(silent = false) {
+      const editor = document.getElementById('blogContent');
+      if (!editor) return;
+      const current = editor.innerHTML;
+      if (!current || !current.trim()) return;
+
+      let cleaned = '';
+      if (/<[a-z][\s\S]*>/i.test(current)) {
+        cleaned = smartFormatHtml(current);
+      } else {
+        cleaned = smartFormatPlainText(current);
+      }
+
+      if (cleaned) {
+        editor.innerHTML = cleaned;
+        if (!silent) {
+          showToast('Content automatically formatted with clean headings, spacing & tables! ✨', 'success');
+        }
+      }
+    }
+
+    // Insert clean comparison table into the editor
+    function insertTable() {
+      const editor = document.getElementById('blogContent');
+      editor.focus();
+      const tableHtml = `
+<div class="table-responsive">
+  <table class="blog-table">
+    <thead>
+      <tr>
+        <th>Factor / Feature</th>
+        <th>Option A (e.g. Traditional)</th>
+        <th>Option B (e.g. Digital)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Cost & Budget</td>
+        <td>High initial spend required</td>
+        <td><strong>Flexible, starts from low budget</strong></td>
+      </tr>
+      <tr>
+        <td>Growth & Demand</td>
+        <td>Traditional growth speed</td>
+        <td><strong>High demand, rapid career growth</strong></td>
+      </tr>
+      <tr>
+        <td>Work Flexibility</td>
+        <td>Office/Field based only</td>
+        <td><strong>Remote, Freelance & Global options</strong></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p><br></p>`;
+      document.execCommand('insertHTML', false, tableHtml);
+      showToast('Comparison table inserted! Text change karne ke liye seedha table me click karein.', 'success');
+    }
+
+    // Show Live Preview tab
+    function showLivePreviewTab() {
+      autoFormatEditorContent(true);
+      const title = document.getElementById('blogTitle').value.trim() || 'Untitled Blog Post';
+      const catSelect = document.getElementById('blogCategory');
+      const catLabel = catSelect.options[catSelect.selectedIndex]?.text || 'Digital Marketing';
+      const content = document.getElementById('blogContent').innerHTML;
+      const previewImg = document.getElementById('previewImg');
+
+      document.getElementById('previewTitle').textContent = title;
+      document.getElementById('previewBadge').textContent = catLabel;
+      const hero = document.getElementById('previewHero');
+      if (previewImg && previewImg.src && document.getElementById('imagePreview').style.display !== 'none') {
+        hero.src = previewImg.src;
+        hero.style.display = 'block';
+      } else {
+        hero.style.display = 'none';
+      }
+
+      document.getElementById('previewContent').innerHTML = content;
+      switchTab('preview');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
       // ===== SMART PASTE HANDLER for Blog Content Editor =====
       const blogEditor = document.getElementById('blogContent');
@@ -533,124 +857,27 @@
         blogEditor.addEventListener('paste', function(e) {
           e.preventDefault();
 
-          // Get plain text from clipboard
-          const plainText = (e.clipboardData || window.clipboardData).getData('text/plain');
-          if (!plainText || !plainText.trim()) return;
+          const clipboard = e.clipboardData || window.clipboardData;
+          if (!clipboard) return;
 
-          // Auto-format the pasted text
-          const html = smartFormatText(plainText);
+          const htmlData = clipboard.getData('text/html');
+          const plainData = clipboard.getData('text/plain');
 
-          // Insert as HTML
-          document.execCommand('insertHTML', false, html);
-          if (typeof showToast === 'function') showToast('Content paste aur auto-format ho gaya! ✅', 'success');
+          let cleanHtml = '';
+          // If HTML data exists (from Word, Google Docs, Web), clean and preserve rich tags
+          if (htmlData && htmlData.trim()) {
+            cleanHtml = smartFormatHtml(htmlData);
+          }
+          // If only plain text exists, parse markdown and paragraphs
+          if (!cleanHtml && plainData && plainData.trim()) {
+            cleanHtml = smartFormatPlainText(plainData);
+          }
+
+          if (cleanHtml) {
+            document.execCommand('insertHTML', false, cleanHtml);
+            showToast('Content paste aur clean format me convert ho gaya! ✅', 'success');
+          }
         });
-      }
-
-      // Smart text formatter — detects headings, bullets, paragraphs, HR from plain text
-      function smartFormatText(text) {
-        const lines = text.split(/\r?\n/);
-        let html = '';
-        let inBulletList = false;
-        let inNumberedList = false;
-        let i = 0;
-
-        while (i < lines.length) {
-          let line = lines[i].trimEnd();
-          let trimmed = line.trim();
-
-          // Skip empty lines (close any open lists)
-          if (!trimmed) {
-            if (inBulletList) { html += '</ul>'; inBulletList = false; }
-            if (inNumberedList) { html += '</ol>'; inNumberedList = false; }
-            i++;
-            continue;
-          }
-
-          // Horizontal rule — lines full of underscores, dashes, or equals
-          if (/^[_\-=]{5,}$/.test(trimmed)) {
-            if (inBulletList) { html += '</ul>'; inBulletList = false; }
-            if (inNumberedList) { html += '</ol>'; inNumberedList = false; }
-            html += '<hr>';
-            i++;
-            continue;
-          }
-
-          // Bullet point — starts with •, -, *, ▪, ►
-          if (/^[\u2022\u25AA\u25BA\-\*\u2023\u2043]\s+/.test(trimmed) || /^\t[\u2022\u25AA\u25BA\-\*]\s+/.test(line)) {
-            if (inNumberedList) { html += '</ol>'; inNumberedList = false; }
-            if (!inBulletList) { html += '<ul>'; inBulletList = true; }
-            const bulletText = trimmed.replace(/^[\u2022\u25AA\u25BA\-\*\u2023\u2043]\s+/, '').trim();
-            html += '<li>' + escapeForPaste(bulletText) + '</li>';
-            i++;
-            continue;
-          }
-
-          // Numbered list — starts with 1., 2., etc.
-          if (/^\d+[\.\)]\s+/.test(trimmed)) {
-            if (inBulletList) { html += '</ul>'; inBulletList = false; }
-            if (!inNumberedList) { html += '<ol>'; inNumberedList = true; }
-            const numText = trimmed.replace(/^\d+[\.\)]\s+/, '').trim();
-            html += '<li>' + escapeForPaste(numText) + '</li>';
-            i++;
-            continue;
-          }
-
-          // Close any open lists before heading/paragraph
-          if (inBulletList) { html += '</ul>'; inBulletList = false; }
-          if (inNumberedList) { html += '</ol>'; inNumberedList = false; }
-
-          // Detect heading — short line (<=100 chars), NOT ending with common sentence endings
-          // or line that looks like a title (next line is empty or is a separator)
-          const isShortLine = trimmed.length <= 100;
-          const noSentenceEnd = !/[\.,:;]$/.test(trimmed);
-          const nextLine = (i + 1 < lines.length) ? lines[i + 1].trim() : '';
-          const nextIsEmpty = !nextLine;
-          const nextIsSeparator = /^[_\-=]{5,}$/.test(nextLine);
-          const looksLikeHeading = isShortLine && noSentenceEnd && (nextIsEmpty || nextIsSeparator);
-          const hasQuestionMark = /\?$/.test(trimmed);
-
-          // Main heading detection
-          if ((looksLikeHeading || hasQuestionMark) && trimmed.length > 3 && trimmed.length <= 100) {
-            // Check if the content contains "Focus keyword" or similar meta text — make it <p> instead
-            if (/^focus keyword/i.test(trimmed) || /^meta /i.test(trimmed) || /^keyword/i.test(trimmed)) {
-              html += '<p><em>' + escapeForPaste(trimmed) + '</em></p>';
-            } else {
-              html += '<h2>' + escapeForPaste(trimmed) + '</h2>';
-            }
-            i++;
-            continue;
-          }
-
-          // Regular paragraph
-          // Collect consecutive non-empty, non-special lines as one paragraph
-          let paraLines = [trimmed];
-          while (i + 1 < lines.length) {
-            const nxt = lines[i + 1].trim();
-            if (!nxt) break; // empty line ends paragraph
-            if (/^[_\-=]{5,}$/.test(nxt)) break; // separator
-            if (/^[\u2022\u25AA\u25BA\-\*\u2023\u2043]\s+/.test(nxt)) break; // bullet
-            if (/^\d+[\.\)]\s+/.test(nxt)) break; // numbered
-            // Check if next line looks like a new heading
-            const nxtNext = (i + 2 < lines.length) ? lines[i + 2].trim() : '';
-            const nxtIsShort = nxt.length <= 100 && !/[\.,:;]$/.test(nxt);
-            const nxtNextEmpty = !nxtNext || /^[_\-=]{5,}$/.test(nxtNext);
-            if (nxtIsShort && nxtNextEmpty && nxt.length > 3) break;
-            paraLines.push(nxt);
-            i++;
-          }
-          html += '<p>' + paraLines.map(l => escapeForPaste(l)).join(' ') + '</p>';
-          i++;
-        }
-
-        // Close any remaining open lists
-        if (inBulletList) html += '</ul>';
-        if (inNumberedList) html += '</ol>';
-
-        return html;
-      }
-
-      function escapeForPaste(str) {
-        return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
       }
 
       // Tags input handler
@@ -665,13 +892,11 @@
               this.value = '';
             }
           }
-          // Backspace to remove last tag
           if (e.key === 'Backspace' && !this.value && currentTags.length > 0) {
             currentTags.pop();
             renderTags();
           }
         });
-        // Handle paste with commas
         tagsInput.addEventListener('paste', function(e) {
           setTimeout(() => {
             const parts = this.value.split(',');
@@ -691,11 +916,12 @@
             reader.onload = function(event) {
               mammoth.convertToHtml({arrayBuffer: event.target.result})
                 .then(function(result) {
-                  document.getElementById('blogContent').innerHTML = result.value;
-                  if (typeof showToast === 'function') showToast('DOCX content successfully loaded! ✅', 'success');
+                  const cleaned = smartFormatHtml(result.value);
+                  document.getElementById('blogContent').innerHTML = cleaned;
+                  showToast('DOCX content properly formatted & loaded! ✅', 'success');
                 })
                 .catch(function(err) {
-                  if (typeof showToast === 'function') showToast('DOCX read error! ❌', 'error');
+                  showToast('DOCX read error! ❌', 'error');
                 });
             };
             reader.readAsArrayBuffer(file);
@@ -703,6 +929,7 @@
         });
       }
     });
+
     // ===== ADMIN PANEL JAVASCRIPT =====
     const API = 'admin.php';
     let allPosts = [];
@@ -773,6 +1000,7 @@
     }
 
     async function publishPost() {
+      autoFormatEditorContent(true);
       const title    = document.getElementById('blogTitle').value.trim();
       const category = document.getElementById('blogCategory').value;
       const excerpt  = document.getElementById('blogExcerpt').value.trim();

@@ -70,28 +70,70 @@ export default async function BlogPostPage({ params }: Props) {
 
   const related = getRelatedBlogs(post.slug, 2);
 
-  // Extract H2s and H3s for Table of Contents
-  const headingMatches = Array.from(
-    post.content.matchAll(/<h([23])[^>]*>(.*?)<\/h\1>/gi)
-  );
-  const headings = headingMatches.map((match, idx) => {
-    const level = match[1];
-    // Strip inner HTML tags
-    const text = match[2].replace(/<\/?[^>]+(>|$)/g, '').trim();
-    const anchorId = `section-${idx}`;
-    return { level, text, anchorId };
-  });
+  // Format content, extract H2s and H3s for Table of Contents, and inject anchor IDs
+  function processBlogContent(rawContent: string) {
+    let content = rawContent || '';
 
-  // Inject anchor IDs into the content HTML
-  let processedContent = post.content;
-  let headIndex = 0;
-  processedContent = processedContent.replace(
-    /<h([23])([^>]*)>(.*?)<\/h\1>/gi,
-    (match, level, attrs, text) => {
-      const id = `section-${headIndex++}`;
-      return `<h${level} id="${id}" ${attrs}>${text}</h${level}>`;
+    // 1. If plain text without any HTML tags was saved, convert to paragraphs
+    if (!/<[a-z][\s\S]*>/i.test(content)) {
+      content = content
+        .split(/\r?\n\r?\n/)
+        .map((p) => p.trim())
+        .filter(Boolean)
+        .map((p) => `<p>${p.replace(/\r?\n/g, '<br/>')}</p>`)
+        .join('');
     }
-  );
+
+    // 2. Normalize standalone <p><strong>Heading</strong></p> into <h2> or <h3>
+    content = content.replace(
+      /<p(?:\s+[^>]*)?>\s*<(?:strong|b)>\s*([^<]{3,120}?)\s*<\/(?:strong|b)>\s*<\/p>/gi,
+      (match, text) => {
+        const t = text.trim();
+        if (/^about the author/i.test(t) || /^contact digi vidyarthi/i.test(t) || /^source:/i.test(t) || /^note:/i.test(t)) {
+          return `<p class="author-note"><strong>${t}</strong></p>`;
+        }
+        if (/^\d+\.\s+/i.test(t)) {
+          return `<h2>${t}</h2>`;
+        }
+        if (/\?$/.test(t)) {
+          return `<h3>${t}</h3>`;
+        }
+        if (t.length <= 75 && !/[.:;,!]$/.test(t)) {
+          return `<h2>${t}</h2>`;
+        }
+        return `<h3>${t}</h3>`;
+      }
+    );
+
+    // 3. Remove duplicate table of contents text inside content
+    content = content.replace(/<p>\s*<(?:strong|b)>\s*Table of Contents\s*<\/(?:strong|b)>\s*<\/p>/gi, '');
+
+    // 4. Ensure tables are responsive
+    content = content.replace(/<table(?!\s+class)/gi, '<table class="blog-table"');
+    if (!content.includes('table-responsive') && content.includes('<table')) {
+      content = content.replace(/(<table[\s\S]*?<\/table>)/gi, '<div class="table-responsive my-6">$1</div>');
+    }
+
+    // 5. Extract headings and inject anchor IDs
+    let headIndex = 0;
+    const headingsList: Array<{ level: string; text: string; anchorId: string }> = [];
+
+    content = content.replace(
+      /<h([23])([^>]*)>(.*?)<\/h\1>/gi,
+      (match, level, attrs, innerText) => {
+        const text = innerText.replace(/<\/?[^>]+(>|$)/g, '').trim();
+        const anchorId = `section-${headIndex++}`;
+        headingsList.push({ level, text, anchorId });
+
+        const cleanAttrs = attrs.replace(/\s*id=["'][^"']*["']/gi, '').trim();
+        return `<h${level} id="${anchorId}" ${cleanAttrs}>${innerText}</h${level}>`;
+      }
+    );
+
+    return { processedContent: content, headings: headingsList };
+  }
+
+  const { processedContent, headings } = processBlogContent(post.content);
 
   const articleSchema = {
     '@context': 'https://schema.org',
@@ -229,7 +271,7 @@ export default async function BlogPostPage({ params }: Props) {
 
             {/* Article Body HTML */}
             <div
-              className="prose prose-slate max-w-none prose-headings:font-heading prose-headings:text-slate-900 prose-h1:text-2xl prose-h2:text-xl prose-h2:border-b prose-h2:border-slate-100 prose-h2:pb-2 prose-h3:text-lg prose-p:text-slate-600 prose-p:leading-relaxed prose-li:text-slate-600 prose-a:text-brand-blue prose-a:font-semibold hover:prose-a:text-brand-orange prose-blockquote:border-l-4 prose-blockquote:border-brand-orange prose-blockquote:bg-brand-orange-pale prose-blockquote:py-2 prose-blockquote:px-4 prose-blockquote:rounded-r-lg prose-img:rounded-2xl prose-img:shadow-sm"
+              className="blog-content max-w-none"
               dangerouslySetInnerHTML={{ __html: processedContent }}
             />
 

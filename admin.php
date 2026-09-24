@@ -143,8 +143,53 @@ function sanitizeText($text)
 
 function sanitizeContent($html)
 {
-    $allowed = '<h1><h2><h3><h4><h5><h6><p><br><strong><b><em><i><u><ul><ol><li><a><img><blockquote><code><pre><hr><span><div>';
-    return strip_tags(trim($html), $allowed);
+    $allowed = '<h1><h2><h3><h4><h5><h6><p><br><strong><b><em><i><u><ul><ol><li><a><img><blockquote><code><pre><hr><span><div><table><thead><tbody><tr><th><td>';
+    $clean = strip_tags(trim($html), $allowed);
+
+    // If plain text without any HTML tags was submitted, convert to paragraphs
+    if (!preg_match('/<[a-z][\s\S]*>/i', $clean)) {
+        $paras = preg_split('/\r?\n\r?\n/', $clean);
+        $clean = '';
+        foreach ($paras as $p) {
+            $p = trim($p);
+            if ($p !== '') {
+                $clean .= '<p>' . nl2br($p) . '</p>';
+            }
+        }
+    }
+
+    // Convert standalone <p><strong>Heading</strong></p> into <h2> or <h3>
+    $clean = preg_replace_callback(
+        '/<p(?:\s+[^>]*)?>\s*<(?:strong|b)>\s*([^<]{3,120}?)\s*<\/(?:strong|b)>\s*<\/p>/i',
+        function ($matches) {
+            $t = trim($matches[1]);
+            if (preg_match('/^(?:about the author|contact digi vidyarthi|source:|note:)/i', $t)) {
+                return '<p class="author-note"><strong>' . $t . '</strong></p>';
+            }
+            if (preg_match('/^\d+\.\s+/', $t)) {
+                return '<h2>' . $t . '</h2>';
+            }
+            if (substr($t, -1) === '?') {
+                return '<h3>' . $t . '</h3>';
+            }
+            if (strlen($t) <= 75 && !preg_match('/[.:;,!]$/', $t)) {
+                return '<h2>' . $t . '</h2>';
+            }
+            return '<h3>' . $t . '</h3>';
+        },
+        $clean
+    );
+
+    // Clean up empty tags
+    $clean = preg_replace('/<p>\s*(?:&nbsp;|<br\s*\/?>|\s)*<\/p>/i', '', $clean);
+
+    // Ensure tables have blog-table class and table-responsive wrapper
+    $clean = preg_replace('/<table(?!\s+class)/i', '<table class="blog-table"', $clean);
+    if (strpos($clean, 'table-responsive') === false && strpos($clean, '<table') !== false) {
+        $clean = preg_replace('/(<table[\s\S]*?<\/table>)/i', '<div class="table-responsive my-6">$1</div>', $clean);
+    }
+
+    return $clean;
 }
 
 function generateSlug($title)

@@ -11,3 +11,9 @@ out/
 .env*.local
 *.tsbuildinfo
 next-env.d.ts
+*.zip
+*.tar.gz
+*.bak
+*.tmp
+.DS_Store
+Thumbs.db
