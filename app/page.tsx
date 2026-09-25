@@ -19,6 +19,7 @@ import {
   MapPin,
   Clock,
   IndianRupee,
+  Tag,
 } from 'lucide-react';
 import { verifiedCourses, faqs, gbpReviews, siteConfig } from '@/data/siteData';
 import BatchOfferBanner from '@/components/BatchOfferBanner';
@@ -236,13 +237,30 @@ export default function HomePage() {
                       <span className="text-xs text-slate-700 font-medium">{course.duration}</span>
                     </div>
                   </div>
-                  <div className="flex items-start gap-2">
-                    <IndianRupee className="w-4 h-4 text-brand-orange shrink-0 mt-0.5" />
-                    <div>
-                      <span className="text-xs font-bold text-brand-blue block">Fee Range:</span>
-                      <span className="text-sm font-extrabold text-slate-900">{course.fee}</span>
+                  {course.id === 'ai-powered-digital-marketing-course' ? (
+                    <div className="flex items-start gap-2">
+                      <Tag className="w-4 h-4 text-brand-orange shrink-0 mt-0.5" />
+                      <div>
+                        <span className="text-xs font-bold text-brand-blue block">Batch Offer:</span>
+                        <div className="flex items-center gap-1.5 flex-wrap pt-0.5">
+                          <span className="text-xs sm:text-sm font-extrabold text-white bg-gradient-to-r from-brand-orange to-[#FF7A00] px-2.5 py-0.5 rounded-lg shadow-sm">
+                            Flat 30% Off
+                          </span>
+                          <span className="text-[11px] text-slate-600 font-semibold">
+                            (Inquire for Fee Structure)
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                  ) : (
+                    <div className="flex items-start gap-2">
+                      <IndianRupee className="w-4 h-4 text-brand-orange shrink-0 mt-0.5" />
+                      <div>
+                        <span className="text-xs font-bold text-brand-blue block">Course Fee:</span>
+                        <span className="text-base font-extrabold text-slate-900">{course.fee}</span>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 <div className="space-y-2 mb-6 flex-1">
@@ -266,20 +284,20 @@ export default function HomePage() {
 
                 <div className="space-y-2 pt-2 border-t border-slate-100">
                   <Link
-                    href="/contact"
+                    href={course.popular ? '/contact?inquiry=fee-structure' : '/contact'}
                     className={`w-full py-3 rounded-full text-center font-heading font-bold text-sm block transition-all ${
                       course.popular
-                        ? 'bg-gradient-to-r from-brand-orange to-[#FF7A00] text-white shadow-md hover:shadow-orangeGlow'
+                        ? 'bg-gradient-to-r from-brand-orange to-[#FF7A00] text-white shadow-md hover:shadow-orangeGlow hover:-translate-y-0.5'
                         : 'bg-brand-blue-pale text-brand-blue hover:bg-brand-blue hover:text-white'
                     }`}
                   >
-                    Book Free Demo
+                    {course.popular ? 'Get 30% Off Fee Structure' : 'Book Free Demo'}
                   </Link>
                   <Link
                     href="/contact?inquiry=fees"
                     className="w-full py-2.5 text-center text-xs font-semibold text-slate-600 hover:text-brand-blue block transition-colors"
                   >
-                    Get Current Fee Structure &rarr;
+                    {course.popular ? 'Book Free Demo Class →' : 'Get Current Fee Structure →'}
                   </Link>
                 </div>
               </div>

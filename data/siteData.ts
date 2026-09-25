@@ -70,8 +70,9 @@ export const verifiedCourses = [
     badge: 'Specialized',
     tagline: 'Master modern AI workflows for high-speed content, design, and marketing automation.',
     summary: 'A dedicated, practical course designed to teach modern generative AI applications in marketing. Learn to leverage AI tools for accelerated copywriting, visual design, campaign management, and workflow automation.',
-    duration: '2 to 6 months (exact duration depends on selected programme)',
-    fee: '₹10,000 to ₹50,000 (exact fee depends on selected programme)',
+    duration: '2 Months',
+    fee: '₹10,000',
+    feeLabel: 'Course Fee:',
     popular: false,
     keyModules: [
       'Generative AI for Marketing Strategy & Prompt Engineering',
@@ -88,8 +89,10 @@ export const verifiedCourses = [
     badge: 'Comprehensive',
     tagline: 'Complete practical digital marketing training integrated with AI agency workflows.',
     summary: 'Our comprehensive digital marketing programme combining foundational marketing principles, live campaign execution, and advanced AI automation tools. Build practical skills in SEO, paid ads, analytics, and content marketing.',
-    duration: '2 to 6 months (exact duration depends on selected programme)',
-    fee: '₹10,000 to ₹50,000 (exact fee depends on selected programme)',
+    duration: '6 Months Course + 3 Months Internship',
+    fee: 'Flat 30% Off (Inquire for Current Fee Structure)',
+    feeLabel: 'Special Batch Offer:',
+    discount: '30% Off',
     popular: true,
     keyModules: [
       'Digital Marketing Fundamentals & Strategic Frameworks',
@@ -109,8 +112,9 @@ export const verifiedCourses = [
     badge: 'Focused',
     tagline: 'A compact, practical programme covering all core digital marketing modules.',
     summary: 'A compact, practical digital marketing programme covering all core digital marketing modules. It is designed for students, business owners, freelancers, and working professionals who want a complete introduction to digital marketing in a focused format.',
-    duration: '2 to 6 months (exact duration depends on selected programme)',
-    fee: '₹10,000 to ₹50,000 (exact fee depends on selected programme)',
+    duration: '2 Months',
+    fee: '₹10,000',
+    feeLabel: 'Course Fee:',
     popular: false,
     modules: [
       'Digital Marketing Fundamentals and Strategy',
@@ -163,7 +167,7 @@ export const faqs = [
   },
   {
     q: 'What is the duration of the digital marketing courses?',
-    a: 'Our overall course duration ranges from 2 months to 6 months, depending on whether you enroll in a focused Capsule Course, the specialized AI Tools Course, or the comprehensive AI Powered Digital Marketing Course.',
+    a: 'Our course durations are structured based on your career goals: the AI Tools Course and Capsule Course are 2 Months, while our comprehensive AI Powered Digital Marketing Course is 6 Months Course Training + 3 Months Agency Internship.',
   },
   {
     q: 'Can beginners without a coding or technical background join?',
